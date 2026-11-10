@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Gmail__create_draft",
+      "mcp__Gmail__update_draft"
+    ]
+  }
+}
