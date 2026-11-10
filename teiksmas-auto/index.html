@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Teiksmas Auto · mājaslapas paraugs</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: one column of full-width bands; hero pairs a blunt headline with a sample work estimate (the "no surprises" proof). */
+:root {
+  --bg: #eef0ee;          /* workshop concrete */
+  --surface: #ffffff;
+  --ink: #14262b;         /* petrol ink */
+  --muted: #55676b;
+  --line: #cfd6d4;
+  --band: #14262b;        /* dark band */
+  --on-band: #eef3f2;
+  --signal: #f2b705;      /* floor-marking yellow */
+  --on-signal: #1b1602;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "Barlow", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1a1d; --surface: #17272c; --ink: #e9efee; --muted: #9fb0b3; --line: #2b3f45;
+    --band: #0a1215; --on-band: #e9efee; --signal: #f2b705; --on-signal: #1b1602; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1a1d; --surface: #17272c; --ink: #e9efee; --muted: #9fb0b3; --line: #2b3f45;
+  --band: #0a1215; --on-band: #e9efee; --signal: #f2b705; --on-signal: #1b1602; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { font-family: var(--display); font-weight: 700; line-height: 1.02; text-wrap: balance; margin: 0; text-transform: uppercase; letter-spacing: .01em; }
+h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); }
+h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+
+.demo-note { background: var(--signal); color: var(--on-signal); font-size: .9rem; font-weight: 500; }
+.demo-note .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.demo-note a { font-weight: 600; white-space: nowrap; }
+.eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; font-weight: 600; color: var(--signal); margin-bottom: 12px; }
+.svc { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.svc li { border: 2px solid var(--ink); border-radius: 4px; padding: 8px 14px; font-weight: 600; }
+section.tight .wrap { padding-top: 0; }
+
+.top { background: var(--band); color: var(--on-band); }
+.top .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .04em; }
+.brand span { color: var(--signal); }
+.phone { font-weight: 600; font-size: 1.15rem; text-decoration: none; font-variant-numeric: tabular-nums; }
+
+.hero { background: var(--band); color: var(--on-band); }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-block: 36px 56px; }
+.hero p.lead { font-size: 1.15rem; max-width: 34em; color: var(--on-band); opacity: .86; margin-top: 18px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn { display: inline-block; font: 600 1.05rem var(--body); padding: 13px 22px; border-radius: 4px; text-decoration: none; border: 2px solid var(--signal); cursor: pointer; }
+.btn.primary { background: var(--signal); color: var(--on-signal); }
+.btn.ghost { background: transparent; color: var(--on-band); }
+
+.estimate { background: var(--surface); color: var(--ink); border-radius: 4px; padding: 22px; min-width: 0; box-shadow: 8px 8px 0 var(--signal); }
+.estimate .cap { font-size: .8rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+.estimate table { width: 100%; border-collapse: collapse; margin-top: 12px; font-variant-numeric: tabular-nums; }
+.estimate td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.estimate td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
+.estimate tr.total td { border-bottom: 0; font-weight: 600; font-size: 1.15rem; padding-top: 12px; }
+.estimate .fine { font-size: .9rem; color: var(--muted); margin-top: 10px; }
+
+.season .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; border-bottom: 1px solid var(--line); }
+.season strong { font-family: var(--display); font-size: 1.35rem; text-transform: uppercase; letter-spacing: .02em; }
+
+section .wrap { padding-block: 48px; }
+.sub { color: var(--muted); margin-top: 8px; max-width: 40em; }
+
+.prices { margin-top: 24px; background: var(--surface); border-radius: 4px; padding: 6px 20px; }
+.prices table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.prices td { padding: 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prices tr:last-child td { border-bottom: 0; }
+.prices td:last-child { text-align: right; white-space: nowrap; font-weight: 600; padding-left: 16px; }
+.prices small { display: block; color: var(--muted); font-size: .92rem; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 26px; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; min-width: 0; border-top: 3px solid var(--ink); padding-top: 12px; }
+.steps li::before { content: counter(s) "."; font-family: var(--display); font-weight: 700; font-size: 2rem; display: block; line-height: 1; }
+.steps b { display: block; margin: 6px 0 4px; font-size: 1.08rem; }
+.steps span { color: var(--muted); }
+
+.contact { background: var(--band); color: var(--on-band); }
+.contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.contact dl { margin: 22px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; }
+.contact dt { opacity: .7; }
+.contact dd { margin: 0; font-variant-numeric: tabular-nums; }
+form { display: grid; gap: 12px; min-width: 0; }
+label { font-size: .92rem; display: grid; gap: 5px; }
+input, textarea { font: inherit; padding: 11px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); width: 100%; }
+textarea { min-height: 96px; resize: vertical; }
+#sent { background: var(--signal); color: var(--on-signal); padding: 12px 14px; border-radius: 4px; font-weight: 500; }
+footer .wrap { padding-block: 22px; font-size: .9rem; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .hero .wrap, .contact .wrap { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; gap: 20px; }
+  .estimate { box-shadow: 5px 5px 0 var(--signal); }
+}
+</style>
+
+</head>
+<body>
+<div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Teiksmas Auto». Cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.</span> <a href="../">Kas to veidoja un citi paraugi</a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Teiksmas Auto</div>
+    <span class="phone">Jūsu tālrunis</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Autoserviss Bauskas novadā</p>
+      <h1>Remonts bez pārsteigumiem rēķinā</h1>
+      <p class="lead">Pirms sākam darbu, jūs saņemat tāmi ar cenu. Ja remonta laikā atklājas kas papildu, vispirms piezvanām un tikai tad darām.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#pieteikums">Pieteikt vizīti</a>
+        <a class="btn ghost" href="#cenas">Skatīt cenas</a>
+      </div>
+    </div>
+    <aside class="estimate" aria-label="Tāmes paraugs">
+      <div class="cap"><span>Tāmes paraugs</span><span>Nr. 0142</span></div>
+      <table>
+        <tr><td>Priekšējo bremžu kluču maiņa</td><td>35,00 €</td></tr>
+        <tr><td>Bremžu kluči, komplekts</td><td>42,00 €</td></tr>
+        <tr><td>Bremžu sistēmas pārbaude</td><td>0,00 €</td></tr>
+        <tr class="total"><td>Kopā ar PVN</td><td>77,00 €</td></tr>
+      </table>
+      <p class="fine">Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.</p>
+    </aside>
+  </div>
+</section>
+
+<div class="season">
+  <div class="wrap">
+    <strong>Ziemas riepas obligātas no 1. decembra</strong>
+    <span>Riepu maiņa bez rindas, piesakoties iepriekš. Glabājam arī jūsu vasaras riepas.</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Pakalpojumi</h2>
+    <ul class="svc"><li>Auto remonts</li><li>Krāsošana</li><li>Riepu serviss</li></ul>
+  </div>
+</section>
+
+<section id="cenas" class="tight">
+  <div class="wrap">
+    <h2>Cenas</h2>
+    <p class="sub">Darba cenas vieglajām automašīnām. Detaļas rēķinām atsevišķi un nosaucam cenu pirms pasūtīšanas.</p>
+    <div class="prices">
+      <table>
+        <tr><td>Eļļas un filtra maiņa<small>Eļļu varat atvest arī savu</small></td><td>no 25 €</td></tr>
+        <tr><td>Riepu maiņa, 4 riteņi<small>Ar balansēšanu</small></td><td>no 30 €</td></tr>
+        <tr><td>Bremžu kluču maiņa, viena ass</td><td>no 35 €</td></tr>
+        <tr><td>Datordiagnostika<small>Kļūdu nolasīšana un skaidrojums</small></td><td>no 20 €</td></tr>
+        <tr><td>Ritošās daļas pārbaude</td><td>no 15 €</td></tr>
+        <tr><td>Sagatavošana tehniskajai apskatei<small>Pārbaudām to pašu, ko skatīs apskatē</small></td><td>no 25 €</td></tr>
+        <tr><td>Kondicioniera uzpilde</td><td>no 45 €</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Kā tas notiek</h2>
+    <ol class="steps">
+      <li><b>Piesakāties</b><span>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</span></li>
+      <li><b>Saņemat tāmi</b><span>Apskatām auto, izskaidrojam, kas jādara tagad un kas var pagaidīt, un nosaucam cenu.</span></li>
+      <li><b>Saņemat auto</b><span>Paziņojam, kad auto gatavs. Nomainītās detaļas parādām, ja vēlaties.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="contact" id="pieteikums">
+  <div class="wrap">
+    <div>
+      <h2>Pieteikt vizīti</h2>
+      <dl>
+        <dt>Tālrunis</dt><dd>Jūsu tālrunis</dd>
+        <dt>Adrese</dt><dd>Jūsu adrese, Bauskas novads</dd>
+        <dt>P.–Pk.</dt><dd>8.00–18.00</dd>
+        <dt>S.</dt><dd>9.00–14.00</dd>
+        <dt>Sv.</dt><dd>Slēgts</dd>
+      </dl>
+    </div>
+    <form id="req">
+      <label for="f-name">Vārds<input id="f-name" required autocomplete="name"></label>
+      <label for="f-phone">Tālrunis<input id="f-phone" required inputmode="tel" autocomplete="tel"></label>
+      <label for="f-car">Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014"></label>
+      <label for="f-msg">Kas jāizdara?<textarea id="f-msg"></textarea></label>
+      <button class="btn primary" type="submit">Nosūtīt pieteikumu</button>
+      <p id="sent" hidden>Demo: īstajā lapā šis pieteikums uzreiz nonāk jūsu e-pastā.</p>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap">Šī lapa ir paraugs, ko sagatavoja Raivo (Valmiera). Tā nav uzņēmuma oficiālā mājaslapa, un cenas un kontakti ir piemēri. <a href="../">Par autoru un citi paraugi</a></div></footer>
+
+<script>
+document.getElementById('req').addEventListener('submit', function (e) {
+  e.preventDefault();
+  document.getElementById('sent').hidden = false;
+});
+</script>
+</body>
+</html>

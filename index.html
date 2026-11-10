@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raivo · mājaslapas vietējiem uzņēmumiem</title>
+<meta name="description" content="Vienkāršas, ātras mājaslapas Latvijas mazajiem uzņēmumiem. Paraugu saņemat pirms maksāšanas.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: single narrow column, dark opening band, then plain sections. Same tokens as the demo pages. */
+:root {
+  --bg: #eef0ee; --surface: #ffffff; --ink: #14262b; --muted: #55676b; --line: #cfd6d4;
+  --band: #14262b; --on-band: #eef3f2; --signal: #f2b705; --on-signal: #1b1602;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "Barlow", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1a1d; --surface: #17272c; --ink: #e9efee; --muted: #9fb0b3; --line: #2b3f45; --band: #0a1215; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+h1, h2 { font-family: var(--display); font-weight: 700; line-height: 1.04; text-transform: uppercase; letter-spacing: .01em; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 7vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 4.5vw, 2.2rem); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 2px; }
+
+.top { background: var(--band); color: var(--on-band); }
+.top .wrap { padding-block: 44px 52px; }
+.who { text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; font-weight: 600; color: var(--signal); margin-bottom: 14px; }
+.lead { font-size: 1.15rem; opacity: .88; margin-top: 18px; max-width: 34em; }
+
+section .wrap { padding-block: 44px 0; }
+section:last-of-type .wrap { padding-bottom: 52px; }
+.sub { color: var(--muted); margin-top: 8px; max-width: 38em; }
+
+.steps { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 3px solid var(--ink); padding-top: 12px; min-width: 0; }
+.steps li::before { content: counter(s) "."; font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1; display: block; }
+.steps b { display: block; margin: 6px 0 4px; }
+.steps span { color: var(--muted); }
+
+.incl { margin: 22px 0 0; padding: 0; list-style: none; background: var(--surface); border-radius: 4px; }
+.incl li { padding: 13px 18px; border-bottom: 1px solid var(--line); }
+.incl li:last-child { border-bottom: 0; }
+
+.demo { display: block; margin-top: 22px; background: var(--surface); border-radius: 4px; padding: 20px 22px; text-decoration: none; box-shadow: 6px 6px 0 var(--signal); }
+.demo b { font-family: var(--display); font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; display: block; }
+.demo span { color: var(--muted); }
+.demo em { font-style: normal; font-weight: 600; display: inline-block; margin-top: 10px; border-bottom: 2px solid var(--signal); }
+
+.contact { background: var(--surface); border-radius: 4px; padding: 20px 22px; margin-top: 22px; }
+footer .wrap { padding-block: 22px; color: var(--muted); font-size: .9rem; }
+@media (max-width: 640px) { .steps { grid-template-columns: 1fr; gap: 18px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="who">Raivo · Valmiera</p>
+    <h1>Mājaslapas vietējiem uzņēmumiem</h1>
+    <p class="lead">Veidoju vienkāršas, ātras mājaslapas mazajiem uzņēmumiem Latvijā. Paraugu saņemat pirms maksāšanas, tāpēc redzat rezultātu, nevis solījumus.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Ja saņēmāt no manis saiti</h2>
+    <p class="sub">Lapa, ko jums atsūtīju, ir paraugs, kas sagatavots tieši jūsu uzņēmumam. Tajā jau ir jūsu nosaukums un pakalpojumi. Cenas, tālrunis un adrese ir piemēri, līdz iedodat īstos.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Kā tas notiek</h2>
+    <ol class="steps">
+      <li><b>Apskatāt paraugu</b><span>Bez maksas un bez saistībām. Ja nepatīk, vienkārši neatbildiet.</span></li>
+      <li><b>Pasakāt, ko mainīt</b><span>Ielieku jūsu cenas, foto, darba laiku un kontaktus. Sazvanāmies jums ērtā laikā.</span></li>
+      <li><b>Maksājat, kad patīk</b><span>Par cenu vienojamies iepriekš. Maksājat tikai par gatavu lapu, kas jūs apmierina.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Kas ietilpst</h2>
+    <ul class="incl">
+      <li>Viena pārskatāma lapa: pakalpojumi, cenas, darba laiks, kontakti</li>
+      <li>Labi izskatās un ātri atveras telefonā</li>
+      <li>Pieteikuma forma, kas nonāk jūsu e-pastā</li>
+      <li>Palīdzu ar adresi (domēnu), piemēram, jusuuznemums.lv</li>
+      <li>Viena labojumu kārta pēc nodošanas bez maksas</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Paraugi</h2>
+    <a class="demo" href="autoserviss/">
+      <b>Autoserviss</b>
+      <span>Tāmes paraugs, cenrādis, riepu maiņas atgādinājums un pieteikuma forma.</span><br>
+      <em>Atvērt paraugu</em>
+    </a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Saziņa</h2>
+    <div class="contact">
+      <p>Atbildiet uz e-pastu, ko jums nosūtīju, un uzrakstiet, kurā laikā un uz kādu numuru varu piezvanīt.</p>
+      <p style="margin-top:10px">Citi mani darbi: <a href="https://github.com/Xanfiend">github.com/Xanfiend</a></p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Raivo, Valmiera. Paraugu lapas nav uzņēmumu oficiālās mājaslapas.</div></footer>
+
+</body>
+</html>
