@@ -39,6 +39,7 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **Aizezere** | Madona | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/aizezere/) |
 | **KN autoklubs** | Madona | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kn-autoklubs/) |
 | **Saules serviss** | Ērgļi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saules-serviss/) |
+| **Aidaks** | Cēsis | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/aidaks/) |
 
 ### Zemgale
 
@@ -50,6 +51,7 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **Rero serviss** | Dobele | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/rero-serviss/) |
 | **Mobile Truck Service** | Jēkabpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/mobile-truck-service/) |
 | **LIL auto** | Koknese | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lil-auto/) |
+| **Damiron** | Jelgava | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/damiron/) |
 
 ### Kurzeme un Latgale
 
@@ -59,12 +61,24 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **BM motors** | Liepāja | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bm-motors/) |
 | **Tako serviss** | Balvi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/tako-serviss/) |
 | **TREKS** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/treks/) |
+| **RE-CRS** | Grobiņa | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/re-crs/) |
+| **D.S.C.** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dsc/) |
+| **AGS serviss** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/ags-serviss/) |
+| **ToGo serviss** | Ludza | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/togo-serviss/) |
+
+### Rīga un apkārtne
+
+| Uzņēmums | Vieta | |
+|:--|:--|--:|
+| **Eskada-Serviss** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/eskada-serviss/) |
+| **Koruns** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/koruns/) |
+| **Silavas Servisa Centrs** | Salaspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/silavas-servisa-centrs/) |
 
 Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
 
 ## Jūs atrod Google
 
-Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu. Lapa ir veidota tā, lai meklētājs saprot, kas jūs esat un kur atrodaties, un lai potenciālie klienti jūs var ieraudzīt:
+Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu. Katrs paraugs ir pielāgots tam, ko jūs darāt: riepu servisam, kravas auto servisam, evakuatoram vai stiklu maiņai ir savs piedāvājums un savs cenrādis. Lapa ir veidota tā, lai meklētājs saprot, kas jūs esat un kur atrodaties, un lai potenciālie klienti jūs var ieraudzīt:
 
 - virsrakstā un aprakstā ir jūsu pakalpojums un pilsēta, tieši tā, kā cilvēki meklē
 - nosaukums, atrašanās vieta un pakalpojumi ir pierakstīti arī meklētājam saprotamā formātā
