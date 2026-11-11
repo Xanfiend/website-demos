@@ -13,7 +13,7 @@ Paraugu saņemat pirms maksāšanas, tāpēc redzat rezultātu, nevis solījumus
 
 <br>
 
-<a href="https://xanfiend.github.io/website-demos/autoserviss/"><img src="assets/paraugs.png" width="820" alt="Autoservisa mājaslapas paraugs datorā"></a>
+<a href="https://xanfiend.github.io/website-demos/autoserviss/"><img src="assets/paraugs.jpg" width="820" alt="Autoservisa mājaslapas paraugs datorā"></a>
 
 </div>
 
@@ -52,7 +52,7 @@ Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jū
 
 ## Arī telefonā
 
-<img src="assets/paraugs-telefona.png" width="260" align="right" alt="Paraugs telefonā">
+<img src="assets/paraugs-telefona.jpg" width="260" align="right" alt="Paraugs telefonā">
 
 Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vispirms tam:
 
