@@ -20,6 +20,8 @@ SHOPS = [
      ["Sieviešu griezumi", "Vīriešu griezumi", "Matu krāsošana", "Svētku frizūras", "Manikīrs"], "", "friz"),
     ("veterinara-klinika", "Jūsu Veterinārā Klīnika", "", "Jūsu pilsēta",
      ["Vakcinācija un čipēšana", "Terapija", "Ķirurģija", "Zobu kopšana", "Veterinārā aptieka"], "", "vet"),
+    ("buvfirma", "Jūsu Būvfirma", "", "Jūsu pilsēta",
+     ["Remontdarbi", "Jumtu darbi", "Flīzēšana un apdare", "Ūdensapgāde un kanalizācija"], "", "buve"),
     ("bergs-serviss", "Bergs Serviss", "Valmierā", "Valmiera", ["Diagnostika", "Apkope", "Remonts"], "autoserviss Valmiera"),
     ("rem-sport", "REM sport", "Valmierā", "Valmiera",
      ["Evakuatora pakalpojumi", "Tehniskā palīdzība uz ceļa", "Autoserviss"], "evakuators Valmiera", "evak"),
@@ -169,6 +171,16 @@ SHOPS = [
      ["Bēru organizēšana", "Mirušā pārvešana", "Zārki un piederumi", "Sēru ceremonijas", "Morga pakalpojumi"], "apbedīšanas birojs Cēsis", "beres"),
     ("klusums", "Klusums", "Ventspilī", "Ventspils",
      ["Apbedīšanas pakalpojumi", "Apbedīšanas piederumi", "Mirušā transportēšana", "Morga pakalpojumi"], "apbedīšanas birojs Ventspils", "beres"),
+    ("ad-celtnieks", "AD Celtnieks", "Limbažu novadā", "Limbažu novads", ["Remontdarbi", "Labiekārtošanas darbi", "Demontāžas darbi", "Apzaļumošana"], "būvfirma Limbaži", "buve"),
+    ("ozols-d", "Ozols D", "Cēsīs", "Cēsis", ["Mūrēšanas darbi", "Iekšējā apdare"], "mūrnieks Cēsis", "buve"),
+    ("arado", "Arado", "Kuldīgā", "Kuldīga", ["Būvdarbi", "Remontdarbi"], "būvfirma Kuldīga", "buve"),
+    ("aa-gridas", "AA grīdas", "Valmiermuižā", "Valmiermuiža", ["Betona grīdu ieklāšana", "Veco grīdu demontāža"], "betona grīdas Valmiera", "buve"),
+    ("de-buildings", "D&E Buildings", "Cēsīs", "Cēsis", ["Pilna cikla būvniecība", "Remontdarbi"], "būvfirma Cēsis", "buve"),
+    ("au-jumti", "A&U JUMTI", "Cēsīs", "Cēsis", ["Jumtu darbi", "Jumta seguma maiņa", "Jumta konstrukcijas"], "jumiķis Cēsis", "buve"),
+    ("efes-buve", "EFES Būve", "Jelgavā", "Jelgava", ["Skursteņu mūrēšana", "Ventilācijas izvadu mūrēšana", "Montāžas darbi"], "skursteņu mūrēšana Jelgava", "buve"),
+    ("egconstruction", "EGConstruction", "Liepājā", "Liepāja", ["Būvdarbi", "Remontdarbi"], "būvfirma Liepāja", "buve"),
+    ("nepols", "Būvuzņēmums NEPOLS", "Talsos", "Talsi", ["Dzīvojamo ēku būvniecība", "Nedzīvojamo ēku būvniecība", "Remontdarbi"], "būvfirma Talsi", "buve"),
+    ("cortex", "Cortex", "Bauskā", "Bauska", ["Vakcinācija", "Analīzes", "Veterinārā aptieka", "Dzīvnieku frizētava"], "veterinārā klīnika Bauska", "vet"),
 ]
 
 WINTER = ("Ziemas riepas obligātas no 1. decembra", "Riepu maiņa bez rindas, piesakoties iepriekš.")
@@ -288,6 +300,13 @@ PROFILES = {
         None, "Cenu piemēri. Precīzas izmaksas nosaucam pēc apskates.",
         [("Apskate un konsultācija", "", "no 20 €"), ("Vakcinācija", "", "no 25 €"), ("Mikročipa ievietošana", "", "no 20 €"),
          ("Kastrācija, kaķis", "", "no 40 €"), ("Sterilizācija, kaķene", "", "no 60 €"), ("Zobakmens tīrīšana", "", "no 50 €")]),
+    "buve": ("Būvniecība un remonts", "Būvdarbi ar <em>tāmi un termiņu</em>",
+        "Pirms darba saņemat tāmi un termiņu. Par izmaiņām vienojamies, pirms tās veicam.",
+        [("Vannas istabas flīzēšana, 12 m²", "480,00"), ("Flīžu līme un šuvotājs", "95,00"), ("Objekta apskate", "0,00"), ("Kopā ar PVN", "575,00")],
+        None, "Cenu piemēri. Precīzu tāmi sagatavojam pēc objekta apskates.",
+        [("Flīzēšana", "Par kvadrātmetru", "no 35 €"), ("Sienu špaktelēšana un krāsošana", "Par kvadrātmetru", "no 12 €"),
+         ("Lamināta ieklāšana", "Par kvadrātmetru", "no 8 €"), ("Mūrēšanas darbi", "", "pēc tāmes"),
+         ("Jumta seguma maiņa", "", "pēc tāmes")]),
 }
 
 # first matching keyword picks the card icon and the one-line description
@@ -339,6 +358,8 @@ CENTER = ('.hero .wrap{grid-template-columns:1fr;justify-items:center;text-align
           '.estimate{width:100%;max-width:480px;text-align:left;box-shadow:var(--shadow)}')
 REVERSE = '@media (min-width:901px){.hero .wrap{grid-template-columns:.85fr 1.15fr}.hero .wrap>div{order:2}}'
 LAYOUT = {
+    "buve": (':root{--band:#1f2428;--band-2:#39424a;--signal:#ffb000;--on-signal:#1b1300;--r:4px}.hero::after{height:14px}'
+             '.cards li{border-top:4px solid var(--signal)}.cards .ico{background:var(--signal);color:var(--on-signal)}'),
     "friz": ':root{--r:16px}.btn,.phone{border-radius:99px}.cards li{border:0;box-shadow:var(--shadow)}' + REVERSE,
     "vet": ':root{--r:20px}.cards .ico{border-radius:50%;background:var(--signal);color:var(--on-signal)}.estimate{transform:rotate(-1.200deg)}',
     "ziedi": ':root{--r:18px}.btn,.phone{border-radius:99px}.cards .ico{border-radius:50%}' + CENTER,
@@ -439,10 +460,17 @@ EXTRA = {
         ld='VeterinaryCare', generic='Paraugs veterinārās klīnikas mājaslapai.',
         swaps=[('Kad salūst auto, cilvēki meklē', 'Kad saslimst mīlulis, cilvēki meklē'), ('Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.', 'Pirms vizītes cilvēks grib redzēt darba laiku, cenas un tālruni.'), ('Tāme pirms darba</li>', 'Izmaksas zināmas iepriekš</li>'), ('Tāmes paraugs', 'Vizītes paraugs'), ('Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.', 'Izmaksas nosaucam pirms ārstēšanas. Bez jūsu piekrišanas nekas netiek darīts.'), ('Ja vajadzīgā darba sarakstā nav, piezvaniet.', 'Ja vajadzīgā sarakstā nav, uzrakstiet vai piezvaniet.'), ('Godīgi, saprotami, laikā', 'Saudzīgi, saprotami, laikā'), ('<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>', '<h3>Izmaksas iepriekš</h3><p>Pēc apskates pasakām, kas jādara un cik tas maksās.</p>'), ('<h3>Skaidrojam vienkārši</h3><p>Pasakām, kas jādara tagad un kas var pagaidīt līdz nākamajai reizei.</p>', '<h3>Skaidrojam vienkārši</h3><p>Pastāstām, kas mīlulim kaiš un kā par viņu rūpēties mājās.</p>'), ('<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>', '<h3>Pēc pieraksta</h3><p>Mazāk gaidīšanas un mazāk stresa dzīvniekam.</p>'), ('<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>', '<h3>Steidzami gadījumi</h3><p>Zvaniet, pateiksim, cik ātri varam pieņemt.</p>'), ('Saņemt tāmi savam auto', 'Pieteikt vizīti'), ('<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>', '<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un piedāvājam laiku.</p>'), ('<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>', '<h3>Apskate</h3><p>Izmeklējam dzīvnieku, izskaidrojam, kas jādara, un nosaucam izmaksas. Lēmums paliek jūsu ziņā.</p>'), ('<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>', '<h3>Ārstēšana</h3><p>Ārstējam pēc saskaņotā plāna un pastāstām, kā rūpēties mājās.</p>'), ('Šeit būs jūsu servisa foto', 'Šeit būs jūsu klīnikas foto'), ('>Darbnīca<', '>Kabinets<'), ('jūsu servisa atrašanās vietu', 'jūsu klīnikas atrašanās vietu'), ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Dzīvnieks un vecums<input id="f-car" placeholder="Piemēram, kaķis, 3 gadi">'), ('Kas jāizdara?', 'Kas noticis?')],
         faq=[('Vai jāpiesakās iepriekš?', 'Vēlams. Steidzamos gadījumos zvaniet, pateiksim, cik ātri varam pieņemt.'), ('Cik maksā vakcinācija?', 'Atkarīgs no vakcīnas. Cenu nosaucam piesakoties.'), ('Kas jāņem līdzi uz vizīti?', 'Dzīvnieka pasi vai vakcinācijas apliecību, ja tāda ir.'), ('Vai braucat arī mājas vizītēs?', 'Piezvaniet vai uzrakstiet, un pastāstīsim par iespējām.')]),
+    "buve": dict(
+        theme="", ld="GeneralContractor", generic="Paraugs būvfirmas mājaslapai.",
+        swaps=[('Kad salūst auto, cilvēki meklē', 'Kad vajag meistaru, cilvēki meklē'), ('Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.', 'Pirms zvana cilvēks grib redzēt paveiktos darbus un saprast cenu līmeni.'), ('Pieteikt vizīti', 'Saņemt tāmi'), ('<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>', '<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms sākam. Bez jūsu piekrišanas tā nemainās.</p>'), ('<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>', '<h3>Turam termiņus</h3><p>Nosaucam, kad darbs būs pabeigts, un paziņojam, ja kas mainās.</p>'), ('<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>', '<h3>Sakopjam aiz sevis</h3><p>Objektu nododam tīru un būvgružus aizvedam.</p>'), ('Saņemt tāmi savam auto', 'Saņemt tāmi savam objektam'), ('<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>', '<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par apskati.</p>'), ('<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>', '<h3>Saņemat tāmi</h3><p>Apskatām objektu, izskaidrojam, kas jādara, un nosaucam cenu un termiņu. Lēmums paliek jūsu ziņā.</p>'), ('<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>', '<h3>Pieņemat darbu</h3><p>Kopā apskatām paveikto. Rēķinā ir tas pats, kas tāmē.</p>'), ('Šeit būs jūsu servisa foto', 'Šeit būs jūsu darbu foto'), ('>Darbnīca<', '>Objekts<'), ('jūsu servisa atrašanās vietu', 'jūsu biroja atrašanās vietu'), ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Kas jādara un kur?<input id="f-car" placeholder="Piemēram, jumta maiņa, Cēsis">'), ('Kas jāizdara?', 'Sīkāks apraksts')],
+        faq=[('Kā notiek objekta apskate?', 'Uzrakstiet, kur atrodas objekts, un vienosimies par laiku. Pēc apskates sagatavojam tāmi.'), ('Cik ātri varat sākt?', 'Atkarīgs no sezonas un darba apjoma. Termiņu nosaucam kopā ar tāmi.'), ('Vai materiālus pērkat jūs?', 'Varam nopirkt mēs vai strādāt ar jūsu materiāliem. Tāmē tas ir norādīts atsevišķi.'), ('Kas notiek, ja darba laikā atklājas vēl kas?', 'Darbu apturam un piezvanām. Turpinām tikai tad, kad esat piekritis jaunajai cenai.')]),
 }
 
 # trade-specific card texts, checked before the general list
 KINDS_BY = {
+    "buve": [("jumt|skurste|ventil", "check", "Apskatām, izmērām un sagatavojam tāmi."),
+             ("ūden|kanaliz|apkur|santeh", "drop", "Ierīkojam un pārbaudām, pirms nododam."),
+             ("", "wrench", "Tāmi un termiņu nosaucam pirms darba.")],
     "friz": [("manikīr|pedikīr|nag", "check", "Pēc pieraksta, jums ērtā laikā."),
              ("skropst|uzac|kosmet|grims|sejas|vasko|masāž|solārij", "flower", "Pēc pieraksta, jums ērtā laikā."),
              ("", "scissors", "Cenu nosaucam pirms darba, pēc matu garuma un apjoma.")],
