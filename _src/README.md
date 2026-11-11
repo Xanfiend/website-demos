@@ -5,6 +5,7 @@ Publiskais portfolio un paraugu lapas, ko rāda GitHub Pages: https://xanfiend.g
 ## Uzbūve
 - `index.html`: portfolio sākumlapa.
 - `<nosaukums>/index.html`: ģenerētās paraugu lapas. Ar roku nelabot.
+- `epasts.json`: e-pastu teksts (bez adresātiem). Mainot tekstu, palielināt `version`; privātā sūtīšanas lapa to ielādē ar pogu.
 - `_src/autoserviss.html`: autoservisu veidne. `_src/build.py`: uzņēmumu saraksts un ģenerators. Pēc izmaiņām palaist `python3 _src/build.py`.
 - `assets/`: attēli.
 
