@@ -91,6 +91,21 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **PuķuPasaka** | Jūrmala | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pukupasaka/) |
 | **Moonbar Ziedi** | Mārupe | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/moonbar-ziedi/) |
 
+**Kafejnīcas un banketi**
+
+| Uzņēmums | Vieta | |
+|:--|:--|--:|
+| **FEPO** | Brenguļi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/fepo/) |
+| **Strautiņi** | Braslavas pagasts | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/strautini/) |
+| **Pie Jāņkalniņa** | Alūksne | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pie-jankalnina/) |
+| **Lubānas patērētāju biedrība** | Lubāna | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lubanas-ednica/) |
+| **Rudais Ūsiņš** | Sērene | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/rudais-usins/) |
+| **Zaļā jūdze** | Jēkabpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/zala-judze/) |
+| **Centrs** | Ozolnieki | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/centrs-ozolnieki/) |
+| **Vilkābeles** | Saldus novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/vilkabeles/) |
+| **Bordertauna** | Saldus novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bordertauna/) |
+| **Osteria** | Aizpute | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/osteria/) |
+
 Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
 
 ## Jūs atrod Google
