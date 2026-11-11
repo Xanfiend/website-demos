@@ -316,6 +316,31 @@ CLEAN = ('<style>\n:root { --display: var(--body); %s }\n'
          '.brand { font-size: 1.25rem; } .steps li::before { -webkit-text-stroke: 0; font-family: var(--body); font-weight: 600; }\n'
          '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
          '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
+# layout variations, so pages for different trades and different shops do not look alike
+CENTER = ('.hero .wrap{grid-template-columns:1fr;justify-items:center;text-align:center}.eyebrow{margin-inline:auto}'
+          '.hero .lead{margin-inline:auto}.cta-row,.ticks{justify-content:center}'
+          '.estimate{width:100%;max-width:480px;text-align:left;box-shadow:var(--shadow)}')
+REVERSE = '@media (min-width:901px){.hero .wrap{grid-template-columns:.85fr 1.15fr}.hero .wrap>div{order:2}}'
+LAYOUT = {
+    "ziedi": ':root{--r:18px}.btn,.phone{border-radius:99px}.cards .ico{border-radius:50%}' + CENTER,
+    "kafe": '.cards li{border-left:4px solid var(--signal)}.steps li{border-top-color:var(--signal)}' + REVERSE,
+    "zobi": (':root{--r:14px}.btn,.phone{border-radius:99px}.cards li{text-align:center}.cards .ico{margin-inline:auto;border-radius:50%}'
+             '@media (prefers-color-scheme: light){.hero{background:var(--surface);color:var(--ink);background-image:none;border-bottom:1px solid var(--line)}'
+             '.hero h1 em,.ticks svg{color:var(--band-2)}.eyebrow{color:var(--band-2);border-color:var(--line)}'
+             '.hero .btn.ghost{color:var(--ink);border-color:var(--line)}.estimate{border:1px solid var(--line);box-shadow:var(--shadow)}}'),
+    "beres": '.cards li{border:0;border-top:2px solid var(--signal);border-radius:0;background:transparent;padding-inline:0}.cards li:hover{box-shadow:none}' + CENTER,
+}
+# car trades: same structure, different colours and hero side per shop
+AUTO_LOOKS = [
+    "",
+    ':root{--signal:#ff7a1a;--on-signal:#1f0e00}' + REVERSE,
+    ':root{--band:#131b2e;--band-2:#22325a}',
+    ':root{--band:#1b1d1f;--band-2:#2e3338;--signal:#ff5a4d;--on-signal:#1a0000}' + REVERSE,
+    ':root{--signal:#7ed957;--on-signal:#0d1f05}',
+    ':root{--band:#102a2a;--band-2:#1b4a47;--signal:#ffd166;--on-signal:#1b1602}' + REVERSE,
+]
+KEEP_LOOK = {"autoserviss", "bergs-serviss", "rem-sport"}  # generic demo and pages already sent out
+
 # trades that are not car shops: own colours, schema.org type, wording swaps and FAQ
 EXTRA = {
     "ziedi": dict(
@@ -398,6 +423,8 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     noun, h1, lead, est, season, price_sub, prices = PROFILES[prof]
     extra = EXTRA.get(prof, {})
     generic = not loc
+    look = LAYOUT.get(prof) or ("" if slug in KEEP_LOOK else AUTO_LOOKS[sum(map(ord, slug)) % len(AUTO_LOOKS)])
+    theme = extra.get("theme", "") + (f"<style>{look}</style>\n" if look else "")
     e = html.escape
     note = (extra.get("generic", "Paraugs autoservisa mājaslapai.") + " Nosaukumu, cenas, foto un kontaktus nomainu pret jūsu."
             if generic else
@@ -423,7 +450,7 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}} for x in services],
     }, ensure_ascii=False).replace("</", "<\\/") + "</script>\n"
     page = (TPL
-            .replace("{{JSONLD}}", ld).replace("{{THEME}}", extra.get("theme", ""))
+            .replace("{{JSONLD}}", ld).replace("{{THEME}}", theme)
             .replace("{{OWNER}}", owner)
             .replace("{{NAME}}", e(name))
             .replace("{{NOTE}}", note)
