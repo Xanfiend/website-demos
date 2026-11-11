@@ -8,6 +8,10 @@ TPL = (ROOT / "_src" / "autoserviss.html").read_text(encoding="utf-8")
 SHOPS = [
     ("autoserviss", "Jūsu Autoserviss", "", "Jūsu pilsēta",
      ["Diagnostika", "Apkope", "Ritošās daļas remonts", "Riepu serviss"], ""),
+    ("ziedu-salons", "Jūsu Ziedu Salons", "", "Jūsu pilsēta",
+     ["Pušķi un kompozīcijas", "Kāzu floristika", "Sēru vainagi", "Telpaugi", "Ziedu piegāde"], "", "ziedi"),
+    ("kafejnica", "Jūsu Kafejnīca", "", "Jūsu pilsēta",
+     ["Dienas pusdienas", "Banketi un svinības", "Izbraukuma banketi", "Bēru mielasti", "Kūkas un konditoreja"], "", "kafe"),
     ("bergs-serviss", "Bergs Serviss", "Valmierā", "Valmiera", ["Diagnostika", "Apkope", "Remonts"], "autoserviss Valmiera"),
     ("rem-sport", "REM sport", "Valmierā", "Valmiera",
      ["Evakuatora pakalpojumi", "Tehniskā palīdzība uz ceļa", "Autoserviss"], "evakuators Valmiera", "evak"),
@@ -161,10 +165,34 @@ PROFILES = {
         ("Sāls uz ceļiem bojā virsbūvi", "Pretrūsas apstrādi vislabāk veikt pirms ziemas."), GENERIC_SUB,
         [("Pretrūsas apstrāde, vieglais auto", "", "no 220 €"), ("Pretrūsas apstrāde, apvidus auto vai mikroautobuss", "", "no 280 €"),
          ("Bremžu kluču maiņa, viena ass", "", "no 35 €"), ("Datordiagnostika", "", "no 20 €"), ("Sagatavošana tehniskajai apskatei", "", "no 25 €")]),
+    "ziedi": ("Ziedu salons", "Svaigi ziedi <em>katram gadījumam</em>",
+        "Pušķi, kompozīcijas un telpaugi. Pasūtiet iepriekš, un pušķis būs gatavs, kad atnāksiet.",
+        [("Pušķis no sezonas ziediem", "25,00"), ("Apsveikuma kartīte", "2,00"), ("Iesaiņošana", "0,00"), ("Kopā", "27,00")],
+        ("Ziemassvētku vainagi un kompozīcijas", "Pasūtījumus pieņemam jau tagad."),
+        "Cenu piemēri. Pušķi veidojam arī konkrētai summai, nosauciet savu budžetu.",
+        [("Pušķis no sezonas ziediem", "", "no 15 €"), ("Rozes", "Viens zieds", "no 2,50 €"), ("Līgavas pušķis", "", "no 45 €"),
+         ("Galda kompozīcija", "", "no 20 €"), ("Sēru vainags", "", "no 40 €"), ("Telpaugs podiņā", "", "no 8 €")]),
+    "kafe": ("Kafejnīca", "Gardas pusdienas un <em>svētku galdi</em>",
+        "Siltas pusdienas katru darba dienu un banketi jūsu svētkiem. Ēdienkarti un cenas redzat jau iepriekš.",
+        [("Dienas zupa", "2,50"), ("Otrais ēdiens ar piedevām", "5,50"), ("Deserts", "2,00"), ("Komplekts kopā", "10,00")],
+        ("Gada nogales pasākumi", "Brīvie datumi aizpildās ātri, piesakieties laikus."),
+        "Cenu piemēri. Banketa piedāvājumu sagatavojam pēc viesu skaita un jūsu vēlmēm.",
+        [("Dienas pusdienu komplekts", "Zupa un otrais ēdiens", "no 6 €"), ("Zupa", "", "no 2,50 €"), ("Otrais ēdiens", "", "no 5 €"),
+         ("Banketa galds", "Vienai personai", "no 25 €"), ("Bēru mielasts", "Vienai personai", "no 15 €"),
+         ("Izbraukuma banketi", "", "pēc piedāvājuma")]),
 }
 
 # first matching keyword picks the card icon and the one-line description
 KINDS = [
+    ("telpaug|stād|podiņ", "drop", "Palīdzam izvēlēties un pastāstām, kā kopt."),
+    ("sēr|vaiņag|vainag", "flower", "Izgatavojam pēc pasūtījuma, arī steidzami."),
+    ("kāz|svētk|dekor|noform", "gift", "Uzrakstiet datumu un ieceri, un sagatavosim piedāvājumu."),
+    ("piegād", "truck", "Piegādājam norunātajā laikā un vietā."),
+    ("pušķ|zied|rozes|flor", "flower", "Svaigi ziedi un pušķi pēc jūsu vēlmēm un budžeta."),
+    ("banket|mielast|izbraukum|svinīb", "utensils", "Ēdienkarti un cenu vienai personai saskaņojam iepriekš."),
+    ("pusdien|ēdien|virtuv|līdzņem", "utensils", "Gatavojam uz vietas no svaigiem produktiem."),
+    ("kafij|kūk|konditor|desert", "cup", "Uz vietas vai līdzņemšanai."),
+    ("zāle|telpas", "pin", "Telpas jūsu pasākumam. Viesu skaitu saskaņojam iepriekš."),
     ("diagnost", "gauge", "Nolasām kļūdas un saprotami izskaidrojam, ko tās nozīmē."),
     ("riep", "tyre", "Maiņa, montāža un balansēšana, piesakoties iepriekš."),
     ("savirz|ģeometr", "tyre", "Noregulējam, lai auto brauc taisni un riepas nodilst vienmērīgi."),
@@ -175,6 +203,75 @@ KINDS = [
     ("apkop|eļļ|apskat", "drop", "Regulāra apkope, lai lielie remonti nebūtu vajadzīgi."),
 ]
 
+SERIF = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap">\n<style>\n'
+         ':root { --display: "Playfair Display", Georgia, serif; %s }\n'
+         '@media (prefers-color-scheme: light) { :root { --bg: %s; } }\n'
+         'h1, h2, .brand, .season strong, form h3 { text-transform: none; letter-spacing: 0; }\n'
+         'h1 { font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.08; } h2 { line-height: 1.12; }\n'
+         '.brand { font-size: 1.3rem; } .steps li::before { -webkit-text-stroke: 0; }\n'
+         '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
+         '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
+# trades that are not car shops: own colours, schema.org type, wording swaps and FAQ
+EXTRA = {
+    "ziedi": dict(
+        theme=SERIF.replace("%s", "--band: #20392f; --band-2: #2e5244; --signal: #f4b6c2; --on-signal: #3a1420;", 1).replace("%s", "#faf6f1", 1),
+        ld="Florist", generic="Paraugs ziedu salona mājaslapai.",
+        swaps=[
+            ("Kad salūst auto, cilvēki meklē", "Kad vajag ziedus, cilvēki meklē"),
+            ("Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.", "Pirms brauciena cilvēks grib redzēt, ka salons ir īsts un kādi ir pušķi."),
+            ("Pieteikt vizīti", "Pasūtīt ziedus"), ("Tāme pirms darba</li>", "Svaigi ziedi</li>"), ("Skaidras cenas</li>", "Pušķi pēc pasūtījuma</li>"),
+            ("Tāmes paraugs", "Pasūtījuma paraugs"),
+            ("Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.", "Cenu zināt, pirms pasūtāt. Pušķi saskaņojam ar jūsu vēlmēm un budžetu."),
+            ("Ja vajadzīgā darba sarakstā nav, piezvaniet.", "Ja vajadzīgā sarakstā nav, uzrakstiet vai piezvaniet."),
+            ("Godīgi, saprotami, laikā", "Svaigi, skaisti, laikā"),
+            ("<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>", "<h3>Svaigi ziedi</h3><p>Ziedus saņemam regulāri, tāpēc pušķis priecē ilgāk.</p>"),
+            ("<h3>Skaidrojam vienkārši</h3><p>Pasakām, kas jādara tagad un kas var pagaidīt līdz nākamajai reizei.</p>", "<h3>Pušķis jūsu budžetam</h3><p>Nosauciet summu un gadījumu, un piedāvāsim variantus.</p>"),
+            ("<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>", "<h3>Gatavs norunātajā laikā</h3><p>Pasūtījums jūs gaida, kad atnākat. Nav jāstāv rindā.</p>"),
+            ("<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>", "<h3>Padoms kopšanai</h3><p>Pastāstām, kā rūpēties par ziediem un telpaugiem.</p>"),
+            ("Saņemt tāmi savam auto", "Pasūtīt pušķi"),
+            ("<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>", "<h3>Pasūtāt</h3><p>Uzrakstiet vai piezvaniet un pastāstiet, kam ziedi domāti un kāds ir budžets.</p>"),
+            ("<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>", "<h3>Saskaņojam</h3><p>Piedāvājam variantus un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>"),
+            ("<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>", "<h3>Saņemat ziedus</h3><p>Pušķis ir gatavs norunātajā laikā.</p>"),
+            ("Šeit būs jūsu servisa foto", "Šeit būs jūsu pušķu foto"), (">Darbnīca<", ">Salons<"),
+            ("jūsu servisa atrašanās vietu", "jūsu salona atrašanās vietu"),
+            ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Kam ziedi domāti?<input id="f-car" placeholder="Piemēram, dzimšanas diena, līdz 30 €">'),
+            ("Kas jāizdara?", "Jūsu vēlmes"),
+        ],
+        faq=[("Vai pušķi jāpasūta iepriekš?", "Vēlams, īpaši svētkos un lielākiem pasūtījumiem. Gatavi pušķi salonā ir katru dienu."),
+             ("Vai varat izveidot pušķi konkrētai summai?", "Jā. Nosauciet budžetu un gadījumu, un piedāvāsim variantus."),
+             ("Cik ilgi ziedi stāvēs?", "Atkarīgs no ziediem. Pie katra pušķa pastāstām, kā to kopt, lai tas priecē pēc iespējas ilgāk."),
+             ("Vai noformējat arī pasākumus?", "Uzrakstiet datumu, vietu un ieceri, un atbildēsim, ko varam piedāvāt.")]),
+    "kafe": dict(
+        theme=SERIF.replace("%s", "--band: #2a1c14; --band-2: #46301f; --signal: #e9a23b; --on-signal: #2a1602;", 1).replace("%s", "#faf5ee", 1),
+        ld="Restaurant", generic="Paraugs kafejnīcas mājaslapai.",
+        swaps=[
+            ("Kad salūst auto, cilvēki meklē", "Kad plāno svinības vai meklē, kur paēst, cilvēki meklē"),
+            ("Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.", "Pirms brauciena cilvēks grib redzēt ēdienkarti, cenas un telpas."),
+            ("Pieteikt vizīti", "Pieteikt pasākumu"), ("Tāme pirms darba</li>", "Gatavojam uz vietas</li>"), ("Skaidras cenas</li>", "Banketi un svinības</li>"),
+            ("Tāmes paraugs", "Dienas piedāvājums"),
+            ("Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.", "Cenas redzat iepriekš, bez pārsteigumiem pie kases."),
+            ("Ja vajadzīgā darba sarakstā nav, piezvaniet.", "Ja vajadzīgā sarakstā nav, uzrakstiet vai piezvaniet."),
+            ("Godīgi, saprotami, laikā", "Garšīgi, mājīgi, laikā"),
+            ("<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>", "<h3>Gatavojam paši</h3><p>Ēdienu gatavojam uz vietas, nevis uzsildām.</p>"),
+            ("<h3>Skaidrojam vienkārši</h3><p>Pasakām, kas jādara tagad un kas var pagaidīt līdz nākamajai reizei.</p>", "<h3>Cena zināma iepriekš</h3><p>Banketa cenu vienai personai saskaņojam, pirms apstiprināt pasūtījumu.</p>"),
+            ("<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>", "<h3>Viss norunātajā laikā</h3><p>Galds ir klāts, kad ierodas viesi.</p>"),
+            ("<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>", "<h3>Pielāgojam ēdienkarti</h3><p>Veģetārie un bērnu ēdieni pēc vienošanās.</p>"),
+            ("<p class=\"kicker\">Cenrādis</p>\n      <h2>Cenas</h2>", "<p class=\"kicker\">Cenrādis</p>\n      <h2>Ēdienkarte un cenas</h2>"),
+            ("Saņemt tāmi savam auto", "Saņemt piedāvājumu"),
+            ("<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>", "<h3>Piesakāties</h3><p>Uzrakstiet datumu, viesu skaitu un kāds pasākums plānots.</p>"),
+            ("<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>", "<h3>Saņemat piedāvājumu</h3><p>Atsūtām ēdienkarti un cenu vienai personai. Lēmums paliek jūsu ziņā.</p>"),
+            ("<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>", "<h3>Svinat</h3><p>Galds ir klāts norunātajā laikā. Jums atliek sagaidīt viesus.</p>"),
+            ("Šeit būs jūsu servisa foto", "Šeit būs jūsu ēdienu foto"), (">Darbnīca<", ">Zāle<"),
+            ("jūsu servisa atrašanās vietu", "jūsu kafejnīcas atrašanās vietu"),
+            ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Datums un viesu skaits<input id="f-car" placeholder="Piemēram, 14. decembris, 30 viesi">'),
+            ("Kas jāizdara?", "Kāds pasākums plānots?"),
+        ],
+        faq=[("Vai galdiņš jārezervē iepriekš?", "Pusdienām nav jārezervē. Lielākām kompānijām ieteicams pieteikties iepriekš."),
+             ("Cik viesiem varat klāt galdu?", "Atkarīgs no pasākuma. Uzrakstiet viesu skaitu, un atbildēsim, ko varam piedāvāt."),
+             ("Vai ir veģetārie ēdieni?", "Jā, pēc vienošanās pielāgojam ēdienkarti arī veģetāriešiem un bērniem."),
+             ("Kā notiek apmaksa par banketu?", "Cenu vienai personai saskaņojam iepriekš. Par priekšapmaksu vienojamies, apstiprinot pasūtījumu.")]),
+}
+
 def card(s):
     icon, text = next(((i, t) for k, i, t in KINDS if re.search(k, s.lower())),
                       ("wrench", "Pirms darba nosaucam cenu un termiņu."))
@@ -182,10 +279,12 @@ def card(s):
             f'<h3>{html.escape(s)}</h3><p>{text}</p></li>')
 
 for slug, name, loc, town, services, term, *rest in SHOPS:
-    noun, h1, lead, est, season, price_sub, prices = PROFILES[rest[0] if rest else "auto"]
-    generic = slug == "autoserviss"
+    prof = rest[0] if rest else "auto"
+    noun, h1, lead, est, season, price_sub, prices = PROFILES[prof]
+    extra = EXTRA.get(prof, {})
+    generic = not loc
     e = html.escape
-    note = ("Paraugs autoservisa mājaslapai. Nosaukumu, cenas, foto un kontaktus nomainu pret jūsu."
+    note = (extra.get("generic", "Paraugs autoservisa mājaslapai.") + " Nosaukumu, cenas, foto un kontaktus nomainu pret jūsu."
             if generic else
             f"Šis paraugs ir sagatavots tieši uzņēmumam «{e(name)}». Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.")
     owner = "" if generic else f"""<section class="owner"><div class="wrap"><div class="card">
@@ -204,12 +303,12 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
 """
     # structured data for search engines: business type, town and services
     ld = "" if generic else '<script type="application/ld+json">' + json.dumps({
-        "@context": "https://schema.org", "@type": "AutoRepair", "name": name,
+        "@context": "https://schema.org", "@type": extra.get("ld", "AutoRepair"), "name": name,
         "address": {"@type": "PostalAddress", "addressLocality": town, "addressCountry": "LV"},
         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}} for x in services],
     }, ensure_ascii=False).replace("</", "<\\/") + "</script>\n"
     page = (TPL
-            .replace("{{JSONLD}}", ld)
+            .replace("{{JSONLD}}", ld).replace("{{THEME}}", extra.get("theme", ""))
             .replace("{{OWNER}}", owner)
             .replace("{{NAME}}", e(name))
             .replace("{{NOTE}}", note)
@@ -226,6 +325,12 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
             .replace("{{TOWN}}", e(town))
             .replace("{{INITIAL}}", e(name[0].upper()))
             .replace("{{SERVICES}}", "".join(card(s) for s in services)))
+    for old, new in extra.get("swaps", []):
+        assert old in page or (generic and "cilvēk" in old), (slug, old)
+        page = page.replace(old, new)
+    if "faq" in extra:
+        page = re.sub(r"(    <details>.*</details>\n)+", "".join(
+            f"    <details><summary>{q}</summary><p>{a}</p></details>\n" for q, a in extra["faq"]), page, count=1)
     if rest and rest[0] == "evak":
         page = page.replace("Pieteikt vizīti", "Izsaukt evakuatoru")
     out = ROOT / slug
