@@ -45,7 +45,7 @@ Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jū
 
 > Paraugu lapas Google nerāda. Tās redz tikai tie, kam ir saite. Meklēšanā parādīsies jūsu īstā lapa.
 
-> **Pirmajiem trim klientiem:** lapa bez maksas, ja pēc tam atļaujat publicēt jūsu godīgu atsauksmi.
+> **Līdz 2026. gada 31. decembrim:** lapa bez maksas, ja pēc tam atļaujat publicēt jūsu godīgu atsauksmi.
 
 ## Kā tas notiek
 
