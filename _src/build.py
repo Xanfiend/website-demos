@@ -86,6 +86,26 @@ SHOPS = [
     ("aidaks", "Aidaks", "Cēsīs", "Cēsis",
      ["Riepu montāža un balansēšana", "Riepu remonts", "Riepu tirdzniecība",
       "Kravas un lauksaimniecības tehnikas riepas"], "riepu serviss Cēsis", "riepas"),
+    ("bella", "Bella", "Valmierā", "Valmiera",
+     ["Ziedu pušķi", "Kāzu floristika", "Sēru pušķi un vainagi", "Ziedu kompozīcijas", "Ziedu piegāde"], "ziedi Valmiera", "ziedi"),
+    ("carla", "Carla", "Jūrmalā", "Jūrmala",
+     ["Ziedu pušķi un kompozīcijas", "Kāzu pušķi", "Svētku noformējumi", "Stādi un sēklas"], "ziedi Jūrmala", "ziedi"),
+    ("elston", "Elston", "Valkā", "Valka",
+     ["Ziedu pušķi", "Kāzu pušķi un auto dekorēšana", "Sēru pušķi un vainagi", "Ziedu piegāde", "Dāvanas"], "ziedi Valka", "ziedi"),
+    ("ingra", "Ingra", "Valkā", "Valka",
+     ["Apsveikuma pušķi", "Kāzu floristika", "Sēru floristika", "Konfekšu pušķi", "Kāzu auto dekorēšana"], "ziedi Valka", "ziedi"),
+    ("kreimenite", "Kreimenīte", "Talsos", "Talsi",
+     ["Ziedu pušķi un kompozīcijas", "Kāzu pušķi", "Sēru vainagi", "Ziedu piegāde"], "ziedi Talsi", "ziedi"),
+    ("migla-be", "Migla Be", "Jelgavā", "Jelgava",
+     ["Ziedu pušķi", "Kāzu floristika", "Sēru vainagi", "Telpaugi", "Ziedu piegāde"], "ziedi Jelgava", "ziedi"),
+    ("moonbar-ziedi", "Moonbar Ziedi", "Mārupē", "Mārupe",
+     ["Ziedu pušķi", "Ziedu kompozīcijas", "Kāzu un svētku dekori", "Ziedu piegāde"], "ziedi Mārupe", "ziedi"),
+    ("pukupasaka", "PuķuPasaka", "Jūrmalā", "Jūrmala",
+     ["Ziedu pušķi", "Ziedu kompozīcijas", "Svētku dekorācijas", "Stādi un dārza preces", "Ziedu piegāde"], "ziedi Jūrmala", "ziedi"),
+    ("saldus-zieds", "Saldus zieds", "Saldū", "Saldus",
+     ["Vietējie grieztie ziedi", "Ziedu pušķi un kompozīcijas", "Sēru vainagi", "Puķu stādi un telpaugi"], "ziedi Saldus", "ziedi"),
+    ("sb-ziedi", "SB ZIEDI", "Brocēnos", "Brocēni",
+     ["Grieztie ziedi", "Ziedu pušķi", "Sēru vainagi", "Telpaugi", "Dāvanas un suvenīri"], "ziedi Brocēni", "ziedi"),
 ]
 
 WINTER = ("Ziemas riepas obligātas no 1. decembra", "Riepu maiņa bez rindas, piesakoties iepriekš.")
@@ -184,6 +204,7 @@ PROFILES = {
 
 # first matching keyword picks the card icon and the one-line description
 KINDS = [
+    ("konfekš|dāvan|suvenīr", "gift", "Sīkumi, ko pielikt pie ziediem, lai dāvana būtu pilnīga."),
     ("telpaug|stād|podiņ", "drop", "Palīdzam izvēlēties un pastāstām, kā kopt."),
     ("sēr|vaiņag|vainag", "flower", "Izgatavojam pēc pasūtījuma, arī steidzami."),
     ("kāz|svētk|dekor|noform", "gift", "Uzrakstiet datumu un ieceri, un sagatavosim piedāvājumu."),

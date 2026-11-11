@@ -23,6 +23,8 @@ Paraugu saņemat pirms maksāšanas, tāpēc redzat rezultātu, nevis solījumus
 
 ## Jūsu paraugs
 
+**Autoservisi, riepu servisi un citi auto pakalpojumi**
+
 Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 
 ### Vidzeme
@@ -74,6 +76,21 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **Koruns** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/koruns/) |
 | **Silavas Servisa Centrs** | Salaspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/silavas-servisa-centrs/) |
 
+**Ziedu saloni**
+
+| Uzņēmums | Vieta | |
+|:--|:--|--:|
+| **Bella** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bella/) |
+| **Ingra** | Valka | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/ingra/) |
+| **Elston** | Valka | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/elston/) |
+| **Kreimenīte** | Talsi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kreimenite/) |
+| **Saldus zieds** | Saldus | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saldus-zieds/) |
+| **SB ZIEDI** | Brocēni | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/sb-ziedi/) |
+| **Migla Be** | Jelgava | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/migla-be/) |
+| **Carla** | Jūrmala | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/carla/) |
+| **PuķuPasaka** | Jūrmala | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pukupasaka/) |
+| **Moonbar Ziedi** | Mārupe | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/moonbar-ziedi/) |
+
 Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
 
 ## Jūs atrod Google
@@ -107,7 +124,7 @@ Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vi
 - cenas un darba laiks redzami bez meklēšanas
 - pieteikuma forma nonāk jūsu e-pastā
 
-**Vispārīgs paraugs:** [Autoserviss](https://xanfiend.github.io/website-demos/autoserviss/)
+**Vispārīgi paraugi:** [Autoserviss](https://xanfiend.github.io/website-demos/autoserviss/) · [Ziedu salons](https://xanfiend.github.io/website-demos/ziedu-salons/) · [Kafejnīca](https://xanfiend.github.io/website-demos/kafejnica/)
 
 <br clear="right">
 
