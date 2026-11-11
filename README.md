@@ -70,6 +70,7 @@ Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu
 - nosaukums, atrašanās vieta un pakalpojumi ir pierakstīti arī meklētājam saprotamā formātā
 - lapa ātri atveras un labi izskatās telefonā, un Google to ņem vērā
 - pēc nodošanas piesaku lapu Google, lai tā parādās meklēšanā
+- palīdzu izveidot vai sakārtot Google uzņēmuma profilu, lai jūs parādāties arī Google Maps ar adresi, darba laiku un tālruni
 
 Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jūs tur nav vispār.
 
