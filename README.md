@@ -62,6 +62,19 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 
 Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
 
+## Jūs atrod Google
+
+Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu. Lapa ir veidota tā, lai meklētājs saprot, kas jūs esat un kur atrodaties, un lai potenciālie klienti jūs var ieraudzīt:
+
+- virsrakstā un aprakstā ir jūsu pakalpojums un pilsēta, tieši tā, kā cilvēki meklē
+- nosaukums, atrašanās vieta un pakalpojumi ir pierakstīti arī meklētājam saprotamā formātā
+- lapa ātri atveras un labi izskatās telefonā, un Google to ņem vērā
+- pēc nodošanas piesaku lapu Google, lai tā parādās meklēšanā
+
+Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jūs tur nav vispār.
+
+> Paraugu lapas Google nerāda. Tās redz tikai tie, kam ir saite. Meklēšanā parādīsies jūsu īstā lapa.
+
 ## Kā tas notiek
 
 | 1. Apskatāt paraugu | 2. Pasakāt, ko mainīt | 3. Maksājat, kad patīk |

@@ -1,5 +1,5 @@
 """Builds one demo page per shop from _src/autoserviss.html. Run: python3 _src/build.py"""
-import html, pathlib, re
+import html, json, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TPL = (ROOT / "_src" / "autoserviss.html").read_text(encoding="utf-8")
@@ -86,7 +86,7 @@ for slug, name, loc, town, services, term in SHOPS:
   <h2>Šo lapu sagatavoju tieši jums</h2>
   <p>Labdien! Esmu Raivo no Valmieras. Šis ir paraugs, kā varētu izskatīties «{e(name)}» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
   <ul>
-    <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “{e(term)}”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod.</span></li>
+    <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “{e(term)}”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod. Lapā jūsu nosaukums, pilsēta un pakalpojumi ir norādīti arī meklētājam saprotamā veidā.</span></li>
     <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>
     <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
     <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>
@@ -95,7 +95,14 @@ for slug, name, loc, town, services, term in SHOPS:
   <p class="below">Jūsu lapas paraugs sākas šeit</p>
 </div></div></section>
 """
+    # structured data for search engines: business type, town and services
+    ld = "" if generic else '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org", "@type": "AutoRepair", "name": name,
+        "address": {"@type": "PostalAddress", "addressLocality": town, "addressCountry": "LV"},
+        "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}} for x in services],
+    }, ensure_ascii=False).replace("</", "<\\/") + "</script>\n"
     page = (TPL
+            .replace("{{JSONLD}}", ld)
             .replace("{{OWNER}}", owner)
             .replace("{{NAME}}", e(name))
             .replace("{{NOTE}}", note)
