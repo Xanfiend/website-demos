@@ -49,6 +49,18 @@ a { color: inherit; }
 .svc { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .svc li { border: 2px solid var(--ink); border-radius: 4px; padding: 8px 14px; font-weight: 600; }
 section.tight .wrap { padding-top: 0; }
+.owner .wrap { padding-block: 28px 30px; }
+.owner .card { background: var(--surface); border: 2px dashed var(--ink); border-radius: 4px; padding: 22px 24px; }
+.owner .tag { text-transform: uppercase; letter-spacing: .09em; font-size: .8rem; font-weight: 600; color: var(--muted); }
+.owner h2 { margin-top: 6px; }
+.owner p { margin-top: 10px; max-width: 46em; }
+.owner ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+.owner li { min-width: 0; }
+.owner li b { display: block; }
+.owner li span { color: var(--muted); }
+.owner .next { font-weight: 500; margin-top: 18px; }
+.owner .below { margin-top: 16px; font-size: .9rem; color: var(--muted); text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+@media (max-width: 760px) { .owner ul { grid-template-columns: 1fr; } }
 
 .top { background: var(--band); color: var(--on-band); }
 .top .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
@@ -114,6 +126,19 @@ footer .wrap { padding-block: 22px; font-size: .9rem; color: var(--muted); }
 <body>
 <div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Green Garage». Cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.</span> <a href="../">Kas to veidoja un citi paraugi</a></div></div>
 
+<section class="owner"><div class="wrap"><div class="card">
+  <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
+  <h2>Šo lapu sagatavoju tieši jums</h2>
+  <p>Labdien! Esmu Raivo no Valmieras. Šis ir paraugs, kā varētu izskatīties «Green Garage» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
+  <ul>
+    <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “autoserviss Ozolnieki”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod.</span></li>
+    <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>
+    <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
+    <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>
+  </ul>
+  <p class="next">Ja patīk, atbildiet uz manu e-pastu ar laiku un numuru, uz kuru piezvanīt. Par cenu vienosimies, un maksājat tikai par gatavu lapu, kas jūs apmierina.</p>
+  <p class="below">Jūsu lapas paraugs sākas šeit</p>
+</div></div></section>
 <header class="top">
   <div class="wrap">
     <div class="brand">Green Garage</div>

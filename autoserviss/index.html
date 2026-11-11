@@ -49,6 +49,18 @@ a { color: inherit; }
 .svc { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .svc li { border: 2px solid var(--ink); border-radius: 4px; padding: 8px 14px; font-weight: 600; }
 section.tight .wrap { padding-top: 0; }
+.owner .wrap { padding-block: 28px 30px; }
+.owner .card { background: var(--surface); border: 2px dashed var(--ink); border-radius: 4px; padding: 22px 24px; }
+.owner .tag { text-transform: uppercase; letter-spacing: .09em; font-size: .8rem; font-weight: 600; color: var(--muted); }
+.owner h2 { margin-top: 6px; }
+.owner p { margin-top: 10px; max-width: 46em; }
+.owner ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+.owner li { min-width: 0; }
+.owner li b { display: block; }
+.owner li span { color: var(--muted); }
+.owner .next { font-weight: 500; margin-top: 18px; }
+.owner .below { margin-top: 16px; font-size: .9rem; color: var(--muted); text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+@media (max-width: 760px) { .owner ul { grid-template-columns: 1fr; } }
 
 .top { background: var(--band); color: var(--on-band); }
 .top .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
