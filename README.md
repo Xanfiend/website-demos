@@ -57,6 +57,7 @@ Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jū
 Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vispirms tam:
 
 - ātri atveras arī ar lēnu internetu
+- Google Lighthouse testā telefona režīmā: ātrdarbība 98 no 100 (2026. gada 11. novembris, [pārbaudiet paši](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fxanfiend.github.io%2Fwebsite-demos%2F))
 - zvanīšanas un pieteikšanās pogas vienmēr pie rokas
 - cenas un darba laiks redzami bez meklēšanas
 - pieteikuma forma nonāk jūsu e-pastā
