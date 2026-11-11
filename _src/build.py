@@ -198,7 +198,7 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
     <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>
   </ul>
-  <p class="next">Ja patīk, atbildiet uz manu e-pastu ar laiku un numuru, uz kuru piezvanīt. Par cenu vienosimies, un maksājat tikai par gatavu lapu, kas jūs apmierina.</p>
+  <p class="next">Ja patīk, atbildiet uz manu e-pastu un uzrakstiet, kas jāmaina. Cena sākas no 50 €, to nosaucu iepriekš, un maksājat tikai par gatavu lapu, kas jūs apmierina.</p>
   <p class="below">Jūsu lapas paraugs sākas šeit</p>
 </div></div></section>
 """

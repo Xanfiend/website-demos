@@ -94,7 +94,7 @@ Vietu Google rezultātos neviens godīgi apsolīt nevar. Bet bez mājaslapas jū
 
 | 1. Apskatāt paraugu | 2. Pasakāt, ko mainīt | 3. Maksājat, kad patīk |
 |:--|:--|:--|
-| Bez maksas un bez saistībām. Ja nepatīk, vienkārši neatbildiet. | Ielieku jūsu cenas, foto, darba laiku un kontaktus. | Par cenu vienojamies iepriekš. Maksājat tikai par gatavu lapu. |
+| Bez maksas un bez saistībām. Ja nepatīk, vienkārši neatbildiet. | Atrakstiet e-pastā, un ielieku jūsu cenas, foto, darba laiku un kontaktus. | Cena no 50 €, zināma iepriekš. Maksājat tikai par gatavu lapu. |
 
 ## Arī telefonā
 
@@ -115,6 +115,6 @@ Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vi
 
 <div align="center">
 
-Interesē? Atbildiet uz e-pastu, ko jums nosūtīju, un uzrakstiet, kurā laikā un uz kādu numuru varu piezvanīt.
+Interesē? Atbildiet uz e-pastu, ko jums nosūtīju, un uzrakstiet, kas paraugā jāmaina. Cena no 50 €.
 
 </div>
