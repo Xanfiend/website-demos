@@ -1,8 +1,23 @@
 {
- "version": 1,
- "date": "11.11.2026",
+ "version": 3,
+ "date": "12.11.2026",
  "subject1": "Mājaslapas piedāvājums uzņēmumam \"{name}\"",
- "body1": "Labdien!\n\nMani sauc Raivo Harkovs, esmu tīmekļa izstrādātājs un veidoju mājaslapas maziem uzņēmumiem. Pamanīju, ka \"{name}\" savas mājaslapas nav, tāpēc sagatavoju jums paraugu ar jūsu nosaukumu{pakalpojumi}:\n\n{link}\n\nTas ir tikai paraugs: dizainu, krāsas, tekstus un visu pārējo var mainīt pēc jūsu vēlmēm. {cenas} un kontakti tajā ir piemēri.\n\nLīdz 2026. gada 31. decembrim mājaslapas izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Laiks man ir ierobežots, tāpēc jaunus projektus sāku secībā, kādā saņemu atbildes. Ja vēlēsieties, pēc tam varu lapu arī uzturēt un atjaunināt.\n\nVisu darbu uzņemos es, un izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā. Esmu apguvis digitālā mārketinga kursu un zinu, kā panākt, lai jūsu uzņēmumu atrod Google, kad cilvēki meklē “{term}”. Palīdzēšu izveidot arī Google uzņēmuma profilu: kartīti ar jūsu adresi, darba laiku un tālruni, ko cilvēki redz Google Maps kartē un meklēšanā.\n\nBūšu pateicīgs, ja atrakstīsiet, ko domājat par šo piedāvājumu. Ja ērtāk runāt pa tālruni, atsūtiet numuru, un piezvanīšu.\n\nAr cieņu,\nRaivo Harkovs\nCiti paraugi: {portfolio}\nKursa apliecība: {portfolio}assets/aplieciba-digitalais-marketings.pdf\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
+ "body1": "Labdien!\n\nMani sauc Raivo Harkovs, esmu tīmekļa izstrādātājs. Sagatavoju uzņēmumam \"{name}\" mājaslapas paraugu{pakalpojumu_saraksts}:\n\n{link}\n\n{nozare} Mājaslapa un Google uzņēmuma profils (kartīte ar jūsu adresi, darba laiku un tālruni Google Maps kartē un meklēšanā) palīdz šiem cilvēkiem, kas meklē “{term}”, atrast tieši jūs, nevis konkurentu. Esmu apguvis digitālā mārketinga kursu un zinu, kā panākt, lai Google jūs rāda pēc iespējas augstāk.\n\n{apjoms}\n\nLīdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Paraugā viss ir maināms: dizains, krāsas un teksti. {cenas} un kontakti tajā ir piemēri.\n\nJa jums ir jautājumi par to, kā notiek sadarbība, labprāt uz tiem atbildēšu. Ja ērtāk runāt pa tālruni, atsūtiet numuru, un piezvanīšu.\n\nAr cieņu,\nRaivo Harkovs\nCiti paraugi: {portfolio}\nKursa apliecība: {portfolio}assets/aplieciba-digitalais-marketings.pdf\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
  "subject2": "Vai mājaslapas piedāvājums uzņēmumam \"{name}\" ir aktuāls?",
- "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums \"{name}\" mājaslapas paraugu:\n\n{link}\n\nSaprotu, ka darba ir daudz un e-pasts varēja palikt nepamanīts, tāpēc atgādinu tikai šo vienu reizi. Piedāvājums joprojām ir spēkā: līdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, apmaiņā pret godīgu atsauksmi.\n\nBūšu pateicīgs par īsu atbildi, ko par to domājat. Ja tas jums nav aktuāli, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo Harkovs"
+ "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums \"{name}\" mājaslapas paraugu:\n\n{link}\n\nSaprotu, ka darba ir daudz un e-pasts varēja palikt nepamanīts, tāpēc atgādinu tikai šo vienu reizi. Piedāvājums joprojām ir spēkā: līdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, apmaiņā pret godīgu atsauksmi.\n\nJa jums ir jautājumi par sadarbību, labprāt atbildēšu. Ja piedāvājums nav aktuāls, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo Harkovs",
+ "nozare": {
+  "auto": "Kad auto salūst, cilvēks telefonā meklē tuvāko servisu un parasti zvana pirmajam, kuram uzreiz redz tālruni, darba laiku un cenas.",
+  "buve": "Pirms pasūtīt būvdarbus, cilvēki salīdzina vairākus uzņēmumus: skatās paveikto darbu foto, atsauksmes un to, vai uzņēmums izskatās uzticams.",
+  "ziedi": "Ziedus bieži pērk steigā: cilvēks meklē tuvāko salonu, kas strādā šodien, un grib redzēt cenas un piegādes iespējas.",
+  "kafe": "Pirms rezervēt galdu vai banketu, cilvēki grib redzēt ēdienkarti, cenas un telpas, un izvēlas tos, kuru informāciju atrod.",
+  "zobi": "Jaunu zobārstu cilvēki izvēlas rūpīgi: viņi grib redzēt pakalpojumus, cenas un to, cik viegli pieteikties vizītei.",
+  "beres": "Grūtā brīdī tuviniekiem ir svarīgi ātri atrast tālruni un saprast, ko birojs palīdz nokārtot.",
+  "friz": "Jaunu frizētavu cilvēki bieži izvēlas telefonā: pēc cenām, darbu foto un tā, cik viegli pierakstīties.",
+  "vet": "Kad dzīvnieks saslimst, saimnieks meklē tuvāko klīniku un uzreiz grib redzēt tālruni un darba laiku.",
+  "": "Pirms izvēlēties uzņēmumu, cilvēki tos salīdzina internetā un izvēlas tos, kuru informāciju atrod."
+ },
+ "apjoms": {
+  "small": "Zinu, ka jūsu laiks ir dārgs, tāpēc visu darbu uzņemos es: jums tikai jāapstiprina teksti, un izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā. Ja vēlēsieties, vēlāk varu lapu arī uzturēt un atjaunināt.",
+  "big": "Lielāki pasūtītāji un sadarbības partneri pirms līguma parasti pārbauda uzņēmumu internetā, un sakārtota mājaslapa ar paveiktajiem objektiem stiprina uzticību jau pirms pirmās sarunas. Darbu uzņemos es, izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā, un pēc tam varu lapu arī uzturēt."
+ }
 }
