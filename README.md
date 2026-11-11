@@ -19,123 +19,20 @@ Paraugu saņemat pirms maksāšanas, tāpēc redzat rezultātu, nevis solījumus
 
 <br>
 
-> **Šeit ir tikai faili.** Lai redzētu, kā lapa izskatās, spiediet uz saitēm zemāk.
+## Paraugi
 
-## Jūsu paraugs
+Katrai nozarei ir savs izskats, teksti un cenrādis. Spiediet uz attēla, lai atvērtu paraugu.
 
-**Autoservisi, riepu servisi un citi auto pakalpojumi**
+<table>
+<tr><td align="center" width="33%"><a href="https://xanfiend.github.io/website-demos/autoserviss/"><img src="assets/paraugs-auto.jpg" alt="Autoserviss"><br><b>Autoserviss</b></a></td><td align="center" width="33%"><a href="https://xanfiend.github.io/website-demos/ziedu-salons/"><img src="assets/paraugs-ziedi.jpg" alt="Ziedu salons"><br><b>Ziedu salons</b></a></td><td align="center" width="33%"><a href="https://xanfiend.github.io/website-demos/kafejnica/"><img src="assets/paraugs-kafe.jpg" alt="Kafejnīca"><br><b>Kafejnīca</b></a></td></tr>
+<tr><td align="center" width="33%"><a href="https://xanfiend.github.io/website-demos/zobarstnieciba/"><img src="assets/paraugs-zobi.jpg" alt="Zobārstniecība"><br><b>Zobārstniecība</b></a></td><td align="center" width="33%"><a href="https://xanfiend.github.io/website-demos/apbedisanas-birojs/"><img src="assets/paraugs-beres.jpg" alt="Apbedīšanas birojs"><br><b>Apbedīšanas birojs</b></a></td><td></td></tr>
+</table>
 
-Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
-
-### Vidzeme
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Bergs Serviss** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bergs-serviss/) |
-| **REM sport** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/rem-sport/) |
-| **Garaze** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/garaze/) |
-| **K36** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/k36/) |
-| **Dzinča** | Priekuļu pagasts | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dzinca/) |
-| **Savirze** | Limbaži | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/savirze/) |
-| **JJ un KO** | Sigulda | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/jj-un-ko/) |
-| **Aizezere** | Madona | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/aizezere/) |
-| **KN autoklubs** | Madona | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kn-autoklubs/) |
-| **Saules serviss** | Ērgļi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saules-serviss/) |
-| **Aidaks** | Cēsis | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/aidaks/) |
-
-### Zemgale
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Teiksmas Auto** | Bauskas novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/teiksmas-auto/) |
-| **Green Garage** | Ozolnieki | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/green-garage/) |
-| **VVVA** | Jelgava | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/vvva/) |
-| **Rero serviss** | Dobele | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/rero-serviss/) |
-| **Mobile Truck Service** | Jēkabpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/mobile-truck-service/) |
-| **LIL auto** | Koknese | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lil-auto/) |
-| **Damiron** | Jelgava | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/damiron/) |
-
-### Kurzeme un Latgale
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Kurland Auto** | Talsi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kurland-auto/) |
-| **BM motors** | Liepāja | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bm-motors/) |
-| **Tako serviss** | Balvi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/tako-serviss/) |
-| **TREKS** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/treks/) |
-| **RE-CRS** | Grobiņa | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/re-crs/) |
-| **D.S.C.** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dsc/) |
-| **AGS serviss** | Daugavpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/ags-serviss/) |
-| **ToGo serviss** | Ludza | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/togo-serviss/) |
-
-### Rīga un apkārtne
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Eskada-Serviss** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/eskada-serviss/) |
-| **Koruns** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/koruns/) |
-| **Silavas Servisa Centrs** | Salaspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/silavas-servisa-centrs/) |
-
-**Ziedu saloni**
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Bella** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bella/) |
-| **Ingra** | Valka | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/ingra/) |
-| **Elston** | Valka | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/elston/) |
-| **Kreimenīte** | Talsi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kreimenite/) |
-| **Saldus zieds** | Saldus | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saldus-zieds/) |
-| **SB ZIEDI** | Brocēni | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/sb-ziedi/) |
-| **Migla Be** | Jelgava | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/migla-be/) |
-| **Carla** | Jūrmala | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/carla/) |
-| **PuķuPasaka** | Jūrmala | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pukupasaka/) |
-| **Moonbar Ziedi** | Mārupe | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/moonbar-ziedi/) |
-
-**Kafejnīcas un banketi**
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **FEPO** | Brenguļi | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/fepo/) |
-| **Strautiņi** | Braslavas pagasts | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/strautini/) |
-| **Pie Jāņkalniņa** | Alūksne | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pie-jankalnina/) |
-| **Lubānas patērētāju biedrība** | Lubāna | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lubanas-ednica/) |
-| **Rudais Ūsiņš** | Sērene | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/rudais-usins/) |
-| **Zaļā jūdze** | Jēkabpils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/zala-judze/) |
-| **Centrs** | Ozolnieki | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/centrs-ozolnieki/) |
-| **Vilkābeles** | Saldus novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/vilkabeles/) |
-| **Bordertauna** | Saldus novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bordertauna/) |
-| **Osteria** | Aizpute | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/osteria/) |
-
-**Zobārstniecības**
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **ArcusDent Clinic** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/arcusdent/) |
-| **Silver Dental** | Aizkraukle | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/silver-dental/) |
-| **Arkāde dental** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/arkade-dental/) |
-| **Skrīveru zobārstniecība** | Skrīveri | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/skriveru-zobarstnieciba/) |
-| **Dentalfix** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dentalfix/) |
-| **Pilskalna zobārstniecība** | Bauska | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pilskalna-zobarstnieciba/) |
-| **Dolero** | Ogre | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dolero/) |
-| **Dr. B. Lazdānes privātprakse** | Ikšķile | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lazdanes-prakse/) |
-| **Denta-D** | Ventspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/denta-d/) |
-| **Ingūnas Kalniņas zobārsta prakse** | Limbaži | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kalninas-prakse/) |
-
-**Apbedīšanas biroji**
-
-| Uzņēmums | Vieta | |
-|:--|:--|--:|
-| **Serviss Mūžība** | Lielvārde | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/serviss-muziba/) |
-| **Atvadas & Ogre** | Ogre | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/atvadas-ogre/) |
-| **Saldus apbedīšanas birojs** | Saldus | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saldus-apbedisanas-birojs/) |
-| **Cēsu apbedīšanas pakalpojumi** | Cēsis | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/cesu-apbedisanas-pakalpojumi/) |
-| **Klusums** | Ventspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/klusums/) |
-
-Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
+Ja saņēmāt no manis e-pastu, tajā ir saite uz paraugu, kas sagatavots tieši jūsu uzņēmumam. To redz tikai tie, kam ir saite.
 
 ## Jūs atrod Google
 
-Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu. Katrs paraugs ir pielāgots tam, ko jūs darāt: riepu servisam, kravas auto servisam, evakuatoram vai stiklu maiņai ir savs piedāvājums un savs cenrādis. Lapa ir veidota tā, lai meklētājs saprot, kas jūs esat un kur atrodaties, un lai potenciālie klienti jūs var ieraudzīt:
+Kad salūst auto, cilvēks telefonā ieraksta “autoserviss” un savu pilsētu. Katrs paraugs ir pielāgots tam, ko jūs darāt. Lapa ir veidota tā, lai meklētājs saprot, kas jūs esat un kur atrodaties, un lai potenciālie klienti jūs var ieraudzīt:
 
 - virsrakstā un aprakstā ir jūsu pakalpojums un pilsēta, tieši tā, kā cilvēki meklē
 - nosaukums, atrašanās vieta un pakalpojumi ir pierakstīti arī meklētājam saprotamā formātā
@@ -164,7 +61,6 @@ Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vi
 - cenas un darba laiks redzami bez meklēšanas
 - pieteikuma forma nonāk jūsu e-pastā
 
-**Vispārīgi paraugi:** [Autoserviss](https://xanfiend.github.io/website-demos/autoserviss/) · [Ziedu salons](https://xanfiend.github.io/website-demos/ziedu-salons/) · [Kafejnīca](https://xanfiend.github.io/website-demos/kafejnica/) · [Zobārstniecība](https://xanfiend.github.io/website-demos/zobarstnieciba/) · [Apbedīšanas birojs](https://xanfiend.github.io/website-demos/apbedisanas-birojs/)
 
 <br clear="right">
 
