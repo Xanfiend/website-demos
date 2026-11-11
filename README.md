@@ -139,7 +139,7 @@ Lielākā daļa klientu jūs meklēs telefonā, tāpēc katra lapa ir veidota vi
 - cenas un darba laiks redzami bez meklēšanas
 - pieteikuma forma nonāk jūsu e-pastā
 
-**Vispārīgi paraugi:** [Autoserviss](https://xanfiend.github.io/website-demos/autoserviss/) · [Ziedu salons](https://xanfiend.github.io/website-demos/ziedu-salons/) · [Kafejnīca](https://xanfiend.github.io/website-demos/kafejnica/)
+**Vispārīgi paraugi:** [Autoserviss](https://xanfiend.github.io/website-demos/autoserviss/) · [Ziedu salons](https://xanfiend.github.io/website-demos/ziedu-salons/) · [Kafejnīca](https://xanfiend.github.io/website-demos/kafejnica/) · [Zobārstniecība](https://xanfiend.github.io/website-demos/zobarstnieciba/) · [Apbedīšanas birojs](https://xanfiend.github.io/website-demos/apbedisanas-birojs/)
 
 <br clear="right">
 

@@ -12,6 +12,10 @@ SHOPS = [
      ["Pušķi un kompozīcijas", "Kāzu floristika", "Sēru vainagi", "Telpaugi", "Ziedu piegāde"], "", "ziedi"),
     ("kafejnica", "Jūsu Kafejnīca", "", "Jūsu pilsēta",
      ["Dienas pusdienas", "Banketi un svinības", "Izbraukuma banketi", "Bēru mielasti", "Kūkas un konditoreja"], "", "kafe"),
+    ("zobarstnieciba", "Jūsu Zobārstniecība", "", "Jūsu pilsēta",
+     ["Zobu ārstēšana", "Zobu higiēna", "Protezēšana", "Zobu balināšana", "Bērnu zobārstniecība"], "", "zobi"),
+    ("apbedisanas-birojs", "Jūsu Apbedīšanas Birojs", "", "Jūsu pilsēta",
+     ["Bēru organizēšana", "Zārki un piederumi", "Transports", "Sēru vainagi", "Palīdzība ar dokumentiem"], "", "beres"),
     ("bergs-serviss", "Bergs Serviss", "Valmierā", "Valmiera", ["Diagnostika", "Apkope", "Remonts"], "autoserviss Valmiera"),
     ("rem-sport", "REM sport", "Valmierā", "Valmiera",
      ["Evakuatora pakalpojumi", "Tehniskā palīdzība uz ceļa", "Autoserviss"], "evakuators Valmiera", "evak"),
@@ -225,10 +229,28 @@ PROFILES = {
         [("Dienas pusdienu komplekts", "Zupa un otrais ēdiens", "no 6 €"), ("Zupa", "", "no 2,50 €"), ("Otrais ēdiens", "", "no 5 €"),
          ("Banketa galds", "Vienai personai", "no 25 €"), ("Bēru mielasts", "Vienai personai", "no 15 €"),
          ("Izbraukuma banketi", "", "pēc piedāvājuma")]),
+    "zobi": ("Zobārstniecība", "Zobārstniecība ar <em>skaidrām cenām</em>",
+        "Pirms ārstēšanas saņemat plānu un izmaksas. Pieteikties var arī vakarā, kad reģistratūra ir slēgta.",
+        [("Konsultācija un apskate", "25,00"), ("Zoba plombēšana", "55,00"), ("Rentgena uzņēmums", "10,00"), ("Kopā", "90,00")],
+        None, "Cenu piemēri. Precīzas izmaksas nosaucam pēc apskates, pirms ārstēšanas.",
+        [("Konsultācija un apskate", "", "no 25 €"), ("Zobu higiēna", "", "no 50 €"), ("Plomba", "", "no 45 €"),
+         ("Zoba izraušana", "", "no 40 €"), ("Rentgena uzņēmums", "", "no 10 €"), ("Zobu balināšana", "", "no 150 €")]),
+    "beres": ("Apbedīšanas pakalpojumi", "Palīdzam <em>grūtā brīdī</em>",
+        "Uzņemamies bēru organizēšanas darbus, lai jums par tiem nav jādomā. Piezvaniet, un pastāstīsim, kas jādara vispirms.",
+        [("Zārks ar aprīkojumu", "280,00"), ("Transports", "60,00"), ("Palīdzība ar dokumentiem", "0,00"), ("Kopā", "340,00")],
+        None, "Cenu piemēri. Pilnas izmaksas nosaucam sarunā, atbilstoši jūsu vēlmēm.",
+        [("Zārki", "", "no 150 €"), ("Transports pilsētā", "", "no 40 €"), ("Kapa rakšana un aizbēršana", "", "no 120 €"),
+         ("Sēru vainagi", "", "no 35 €"), ("Kremācijas organizēšana", "", "pēc pieprasījuma")]),
 }
 
 # first matching keyword picks the card icon and the one-line description
 KINDS = [
+    ("higiēn|balināš", "shield", "Saudzīgi un bez steigas."),
+    ("protez|implant|kron|ķirurģ|izrauš|rentgen|plomb|zob", "tooth", "Pirms ārstēšanas izskaidrojam, kas tiks darīts un cik tas maksās."),
+    ("zārk|piederum|urn", "check", "Palīdzam izvēlēties atbilstoši jūsu vēlmēm un iespējām."),
+    ("transport|katafalk|pārvešan", "truck", "Zvaniet, vienosimies par laiku un vietu."),
+    ("dokument", "doc", "Pastāstām, kas vajadzīgs, un palīdzam nokārtot."),
+    ("kremāc|kap|rakšan|piemin|ceremon|izvadī|atvad|bēru org|apbedīš", "clock", "Uzņemamies organizēšanu, lai jums par to nav jādomā."),
     ("konfekš|dāvan|suvenīr", "gift", "Sīkumi, ko pielikt pie ziediem, lai dāvana būtu pilnīga."),
     ("telpaug|stād|podiņ", "drop", "Palīdzam izvēlēties un pastāstām, kā kopt."),
     ("sēr|vaiņag|vainag", "flower", "Izgatavojam pēc pasūtījuma, arī steidzami."),
@@ -255,6 +277,13 @@ SERIF = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=
          'h1, h2, .brand, .season strong, form h3 { text-transform: none; letter-spacing: 0; }\n'
          'h1 { font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.08; } h2 { line-height: 1.12; }\n'
          '.brand { font-size: 1.3rem; } .steps li::before { -webkit-text-stroke: 0; }\n'
+         '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
+         '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
+CLEAN = ('<style>\n:root { --display: var(--body); %s }\n'
+         '@media (prefers-color-scheme: light) { :root { --bg: %s; } }\n'
+         'h1, h2, .brand, .season strong, form h3 { text-transform: none; letter-spacing: -.01em; font-weight: 600; }\n'
+         'h1 { font-size: clamp(2.2rem, 5.6vw, 3.7rem); line-height: 1.1; } h2 { line-height: 1.15; }\n'
+         '.brand { font-size: 1.25rem; } .steps li::before { -webkit-text-stroke: 0; font-family: var(--body); font-weight: 600; }\n'
          '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
          '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
 # trades that are not car shops: own colours, schema.org type, wording swaps and FAQ
@@ -316,6 +345,16 @@ EXTRA = {
              ("Cik viesiem varat klāt galdu?", "Atkarīgs no pasākuma. Uzrakstiet viesu skaitu, un atbildēsim, ko varam piedāvāt."),
              ("Vai ir veģetārie ēdieni?", "Jā, pēc vienošanās pielāgojam ēdienkarti arī veģetāriešiem un bērniem."),
              ("Kā notiek apmaksa par banketu?", "Cenu vienai personai saskaņojam iepriekš. Par priekšapmaksu vienojamies, apstiprinot pasūtījumu.")]),
+    "zobi": dict(
+        theme=CLEAN.replace("%s", "--band: #123a4a; --band-2: #1d5a70; --signal: #8fe0d0; --on-signal: #06302b;", 1).replace("%s", "#f3f8f9", 1),
+        ld='Dentist', generic='Paraugs zobārstniecības mājaslapai.',
+        swaps=[('Kad salūst auto, cilvēki meklē', 'Kad sāp zobs, cilvēki meklē'), ('Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.', 'Pirms vizītes cilvēks grib redzēt, ka prakse ir īsta, un zināt cenas.'), ('Tāme pirms darba</li>', 'Plāns pirms ārstēšanas</li>'), ('Tāmes paraugs', 'Ārstēšanas plāna paraugs'), ('Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.', 'Plānu un izmaksas saņemat pirms ārstēšanas. Bez jūsu piekrišanas nekas netiek darīts.'), ('Ja vajadzīgā darba sarakstā nav, piezvaniet.', 'Ja vajadzīgā sarakstā nav, uzrakstiet vai piezvaniet.'), ('Godīgi, saprotami, laikā', 'Saudzīgi, saprotami, laikā'), ('<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>', '<h3>Plāns pirms ārstēšanas</h3><p>Zināt, kas tiks darīts un cik tas maksās, pirms sēžaties krēslā.</p>'), ('<h3>Skaidrojam vienkārši</h3><p>Pasakām, kas jādara tagad un kas var pagaidīt līdz nākamajai reizei.</p>', '<h3>Skaidrojam vienkārši</h3><p>Pastāstām, kas jāārstē tagad un kas var pagaidīt.</p>'), ('<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>', '<h3>Cienām jūsu laiku</h3><p>Pieņemam pēc pieraksta, lai nav jāgaida rindā.</p>'), ('<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>', '<h3>Akūtas sāpes</h3><p>Zvaniet, meklēsim tuvāko brīvo laiku.</p>'), ('Saņemt tāmi savam auto', 'Pieteikt vizīti'), ('<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>', '<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un piedāvājam laiku.</p>'), ('<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>', '<h3>Saņemat plānu</h3><p>Pēc apskates izskaidrojam, kas jādara, un nosaucam izmaksas. Lēmums paliek jūsu ziņā.</p>'), ('<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>', '<h3>Ārstējamies</h3><p>Ārstēšana notiek pēc saskaņotā plāna. Rēķinā ir tas pats, kas plānā.</p>'), ('Šeit būs jūsu servisa foto', 'Šeit būs jūsu prakses foto'), ('>Darbnīca<', '>Kabinets<'), ('jūsu servisa atrašanās vietu', 'jūsu prakses atrašanās vietu'), ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Vēlamais laiks<input id="f-car" placeholder="Piemēram, darba dienās pēc 17.00">'), ('Kas jāizdara?', 'Kas jūs satrauc?')],
+        faq=[('Vai jāpiesakās iepriekš?', 'Jā, pieņemam pēc pieraksta. Akūtu sāpju gadījumā zvaniet, meklēsim tuvāko brīvo laiku.'), ('Cik maksās ārstēšana?', 'Atkarīgs no tā, kas jādara. Pēc apskates saņemat plānu ar izmaksām un tikai tad izlemjat.'), ('Ko darīt, ja ir bail no zobārsta?', 'Pasakiet to piesakoties. Strādājam nesteidzīgi un pirms katra soļa izskaidrojam, kas notiks.'), ('Cik bieži jānāk uz pārbaudi?', 'Parasti reizi pusgadā vai gadā. Pēc apskates ieteiksim, kas piemērots jums.')]),
+    "beres": dict(
+        theme=SERIF.replace("%s", "--band: #1f2326; --band-2: #343b40; --signal: #cdb88f; --on-signal: #1f1a10;", 1).replace("%s", "#f6f5f2", 1),
+        ld='LocalBusiness', generic='Paraugs apbedīšanas biroja mājaslapai.',
+        swaps=[('Kad salūst auto, cilvēki meklē', 'Kad aiziet tuvinieks, cilvēki meklē'), ('Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.', 'Grūtā brīdī cilvēks grib uzreiz redzēt tālruni, pakalpojumus un izmaksas.'), ('Pieteikt vizīti', 'Sazināties'), ('Tāme pirms darba</li>', 'Skaidras izmaksas</li>'), ('Skaidras cenas</li>', 'Palīdzam ar dokumentiem</li>'), ('Atbilde tajā pašā darba dienā</li>', 'Visi darbi vienuviet</li>'), ('Tāmes paraugs', 'Izmaksu paraugs'), ('Šādu tāmi saņemat pirms darba. Gala rēķins to nepārsniedz bez jūsu piekrišanas.', 'Izmaksas nosaucam uzreiz un pilnībā, bez slēptām pozīcijām.'), ('Ja vajadzīgā darba sarakstā nav, piezvaniet. Pateiksim uzreiz, vai varam palīdzēt.', 'Ja vajadzīgā sarakstā nav, piezvaniet. Pastāstīsim, kā varam palīdzēt.'), ('Godīgi, saprotami, laikā', 'Ar cieņu, mierīgi, bez steigas'), ('<h3>Tāme pirms darba</h3><p>Cenu zināt, pirms atstājat atslēgas. Bez jūsu piekrišanas tā nemainās.</p>', '<h3>Skaidras izmaksas</h3><p>Visu summu zināt iepriekš. Papildu rēķinu pēc bērēm nav.</p>'), ('<h3>Skaidrojam vienkārši</h3><p>Pasakām, kas jādara tagad un kas var pagaidīt līdz nākamajai reizei.</p>', '<h3>Izskaidrojam, kas jādara</h3><p>Pastāstām, kādi dokumenti vajadzīgi un kādā secībā viss notiek.</p>'), ('<h3>Turam termiņus</h3><p>Nosaucam, kad auto būs gatavs, un paziņojam, ja kas mainās.</p>', '<h3>Viss vienuviet</h3><p>Jums nav jāmeklē vairāki uzņēmumi. Saskaņojam visu vienā sarunā.</p>'), ('<h3>Parādām paveikto</h3><p>Nomainītās detaļas varat apskatīt, saņemot auto.</p>', '<h3>Ar cieņu</h3><p>Atvadas organizējam tā, kā to vēlas tuvinieki.</p>'), ('<p class="kicker">Cenrādis</p>\n      <h2>Cenas</h2>', '<p class="kicker">Cenrādis</p>\n      <h2>Pakalpojumi un cenas</h2>'), ('Saņemt tāmi savam auto', 'Uzzināt izmaksas'), ('<h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p>', '<h3>Piezvanāt</h3><p>Pastāstiet, kas noticis. Izskaidrosim, kas jādara vispirms.</p>'), ('<h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p>', '<h3>Vienojamies</h3><p>Kopā izvēlamies visu nepieciešamo un nosaucam pilnas izmaksas.</p>'), ('<h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p>', '<h3>Mēs nokārtojam</h3><p>Uzņemamies organizēšanu, lai jūs varat būt kopā ar tuviniekiem.</p>'), ('Šeit būs jūsu servisa foto', 'Šeit būs jūsu biroja foto'), ('>Darbnīca<', '>Atvadu zāle<'), ('>Komanda<', '>Transports<'), ('jūsu servisa atrašanās vietu', 'jūsu biroja atrašanās vietu'), ('Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014">', 'Kad jums piezvanīt?<input id="f-car" placeholder="Piemēram, šodien pēc 15.00">'), ('Kas jāizdara?', 'Kā varam palīdzēt?'), ('Atbildēsim tajā pašā darba dienā.', 'Atbildēsim, cik ātri vien iespējams.')],
+        faq=[('Kas jādara vispirms?', 'Piezvaniet mums. Izskaidrosim, kādi dokumenti vajadzīgi, un palīdzēsim tos nokārtot.'), ('Cik maksā bēres?', 'Atkarīgs no jūsu izvēles. Pilnas izmaksas nosaucam sarunā, pirms kaut ko pasūtāt.'), ('Vai palīdzat ar dokumentiem apbedīšanas pabalstam?', 'Jā. Pastāstām, kādi dokumenti jāiesniedz un kur.'), ('Vai organizējat arī kremāciju?', 'Piezvaniet vai uzrakstiet, un pastāstīsim par iespējām.')]),
 }
 
 def card(s):
