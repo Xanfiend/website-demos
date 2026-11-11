@@ -1,5 +1,5 @@
 """Builds one demo page per shop from _src/autoserviss.html. Run: python3 _src/build.py"""
-import html, pathlib
+import html, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TPL = (ROOT / "_src" / "autoserviss.html").read_text(encoding="utf-8")
@@ -26,14 +26,61 @@ SHOPS = [
     ("green-garage", "Green Garage", "Ozolniekos", "Ozolnieki", ["Auto remonts", "Apkope", "Diagnostika"], "autoserviss Ozolnieki"),
     ("vvva", "VVVA", "Jelgavā", "Jelgava",
      ["Kravas auto remonts", "Autobusu remonts", "Metināšana", "Radiatoru remonts"], "kravas auto remonts Jelgava"),
+    ("garaze", "Garaze", "Valmierā", "Valmiera",
+     ["Diagnostika un remonts", "Riepu montāža un balansēšana", "Motoru un ātrumkārbu remonts", "Autoelektriķis",
+      "Kondicionieru uzpilde"], "autoserviss Valmiera"),
+    ("k36", "K36", "Valmierā", "Valmiera",
+     ["Pretrūsas apstrāde", "Bremžu remonts", "Datordiagnostika", "Sagatavošana tehniskajai apskatei"],
+     "pretrūsas apstrāde Valmiera"),
+    ("savirze", "Savirze", "Limbažos", "Limbaži",
+     ["Savirzes regulēšana", "Auto remonts un apkope", "Riepu serviss", "Sagatavošana tehniskajai apskatei"],
+     "autoserviss Limbaži"),
+    ("jj-un-ko", "JJ un KO", "Siguldā", "Sigulda",
+     ["Diagnostika", "Virsbūves remonts un krāsošana", "Alumīnija metināšana", "Savirzes regulēšana",
+      "Kondicionieru uzpilde"], "autoserviss Sigulda"),
+    ("kurland-auto", "Kurland Auto", "Talsos", "Talsi",
+     ["Auto remonts un apkope", "Dzinēju remonts", "Elektrodiagnostika", "Kondicionieru uzpilde",
+      "Evakuatora pakalpojumi"], "autoserviss Talsi"),
+    ("lil-auto", "LIL auto", "Koknesē", "Koknese",
+     ["Auto remonts", "Riepu maiņa", "Bremžu remonts", "Savirzes un lukturu regulēšana", "Dzinēju remonts"],
+     "autoserviss Koknese"),
+    ("tako-serviss", "Tako serviss", "Balvos", "Balvi",
+     ["Auto remonts", "Vieglo auto apkope", "Sagatavošana tehniskajai apskatei", "Riepu remonts"], "autoserviss Balvi"),
+    ("bm-motors", "BM motors", "Liepājā", "Liepāja",
+     ["Auto remonts", "Elektrodiagnostika un programmēšana", "Riteņu ģeometrijas regulēšana",
+      "Riepu remonts un montāža"], "autoserviss Liepāja"),
+    ("rero-serviss", "Rero serviss", "Dobelē", "Dobele",
+     ["Kravas auto remonts", "Virsbūves darbi", "Dzinēju remonts", "Hidraulika", "Rezerves daļas"],
+     "kravas auto serviss Dobele"),
+    ("treks", "TREKS", "Daugavpilī", "Daugavpils",
+     ["Dzinēju remonts un diagnostika", "Ritošās daļas remonts", "Bremžu sistēmas remonts", "Savirzes regulēšana",
+      "Sajūga un ātrumkārbu remonts"], "autoserviss Daugavpils"),
 ]
+
+# first matching keyword picks the card icon and the one-line description
+KINDS = [
+    ("diagnost", "gauge", "Nolasām kļūdas un saprotami izskaidrojam, ko tās nozīmē."),
+    ("riep", "tyre", "Maiņa, montāža un balansēšana, piesakoties iepriekš."),
+    ("savirz|ģeometr", "tyre", "Noregulējam, lai auto brauc taisni un riepas nodilst vienmērīgi."),
+    ("kondicion", "snow", "Pārbaude, uzpilde un remonts pirms sezonas."),
+    ("kravas|autobus|evakuator|palīdzība", "truck", "Zvaniet, vienosimies par laiku un vietu."),
+    ("elektr|starter|ģenerator", "bolt", "Atrodam vainu un salabojam, nevis mainām visu pēc kārtas."),
+    ("krāso|virsbūv|pretrūs|stikl", "shield", "Rūpīgs darbs, kas pasargā auto un saglabā tā vērtību."),
+    ("apkop|eļļ|apskat", "drop", "Regulāra apkope, lai lielie remonti nebūtu vajadzīgi."),
+]
+
+def card(s):
+    icon, text = next(((i, t) for k, i, t in KINDS if re.search(k, s.lower())),
+                      ("wrench", "Pirms darba nosaucam cenu un termiņu."))
+    return (f'<li><div class="ico"><svg class="i"><use href="#{icon}"/></svg></div>'
+            f'<h3>{html.escape(s)}</h3><p>{text}</p></li>')
 
 for slug, name, loc, town, services, term in SHOPS:
     generic = slug == "autoserviss"
     e = html.escape
     note = ("Paraugs autoservisa mājaslapai. Nosaukumu, cenas, foto un kontaktus nomainu pret jūsu."
             if generic else
-            f"Šis paraugs ir sagatavots tieši uzņēmumam «{e(name)}». Cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.")
+            f"Šis paraugs ir sagatavots tieši uzņēmumam «{e(name)}». Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.")
     owner = "" if generic else f"""<section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
   <h2>Šo lapu sagatavoju tieši jums</h2>
@@ -54,7 +101,8 @@ for slug, name, loc, town, services, term in SHOPS:
             .replace("{{NOTE}}", note)
             .replace("{{EYEBROW}}", "Autoserviss" + (f" {e(loc)}" if loc else ""))
             .replace("{{TOWN}}", e(town))
-            .replace("{{SERVICES}}", "".join(f"<li>{e(s)}</li>" for s in services)))
+            .replace("{{INITIAL}}", e(name[0].upper()))
+            .replace("{{SERVICES}}", "".join(card(s) for s in services)))
     out = ROOT / slug
     out.mkdir(exist_ok=True)
     (out / "index.html").write_text(page, encoding="utf-8")
