@@ -106,6 +106,31 @@ Ja saņēmāt no manis e-pastu, atrodiet savu uzņēmumu un atveriet paraugu.
 | **Bordertauna** | Saldus novads | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/bordertauna/) |
 | **Osteria** | Aizpute | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/osteria/) |
 
+**Zobārstniecības**
+
+| Uzņēmums | Vieta | |
+|:--|:--|--:|
+| **ArcusDent Clinic** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/arcusdent/) |
+| **Silver Dental** | Aizkraukle | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/silver-dental/) |
+| **Arkāde dental** | Rīga | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/arkade-dental/) |
+| **Skrīveru zobārstniecība** | Skrīveri | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/skriveru-zobarstnieciba/) |
+| **Dentalfix** | Valmiera | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dentalfix/) |
+| **Pilskalna zobārstniecība** | Bauska | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/pilskalna-zobarstnieciba/) |
+| **Dolero** | Ogre | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/dolero/) |
+| **Dr. B. Lazdānes privātprakse** | Ikšķile | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/lazdanes-prakse/) |
+| **Denta-D** | Ventspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/denta-d/) |
+| **Ingūnas Kalniņas zobārsta prakse** | Limbaži | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/kalninas-prakse/) |
+
+**Apbedīšanas biroji**
+
+| Uzņēmums | Vieta | |
+|:--|:--|--:|
+| **Serviss Mūžība** | Lielvārde | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/serviss-muziba/) |
+| **Atvadas & Ogre** | Ogre | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/atvadas-ogre/) |
+| **Saldus apbedīšanas birojs** | Saldus | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/saldus-apbedisanas-birojs/) |
+| **Cēsu apbedīšanas pakalpojumi** | Cēsis | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/cesu-apbedisanas-pakalpojumi/) |
+| **Klusums** | Ventspils | [Atvērt paraugu →](https://xanfiend.github.io/website-demos/klusums/) |
+
 Šie ir paraugi, nevis uzņēmumu oficiālās mājaslapas. Teksti, cenas un kontakti tajos ir piemēri.
 
 ## Jūs atrod Google
