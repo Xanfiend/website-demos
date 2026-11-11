@@ -518,7 +518,7 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     owner = "" if generic else f"""<section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
   <h2>Šo lapu sagatavoju tieši jums</h2>
-  <p>Labdien! Esmu Raivo no Valmieras. Šis ir paraugs, kā varētu izskatīties «{e(name)}» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
+  <p>Labdien! Mani sauc Raivo Harkovs, veidoju mājaslapas maziem uzņēmumiem. Šis ir paraugs, kā varētu izskatīties «{e(name)}» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
   <ul>
     <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “{e(term)}”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod. Lapā jūsu nosaukums, pilsēta un pakalpojumi ir norādīti arī meklētājam saprotamā veidā.</span></li>
     <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>

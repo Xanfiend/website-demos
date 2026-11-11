@@ -4,7 +4,7 @@
 
 # Mājaslapas vietējiem uzņēmumiem
 
-**Raivo · Valmiera**
+**Raivo Harkovs**
 
 Vienkāršas, ātras mājaslapas mazajiem uzņēmumiem Latvijā.<br>
 Paraugu saņemat pirms maksāšanas, tāpēc redzat rezultātu, nevis solījumus.
