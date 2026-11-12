@@ -1,5 +1,10 @@
-"""Builds one demo page per shop from _src/autoserviss.html. Run: python3 _src/build.py"""
-import html, json, pathlib, re
+"""Builds demo pages from _src/autoserviss.html.
+
+  python3 _src/build.py          rebuild the generic demos and every business demo already published
+  python3 _src/build.py <slug>   create or update one business demo (used by the publish button)
+
+Business data lives outside the public repo, in ../privats/shops.py."""
+import html, json, pathlib, re, runpy, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TPL = (ROOT / "_src" / "autoserviss.html").read_text(encoding="utf-8")
@@ -22,182 +27,21 @@ SHOPS = [
      ["Vakcinācija un čipēšana", "Terapija", "Ķirurģija", "Zobu kopšana", "Veterinārā aptieka"], "", "vet"),
     ("buvfirma", "Jūsu Būvfirma", "", "Jūsu pilsēta",
      ["Remontdarbi", "Jumtu darbi", "Flīzēšana un apdare", "Ūdensapgāde un kanalizācija"], "", "buve"),
-    ("bergs-serviss", "Bergs Serviss", "Valmierā", "Valmiera", ["Diagnostika", "Apkope", "Remonts"], "autoserviss Valmiera"),
-    ("rem-sport", "REM sport", "Valmierā", "Valmiera",
-     ["Evakuatora pakalpojumi", "Tehniskā palīdzība uz ceļa", "Autoserviss"], "evakuators Valmiera", "evak"),
-    ("dzinca", "Dzinča", "Priekuļu pagastā", "Priekuļu pagasts",
-     ["Apkope un remonts", "Stiklu ielīmēšana", "Ātrumkārbu remonts", "Metālapstrāde"], "autoserviss Cēsis"),
-    ("aizezere", "Aizezere", "Madonā", "Madona",
-     ["Starteru remonts", "Ģeneratoru remonts", "Eļļas maiņa", "Auto remonts"], "autoserviss Madona"),
-    ("kn-autoklubs", "KN autoklubs", "Madonā", "Madona",
-     ["Diagnostika", "Riteņu savirze", "Ritošās daļas remonts", "Dzinēja remonts"], "autoserviss Madona"),
-    ("saules-serviss", "Saules serviss", "Ērgļos", "Ērgļi",
-     ["Auto remonts", "Riepu serviss", "Sagatavošana tehniskajai apskatei"], "autoserviss Ērgļi"),
-    ("teiksmas-auto", "Teiksmas Auto", "Bauskas novadā", "Bauskas novads",
-     ["Auto remonts", "Krāsošana", "Riepu serviss"], "autoserviss Bauska"),
-    ("mobile-truck-service", "Mobile Truck Service", "Jēkabpilī", "Jēkabpils",
-     ["Kravas auto apkope", "Vieglo auto apkope", "Kondicionieru uzpilde un remonts"], "kravas auto serviss Jēkabpils", "kravas"),
-    ("green-garage", "Green Garage", "Ozolniekos", "Ozolnieki", ["Auto remonts", "Apkope", "Diagnostika"], "autoserviss Ozolnieki"),
-    ("vvva", "VVVA", "Jelgavā", "Jelgava",
-     ["Kravas auto remonts", "Autobusu remonts", "Metināšana", "Radiatoru remonts"], "kravas auto remonts Jelgava", "kravas"),
-    ("garaze", "Garaze", "Valmierā", "Valmiera",
-     ["Diagnostika un remonts", "Riepu montāža un balansēšana", "Motoru un ātrumkārbu remonts", "Autoelektriķis",
-      "Kondicionieru uzpilde"], "autoserviss Valmiera"),
-    ("k36", "K36", "Valmierā", "Valmiera",
-     ["Pretrūsas apstrāde", "Bremžu remonts", "Datordiagnostika", "Sagatavošana tehniskajai apskatei"],
-     "pretrūsas apstrāde Valmiera", "prets"),
-    ("savirze", "Savirze", "Limbažos", "Limbaži",
-     ["Savirzes regulēšana", "Auto remonts un apkope", "Riepu serviss", "Sagatavošana tehniskajai apskatei"],
-     "autoserviss Limbaži"),
-    ("jj-un-ko", "JJ un KO", "Siguldā", "Sigulda",
-     ["Diagnostika", "Virsbūves remonts un krāsošana", "Alumīnija metināšana", "Savirzes regulēšana",
-      "Kondicionieru uzpilde"], "autoserviss Sigulda"),
-    ("kurland-auto", "Kurland Auto", "Talsos", "Talsi",
-     ["Auto remonts un apkope", "Dzinēju remonts", "Elektrodiagnostika", "Kondicionieru uzpilde",
-      "Evakuatora pakalpojumi"], "autoserviss Talsi"),
-    ("lil-auto", "LIL auto", "Koknesē", "Koknese",
-     ["Auto remonts", "Riepu maiņa", "Bremžu remonts", "Savirzes un lukturu regulēšana", "Dzinēju remonts"],
-     "autoserviss Koknese"),
-    ("tako-serviss", "Tako serviss", "Balvos", "Balvi",
-     ["Auto remonts", "Vieglo auto apkope", "Sagatavošana tehniskajai apskatei", "Riepu remonts"], "autoserviss Balvi"),
-    ("bm-motors", "BM motors", "Liepājā", "Liepāja",
-     ["Auto remonts", "Elektrodiagnostika un programmēšana", "Riteņu ģeometrijas regulēšana",
-      "Riepu remonts un montāža"], "autoserviss Liepāja"),
-    ("rero-serviss", "Rero serviss", "Dobelē", "Dobele",
-     ["Kravas auto remonts", "Virsbūves darbi", "Dzinēju remonts", "Hidraulika", "Rezerves daļas"],
-     "kravas auto serviss Dobele", "kravas"),
-    ("treks", "TREKS", "Daugavpilī", "Daugavpils",
-     ["Dzinēju remonts un diagnostika", "Ritošās daļas remonts", "Bremžu sistēmas remonts", "Savirzes regulēšana",
-      "Sajūga un ātrumkārbu remonts"], "autoserviss Daugavpils"),
-    ("silavas-servisa-centrs", "Silavas Servisa Centrs", "Salaspilī", "Salaspils",
-     ["Auto remonts un apkope", "Riepu montāža un balansēšana", "Bremžu diagnostika un remonts", "Savirzes regulēšana",
-      "Mikroautobusu remonts"], "autoserviss Salaspils"),
-    ("re-crs", "RE-CRS", "Grobiņā", "Grobiņa",
-     ["Sprauslu remonts", "Common Rail sūkņu diagnostika un remonts", "Dīzeļdegvielas sistēmas diagnostika",
-      "Autoserviss"], "sprauslu remonts Liepāja", "dizelis"),
-    ("eskada-serviss", "Eskada-Serviss", "Rīgā", "Rīga",
-     ["Stūres reiku restaurācija", "Elektrisko stūru remonts", "Diagnostika", "Bremžu remonts", "Riepu serviss"],
-     "stūres reikas remonts Rīga", "sture"),
-    ("koruns", "Koruns", "Rīgā", "Rīga",
-     ["Automātisko ātrumkārbu remonts", "Mehānisko ātrumkārbu remonts", "Transmisijas remonts",
-      "Ritošās daļas remonts", "Tehniskā apkope"], "ātrumkārbu remonts Rīga", "karbas"),
-    ("dsc", "D.S.C.", "Daugavpilī", "Daugavpils",
-     ["Autostiklu maiņa", "Plaisu remonts", "Stikli kravas auto un autobusiem", "Stikli lauksaimniecības tehnikai"],
-     "auto stikli Daugavpils", "stikli"),
-    ("ags-serviss", "AGS serviss", "Daugavpilī", "Daugavpils",
-     ["Gāzes iekārtu uzstādīšana", "Gāzes iekārtu remonts", "Benzīna un gāzes dzinēju datordiagnostika"],
-     "auto gāzes iekārtas Daugavpils", "gaze"),
-    ("togo-serviss", "ToGo serviss", "Ludzā", "Ludza",
-     ["Riepu montāža un balansēšana", "Riepu remonts", "Sezonas riepu glabāšana", "Riepu tirdzniecība",
-      "Kravas auto un traktoru riepas"], "riepu serviss Ludza", "riepas"),
-    ("damiron", "Damiron", "Jelgavā", "Jelgava",
-     ["Virsbūves remonts", "Auto krāsošana", "Auto pulēšana", "OCTA un KASKO remonti"],
-     "auto krāsošana Jelgava", "virsbuve"),
-    ("aidaks", "Aidaks", "Cēsīs", "Cēsis",
-     ["Riepu montāža un balansēšana", "Riepu remonts", "Riepu tirdzniecība",
-      "Kravas un lauksaimniecības tehnikas riepas"], "riepu serviss Cēsis", "riepas"),
-    ("bella", "Bella", "Valmierā", "Valmiera",
-     ["Ziedu pušķi", "Kāzu floristika", "Sēru pušķi un vainagi", "Ziedu kompozīcijas", "Ziedu piegāde"], "ziedi Valmiera", "ziedi"),
-    ("carla", "Carla", "Jūrmalā", "Jūrmala",
-     ["Ziedu pušķi un kompozīcijas", "Kāzu pušķi", "Svētku noformējumi", "Stādi un sēklas"], "ziedi Jūrmala", "ziedi"),
-    ("elston", "Elston", "Valkā", "Valka",
-     ["Ziedu pušķi", "Kāzu pušķi un auto dekorēšana", "Sēru pušķi un vainagi", "Ziedu piegāde", "Dāvanas"], "ziedi Valka", "ziedi"),
-    ("ingra", "Ingra", "Valkā", "Valka",
-     ["Apsveikuma pušķi", "Kāzu floristika", "Sēru floristika", "Konfekšu pušķi", "Kāzu auto dekorēšana"], "ziedi Valka", "ziedi"),
-    ("kreimenite", "Kreimenīte", "Talsos", "Talsi",
-     ["Ziedu pušķi un kompozīcijas", "Kāzu pušķi", "Sēru vainagi", "Ziedu piegāde"], "ziedi Talsi", "ziedi"),
-    ("migla-be", "Migla Be", "Jelgavā", "Jelgava",
-     ["Ziedu pušķi", "Kāzu floristika", "Sēru vainagi", "Telpaugi", "Ziedu piegāde"], "ziedi Jelgava", "ziedi"),
-    ("moonbar-ziedi", "Moonbar Ziedi", "Mārupē", "Mārupe",
-     ["Ziedu pušķi", "Ziedu kompozīcijas", "Kāzu un svētku dekori", "Ziedu piegāde"], "ziedi Mārupe", "ziedi"),
-    ("pukupasaka", "PuķuPasaka", "Jūrmalā", "Jūrmala",
-     ["Ziedu pušķi", "Ziedu kompozīcijas", "Svētku dekorācijas", "Stādi un dārza preces", "Ziedu piegāde"], "ziedi Jūrmala", "ziedi"),
-    ("saldus-zieds", "Saldus zieds", "Saldū", "Saldus",
-     ["Vietējie grieztie ziedi", "Ziedu pušķi un kompozīcijas", "Sēru vainagi", "Puķu stādi un telpaugi"], "ziedi Saldus", "ziedi"),
-    ("sb-ziedi", "SB ZIEDI", "Brocēnos", "Brocēni",
-     ["Grieztie ziedi", "Ziedu pušķi", "Sēru vainagi", "Telpaugi", "Dāvanas un suvenīri"], "ziedi Brocēni", "ziedi"),
-    ("fepo", "FEPO", "Brenguļos", "Brenguļi",
-     ["Pusdienas līdzņemšanai", "Izbraukuma banketi", "Banketu zāle", "Uzkodas pasākumiem"], "banketu zāle Valmiera", "kafe"),
-    ("strautini", "Strautiņi", "Braslavas pagastā", "Braslavas pagasts",
-     ["Dienas pusdienas", "Banketu zāle līdz 100 viesiem", "Kāzu banketi", "Bēru mielasti", "Izbraukuma ēdināšana"],
-     "kafejnīca Limbažu novads", "kafe"),
-    ("pie-jankalnina", "Pie Jāņkalniņa", "Alūksnē", "Alūksne",
-     ["Dienas pusdienas", "Grupu ēdināšana", "Nometņu ēdināšana", "Ēdieni pēc pasūtījuma"], "kafejnīca Alūksne", "kafe"),
-    ("osteria", "Osteria", "Aizputē", "Aizpute",
-     ["Izbraukuma banketi", "Kāzu mielasti", "Bēru mielasti", "Galdu klāšana pasākumos"], "banketi Aizpute", "kafe"),
-    ("vilkabeles", "Vilkābeles", "Saldus novadā", "Saldus novads",
-     ["Banketi līdz 100 viesiem", "Kāzu mielasti", "Bēru mielasti", "Izbraukuma banketi", "Banketu zāles"],
-     "banketi Saldus", "kafe"),
-    ("bordertauna", "Bordertauna", "Saldus novadā", "Saldus novads",
-     ["Banketi un galdu klāšana", "Bēru mielasti", "Pusdienu piegāde", "Ēdieni un furšeti līdzņemšanai"],
-     "kafejnīca Saldus", "kafe"),
-    ("rudais-usins", "Rudais Ūsiņš", "Sērenē", "Sērene",
-     ["Siltas pusdienas", "Brokastis", "Izbraukuma banketi", "Bēru mielasti", "Pusdienas pēc pasūtījuma"],
-     "kafejnīca Aizkraukle", "kafe"),
-    ("zala-judze", "Zaļā jūdze", "Jēkabpilī", "Jēkabpils",
-     ["Dienas pusdienas", "Ēdieni līdzņemšanai", "Galdu klāšana svinībām"], "ēdnīca Jēkabpils", "kafe"),
-    ("lubanas-ednica", "Lubānas patērētāju biedrība", "Lubānā", "Lubāna",
-     ["Dienas pusdienas", "Konditoreja", "Siltie ēdieni līdzņemšanai", "Galdu klāšana pēc pasūtījuma"],
-     "ēdnīca Lubāna", "kafe"),
-    ("centrs-ozolnieki", "Centrs", "Ozolniekos", "Ozolnieki",
-     ["Dienas pusdienas", "Banketu galdu klāšana", "Svinības un pasākumi"], "kafejnīca Ozolnieki", "kafe"),
-    ("arcusdent", "ArcusDent Clinic", "Valmierā", "Valmiera",
-     ["Zobu ārstēšana", "Zobu higiēna", "Bērnu zobārstniecība"], "zobārsts Valmiera", "zobi"),
-    ("silver-dental", "Silver Dental", "Aizkrauklē", "Aizkraukle",
-     ["Zobu higiēna", "Zobu balināšana", "Zobu ārstēšana", "Protezēšana"], "zobārsts Aizkraukle", "zobi"),
-    ("arkade-dental", "Arkāde dental", "Rīgā", "Rīga",
-     ["Zobu ārstēšana", "Zobu higiēna", "Protezēšana", "Zobu rentgens"], "zobārsts Rīga", "zobi"),
-    ("skriveru-zobarstnieciba", "Skrīveru zobārstniecība", "Skrīveros", "Skrīveri",
-     ["Zobu ārstēšana", "Protezēšana", "Zobu higiēna"], "zobārsts Skrīveri", "zobi"),
-    ("dentalfix", "Dentalfix", "Valmierā", "Valmiera",
-     ["Zobu higiēna", "Protezēšana", "Zobu implanti", "Zobu balināšana", "Zobu rentgens"], "zobārsts Valmiera", "zobi"),
-    ("pilskalna-zobarstnieciba", "Pilskalna zobārstniecība", "Bauskā", "Bauska",
-     ["Zobu ārstēšana", "Protezēšana", "Zobu ķirurģija un implanti", "Zobu higiēna", "Bērnu zobārstniecība"], "zobārsts Bauska", "zobi"),
-    ("dolero", "Dolero", "Ogrē", "Ogre",
-     ["Zobu ārstēšana", "Bērnu zobārstniecība", "Protezēšana", "Zobu higiēna", "Zobu ķirurģija"], "zobārsts Ogre", "zobi"),
-    ("lazdanes-prakse", "Dr. B. Lazdānes privātprakse", "Ikšķilē", "Ikšķile",
-     ["Zobu ārstēšana", "Zobu ķirurģija un implanti", "Protezēšana", "Mutes higiēna", "Zobu balināšana"], "zobārsts Ikšķile", "zobi"),
-    ("denta-d", "Denta-D", "Ventspilī", "Ventspils",
-     ["Zobu ārstēšana", "Protezēšana", "Implantācija", "Zobu ķirurģija", "Mutes higiēna"], "zobārsts Ventspils", "zobi"),
-    ("kalninas-prakse", "Ingūnas Kalniņas zobārsta prakse", "Limbažos", "Limbaži",
-     ["Zobu ārstēšana", "Zobu higiēna"], "zobārsts Limbaži", "zobi"),
-    ("serviss-muziba", "Serviss Mūžība", "Lielvārdē", "Lielvārde",
-     ["Bēru organizēšana", "Zārki un piederumi", "Izvadīšana", "Transports"], "apbedīšanas birojs Lielvārde", "beres"),
-    ("atvadas-ogre", "Atvadas & Ogre", "Ogrē", "Ogre",
-     ["Apbedīšanas pakalpojumi", "Zārki un piederumi", "Katafalks", "Izvadīšana"], "apbedīšanas birojs Ogre", "beres"),
-    ("saldus-apbedisanas-birojs", "Saldus apbedīšanas birojs", "Saldū", "Saldus",
-     ["Bēru rīkošana un plānošana", "Zārki un piederumi", "Kapu rakšana", "Bēru transports", "Morga pakalpojumi"], "apbedīšanas birojs Saldus", "beres"),
-    ("cesu-apbedisanas-pakalpojumi", "Cēsu apbedīšanas pakalpojumi", "Cēsīs", "Cēsis",
-     ["Bēru organizēšana", "Mirušā pārvešana", "Zārki un piederumi", "Sēru ceremonijas", "Morga pakalpojumi"], "apbedīšanas birojs Cēsis", "beres"),
-    ("klusums", "Klusums", "Ventspilī", "Ventspils",
-     ["Apbedīšanas pakalpojumi", "Apbedīšanas piederumi", "Mirušā transportēšana", "Morga pakalpojumi"], "apbedīšanas birojs Ventspils", "beres"),
-    ("ad-celtnieks", "AD Celtnieks", "Limbažu novadā", "Limbažu novads", ["Remontdarbi", "Labiekārtošanas darbi", "Demontāžas darbi", "Apzaļumošana"], "būvfirma Limbaži", "buve"),
-    ("ozols-d", "Ozols D", "Cēsīs", "Cēsis", ["Mūrēšanas darbi", "Iekšējā apdare"], "mūrnieks Cēsis", "buve"),
-    ("arado", "Arado", "Kuldīgā", "Kuldīga", ["Būvdarbi", "Remontdarbi"], "būvfirma Kuldīga", "buve"),
-    ("aa-gridas", "AA grīdas", "Valmiermuižā", "Valmiermuiža", ["Betona grīdu ieklāšana", "Veco grīdu demontāža"], "betona grīdas Valmiera", "buve"),
-    ("de-buildings", "D&E Buildings", "Cēsīs", "Cēsis", ["Pilna cikla būvniecība", "Remontdarbi"], "būvfirma Cēsis", "buve"),
-    ("au-jumti", "A&U JUMTI", "Cēsīs", "Cēsis", ["Jumtu darbi", "Jumta seguma maiņa", "Jumta konstrukcijas"], "jumiķis Cēsis", "buve"),
-    ("efes-buve", "EFES Būve", "Jelgavā", "Jelgava", ["Skursteņu mūrēšana", "Ventilācijas izvadu mūrēšana", "Montāžas darbi"], "skursteņu mūrēšana Jelgava", "buve"),
-    ("egconstruction", "EGConstruction", "Liepājā", "Liepāja", ["Būvdarbi", "Remontdarbi"], "būvfirma Liepāja", "buve"),
-    ("nepols", "Būvuzņēmums NEPOLS", "Talsos", "Talsi", ["Dzīvojamo ēku būvniecība", "Nedzīvojamo ēku būvniecība", "Remontdarbi"], "būvfirma Talsi", "buve"),
-    ("ug-maja", "UG māja", "Cēsu novadā", "Cēsu novads", ["Jumtu darbi", "Betonēšanas darbi", "Mūrēšanas darbi", "Flīzēšana", "Apdares darbi", "Privātmāju būvniecība"], "būvfirma Cēsis", "buve"),
-    ("jumtu-eksperts", "Jumtu Eksperts", "Ogrē", "Ogre", ["Jumiķa darbi", "Skārdnieka darbi", "Jumtu renovācija"], "jumiķis Ogre", "buve"),
-    ("fasade-master", "FASADE MASTER", "Jēkabpils novadā", "Jēkabpils novads", ["Pilna cikla būvniecība", "Māju un pirts būvniecība", "Fasāžu siltināšana", "Fasāžu apdare"], "fasāžu siltināšana Jēkabpils", "buve"),
-    ("ancini", "ANČIŅI", "Talsos", "Talsi", ["Bruģēšana", "Jumtu darbi", "Fasāžu darbi", "Labiekārtošana"], "bruģēšana Talsi", "buve"),
-    ("prestons", "Prestons", "Talsos", "Talsi", ["Bruģēšana privātmājām", "Ietvju un celiņu bruģēšana", "Teritorijas labiekārtošana"], "bruģēšana Talsi", "buve"),
-    ("gr-darbi", "GR DARBI", "Kuldīgā", "Kuldīga", ["Špaktelēšana un krāsošana", "Grīdu un sienu apdare", "Fasāžu apmešana un krāsošana", "Logu un durvju maiņa"], "apdares darbi Kuldīga", "buve"),
-    ("goldingen-digger", "Goldingen Digger", "Kuldīgas novadā", "Kuldīgas novads", ["Rakšanas darbi", "Būvdarbi", "Montāžas darbi"], "rakšanas darbi Kuldīga", "buve"),
-    ("limen", "Limen", "Saldus novadā", "Saldus novads", ["Privātmāju būvniecība", "Ēku renovācija", "Remontdarbi"], "būvfirma Saldus", "buve"),
-    ("pekaini", "Pēkaiņi", "Dobeles novadā", "Dobeles novads", ["Estrich grīdu ieklāšana", "Grīdas pamatnes sagatavošana"], "betona grīdas Dobele", "buve"),
-    ("jnbuve", "JNbūve", "Bauskas novadā", "Bauskas novads", ["Betonēšanas darbi", "Privātmāju būvniecība", "Industriālo objektu būvniecība", "Remontdarbi"], "betonēšanas darbi Bauska", "buve"),
-    ("vkm-eka", "VKM ĒKA", "Gulbenes novadā", "Gulbenes novads", ["Būvdarbi", "Ēku būvniecība"], "būvfirma Gulbene", "buve"),
-    ("jbuvnieks", "JBūvnieks", "Gulbenes novadā", "Gulbenes novads", ["Vispārējie būvdarbi", "Apdares darbi", "Galdniecības darbi"], "būvfirma Gulbene", "buve"),
-    ("kames", "Kames", "Salacgrīvā", "Salacgrīva", ["Ceļu būve", "Būvdarbi un remontdarbi", "Būvtehnikas noma"], "būvfirma Salacgrīva", "buve"),
-    ("seeta", "seeta", "Smiltenē", "Smiltene", ["Ēku renovācija", "Ēku restaurācija", "Fasāžu atjaunošana"], "ēku renovācija Smiltene", "buve"),
-    ("beltes-buve", "Beltes Būve", "Salaspilī", "Salaspils", ["Betonēšanas darbi", "Pamatu nostiprināšana", "Mikropāļi", "Krastu nostiprināšana"], "betonēšanas darbi Salaspils", "buve"),
-    ("estrich-buve", "ESTRICH BŪVE", "Salaspilī", "Salaspils", ["Estrich grīdu ieklāšana", "Betona grīdu ieklāšana"], "betona grīdas Salaspils", "buve"),
-    ("cortex", "Cortex", "Bauskā", "Bauska", ["Vakcinācija", "Analīzes", "Veterinārā aptieka", "Dzīvnieku frizētava"], "veterinārā klīnika Bauska", "vet"),
 ]
+GENERIC = {s[0] for s in SHOPS}
+_PRIVATE = ROOT.parent / "privats" / "shops.py"
+if _PRIVATE.exists():
+    SHOPS += runpy.run_path(str(_PRIVATE))["SHOPS"]
+WANT = set(sys.argv[1:])
+_unknown = WANT - {s[0] for s in SHOPS}
+assert not _unknown, f"unknown slug: {_unknown}"
+
+
+def wanted(slug):
+    if WANT:
+        return slug in WANT
+    return slug in GENERIC or (ROOT / slug / "index.html").exists()
+
 
 WINTER = ("Ziemas riepas obligātas no 1. decembra", "Riepu maiņa bez rindas, piesakoties iepriekš.")
 GENERIC_SUB = "Cenu piemēri. Precīzu cenu jūsu auto nosaucam pirms darba."
@@ -359,14 +203,12 @@ SERIF = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=
          'h1, h2, .brand, .season strong, form h3 { text-transform: none; letter-spacing: 0; }\n'
          'h1 { font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.08; } h2 { line-height: 1.12; }\n'
          '.brand { font-size: 1.3rem; } .steps li::before { -webkit-text-stroke: 0; }\n'
-         '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
          '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
 CLEAN = ('<style>\n:root { --display: var(--body); %s }\n'
          '@media (prefers-color-scheme: light) { :root { --bg: %s; } }\n'
          'h1, h2, .brand, .season strong, form h3 { text-transform: none; letter-spacing: -.01em; font-weight: 600; }\n'
          'h1 { font-size: clamp(2.2rem, 5.6vw, 3.7rem); line-height: 1.1; } h2 { line-height: 1.15; }\n'
          '.brand { font-size: 1.25rem; } .steps li::before { -webkit-text-stroke: 0; font-family: var(--body); font-weight: 600; }\n'
-         '.hero { background-image: radial-gradient(900px 500px at 85% 10%, var(--band-2), transparent 70%); }\n'
          '.hero::after { display: none; } .estimate { transform: none; }\n</style>\n')
 # layout variations, so pages for different trades and different shops do not look alike
 CENTER = ('.hero .wrap{grid-template-columns:1fr;justify-items:center;text-align:center}.eyebrow{margin-inline:auto}'
@@ -374,13 +216,13 @@ CENTER = ('.hero .wrap{grid-template-columns:1fr;justify-items:center;text-align
           '.estimate{width:100%;max-width:480px;text-align:left;box-shadow:var(--shadow)}')
 REVERSE = '@media (min-width:901px){.hero .wrap{grid-template-columns:.85fr 1.15fr}.hero .wrap>div{order:2}}'
 LAYOUT = {
-    "buve": (':root{--band:#1f2428;--band-2:#39424a;--signal:#ffb000;--on-signal:#1b1300;--r:4px}.hero::after{height:14px}'
-             '.cards li{border-top:4px solid var(--signal)}.cards .ico{background:var(--signal);color:var(--on-signal)}'),
-    "friz": ':root{--r:16px}.btn,.phone{border-radius:99px}.cards li{border:0;box-shadow:var(--shadow)}' + REVERSE,
-    "vet": ':root{--r:20px}.cards .ico{border-radius:50%;background:var(--signal);color:var(--on-signal)}.estimate{transform:rotate(-1.200deg)}',
-    "ziedi": ':root{--r:18px}.btn,.phone{border-radius:99px}.cards .ico{border-radius:50%}' + CENTER,
-    "kafe": '.cards li{border-left:4px solid var(--signal)}.steps li{border-top-color:var(--signal)}' + REVERSE,
-    "zobi": (':root{--r:14px}.btn,.phone{border-radius:99px}.cards li{text-align:center}.cards .ico{margin-inline:auto;border-radius:50%}'
+    "buve": (':root{--band:#1f2428;--band-2:#39424a;--signal:#ffb000;--on-signal:#1b1300;--r:4px}.hero::after{display:block;height:10px}'
+             '.cards li{border-top:2px solid var(--signal)}'),
+    "friz": ':root{--r:16px}.btn,.phone{border-radius:99px}' + REVERSE,
+    "vet": ':root{--r:14px}',
+    "ziedi": ':root{--r:18px}.btn,.phone{border-radius:99px}' + CENTER,
+    "kafe": '.steps li{border-top-color:var(--signal)}' + REVERSE,
+    "zobi": (':root{--r:14px}.btn,.phone{border-radius:99px}'
              '@media (prefers-color-scheme: light){.hero{background:var(--surface);color:var(--ink);background-image:none;border-bottom:1px solid var(--line)}'
              '.hero h1 em,.ticks svg{color:var(--band-2)}.eyebrow{color:var(--band-2);border-color:var(--line)}'
              '.hero .btn.ghost{color:var(--ink);border-color:var(--line)}.estimate{border:1px solid var(--line);box-shadow:var(--shadow)}}'),
@@ -498,15 +340,21 @@ KINDS_BY = {
             ("", "clock", "Izmeklējam, izskaidrojam un nosaucam izmaksas pirms ārstēšanas.")],
 }
 
-def card(s, prof="auto"):
+def card(s, prof="auto", seen=None):
     icon, text = next(((i, t) for k, i, t in KINDS_BY.get(prof, []) + KINDS if re.search(k, s.lower())),
                       ("wrench", "Pirms darba nosaucam cenu un termiņu."))
+    if seen is not None:  # the same sentence under every service reads as filler
+        text = "" if text in seen else text
+        seen.add(text)
     return (f'<li><div class="ico"><svg class="i"><use href="#{icon}"/></svg></div>'
-            f'<h3>{html.escape(s)}</h3><p>{text}</p></li>')
+            f'<h3>{html.escape(s)}</h3>{f"<p>{text}</p>" if text else ""}</li>')
 
 for slug, name, loc, town, services, term, *rest in SHOPS:
+    if not wanted(slug):
+        continue
     prof = rest[0] if rest else "auto"
     noun, h1, lead, est, season, price_sub, prices = PROFILES[prof]
+    h1 = re.sub(r"</?em>", "", h1)
     extra = EXTRA.get(prof, {})
     generic = not loc
     look = LAYOUT.get(prof) or ("" if slug in KEEP_LOOK else AUTO_LOOKS[sum(map(ord, slug)) % len(AUTO_LOOKS)])
@@ -553,7 +401,7 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
                 f'        <tr><td>{a}{f"<small>{n}</small>" if n else ""}</td><td>{p}</td></tr>\n' for a, n, p in prices))
             .replace("{{TOWN}}", e(town))
             .replace("{{INITIAL}}", e(name[0].upper()))
-            .replace("{{SERVICES}}", "".join(card(s, prof) for s in services)))
+            .replace("{{SERVICES}}", "".join(card(s, prof, seen) for seen in [set()] for s in services)))
     for old, new in extra.get("swaps", []):
         assert old in page or (generic and "cilvēk" in old), (slug, old)
         page = page.replace(old, new)
@@ -562,6 +410,10 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
             f"    <details><summary>{q}</summary><p>{a}</p></details>\n" for q, a in extra["faq"]), page, count=1)
     if rest and rest[0] == "evak":
         page = page.replace("Pieteikt vizīti", "Izsaukt evakuatoru")
+    # drop template habits that make pages look machine-made: section labels, tick rows, slogan triplets
+    page = re.sub(r'\n *<p class="kicker">[^<]*</p>', "", page)
+    page = re.sub(r'\n *<ul class="ticks">.*?</ul>', "", page, flags=re.S)
+    page = re.sub(r'(<section class="why">.*?<h2>)[^<]*(</h2>)', r"\1Kā strādājam\2", page, count=1, flags=re.S)
     out = ROOT / slug
     out.mkdir(exist_ok=True)
     (out / "index.html").write_text(page, encoding="utf-8")

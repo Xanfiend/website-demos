@@ -1,10 +1,10 @@
 {
- "version": 3,
+ "version": 4,
  "date": "12.11.2026",
  "subject1": "Mājaslapas piedāvājums uzņēmumam \"{name}\"",
- "body1": "Labdien!\n\nMani sauc Raivo Harkovs, esmu tīmekļa izstrādātājs. Sagatavoju uzņēmumam \"{name}\" mājaslapas paraugu{pakalpojumu_saraksts}:\n\n{link}\n\n{nozare} Mājaslapa un Google uzņēmuma profils (kartīte ar jūsu adresi, darba laiku un tālruni Google Maps kartē un meklēšanā) palīdz šiem cilvēkiem, kas meklē “{term}”, atrast tieši jūs, nevis konkurentu. Esmu apguvis digitālā mārketinga kursu un zinu, kā panākt, lai Google jūs rāda pēc iespējas augstāk.\n\n{apjoms}\n\nLīdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Paraugā viss ir maināms: dizains, krāsas un teksti. {cenas} un kontakti tajā ir piemēri.\n\nJa jums ir jautājumi par to, kā notiek sadarbība, labprāt uz tiem atbildēšu. Ja ērtāk runāt pa tālruni, atsūtiet numuru, un piezvanīšu.\n\nAr cieņu,\nRaivo Harkovs\nCiti paraugi: {portfolio}\nKursa apliecība: {portfolio}assets/aplieciba-digitalais-marketings.pdf\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
+ "body1": "Labdien!\n\nSagatavoju uzņēmumam \"{name}\" mājaslapas paraugu{pakalpojumu_saraksts}:\n\n{link}\n\n{nozare} Mājaslapa kopā ar Google uzņēmuma profilu (kartīti ar adresi, darba laiku un tālruni Google Maps) palīdz cilvēkiem, kas meklē “{term}”, atrast tieši jūs, nevis konkurentu. Digitālā mārketinga kursā apguvu, kā panākt, lai Google uzņēmumu rāda pēc iespējas augstāk, un to izmantoju katrā lapā.\n\n{apjoms}\n\nLīdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Paraugā var mainīt visu: dizainu, krāsas un tekstus. {cenas} un kontakti tajā ir piemēri.\n\nVai šāda lapa jums būtu noderīga? Ja ir jautājumi par to, kā notiek sadarbība, labprāt atbildēšu, arī pa tālruni.\n\nAr cieņu,\nRaivo Harkovs\nTīmekļa izstrādātājs\nCiti paraugi: {portfolio}\nKursa apliecība: {portfolio}assets/aplieciba-digitalais-marketings.pdf\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
  "subject2": "Vai mājaslapas piedāvājums uzņēmumam \"{name}\" ir aktuāls?",
- "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums \"{name}\" mājaslapas paraugu:\n\n{link}\n\nSaprotu, ka darba ir daudz un e-pasts varēja palikt nepamanīts, tāpēc atgādinu tikai šo vienu reizi. Piedāvājums joprojām ir spēkā: līdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, apmaiņā pret godīgu atsauksmi.\n\nJa jums ir jautājumi par sadarbību, labprāt atbildēšu. Ja piedāvājums nav aktuāls, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo Harkovs",
+ "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums \"{name}\" mājaslapas paraugu:\n\n{link}\n\nAtgādinu tikai šo vienu reizi, jo e-pasts varēja palikt nepamanīts. Piedāvājums ir spēkā līdz 2026. gada 31. decembrim: mājaslapu izveidoju bez maksas, apmaiņā pret godīgu atsauksmi.\n\nVai tas jums būtu noderīgi? Ja ir jautājumi par sadarbību, labprāt atbildēšu. Ja piedāvājums nav aktuāls, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo Harkovs\nTīmekļa izstrādātājs",
  "nozare": {
   "auto": "Kad auto salūst, cilvēks telefonā meklē tuvāko servisu un parasti zvana pirmajam, kuram uzreiz redz tālruni, darba laiku un cenas.",
   "buve": "Pirms pasūtīt būvdarbus, cilvēki salīdzina vairākus uzņēmumus: skatās paveikto darbu foto, atsauksmes un to, vai uzņēmums izskatās uzticams.",
@@ -17,7 +17,7 @@
   "": "Pirms izvēlēties uzņēmumu, cilvēki tos salīdzina internetā un izvēlas tos, kuru informāciju atrod."
  },
  "apjoms": {
-  "small": "Zinu, ka jūsu laiks ir dārgs, tāpēc visu darbu uzņemos es: jums tikai jāapstiprina teksti, un izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā. Ja vēlēsieties, vēlāk varu lapu arī uzturēt un atjaunināt.",
+  "small": "Visu darbu uzņemos es: jums tikai jāapstiprina teksti, un izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā. Ja vēlēsieties, vēlāk varu lapu arī uzturēt un atjaunināt.",
   "big": "Lielāki pasūtītāji un sadarbības partneri pirms līguma parasti pārbauda uzņēmumu internetā, un sakārtota mājaslapa ar paveiktajiem objektiem stiprina uzticību jau pirms pirmās sarunas. Darbu uzņemos es, izmaiņas parasti ieviešu tajā pašā vai nākamajā darba dienā, un pēc tam varu lapu arī uzturēt."
  }
 }
