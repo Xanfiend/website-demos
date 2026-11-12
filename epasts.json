@@ -1,11 +1,13 @@
 {
- "version": 13,
+ "version": 14,
  "date": "12.11.2026",
  "subject1": "Sagatavoju mājaslapas paraugu uzņēmumam \"{name}\"",
  "body1": "Labdien!\n\n{sakums}\n\n{link}\n\nParaugs ir veidots tieši jums: {saturs} {piemeri}\n\n{nozare} {vertiba}\n\nPēc jūsu norādēm paraugu pielāgošu jūsu uzņēmumam (jūsu teksti, cenas un foto) un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi.{apjoms} Cik ātri lapa būs gatava, atkarīgs no tā, ko vēlaties tajā redzēt. Piedāvājums ir spēkā līdz gada beigām.\n\n{jautajums}\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
  "subject2": "Par mājaslapas paraugu uzņēmumam \"{name}\"",
  "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums uzņēmuma \"{name}\" mājaslapas paraugu:\n\n{link}\n\nRakstu vēlreiz tikai šo vienu reizi, jo e-pasts varēja palikt nepamanīts. Paraugs ir veidots tieši jums. Pēc jūsu norādēm to pielāgošu un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi.\n\nJa tas jūs interesē, atbildiet uz šo e-pastu, un es jums piezvanīšu. Ja ne, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs",
- "sakums_karte": "Meklējot Google uzņēmumu \"{name}\", redzēju jūsu kartīti ar adresi un darba laiku, bet savas mājaslapas uzņēmumam neatradu. Tāpēc sagatavoju tās paraugu:",
+ "subject3": "Mājaslapas paraugs uzņēmumam \"{name}\", kā runājām",
+ "body3": "Labdien!\n\nPaldies par sarunu! Kā runājām pa telefonu, sūtu mājaslapas paraugu, ko sagatavoju uzņēmumam \"{name}\":\n\n{link}\n\nParaugs ir veidots tieši jums: {saturs} {piemeri}\n\nPēc jūsu norādēm to pielāgošu (jūsu teksti, cenas un foto) un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi. Piedāvājums ir spēkā līdz gada beigām.\n\nApskatiet, kad jums ērti. Pēc pāris dienām piezvanīšu, lai uzzinātu, ko domājat, vai arī vienkārši atbildiet uz šo e-pastu.\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs",
+ "sakums_karte":"Meklējot Google uzņēmumu \"{name}\", redzēju jūsu kartīti ar adresi un darba laiku, bet savas mājaslapas uzņēmumam neatradu. Tāpēc sagatavoju tās paraugu:",
  "sakums_fb": "Atradu uzņēmuma \"{name}\" lapu Facebook, bet savas mājaslapas uzņēmumam neatradu. Tāpēc sagatavoju tās paraugu:",
  "sakums_karte_fb": "Meklējot Google uzņēmumu \"{name}\", redzēju jūsu kartīti un Facebook lapu, bet savas mājaslapas uzņēmumam neatradu. Tāpēc sagatavoju tās paraugu:",
  "vertiba": {
