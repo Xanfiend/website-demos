@@ -1,5 +1,5 @@
 {
- "version": 6,
+ "version": 7,
  "date": "12.11.2026",
  "subject1": "Mājaslapas piedāvājums uzņēmumam \"{name}\"",
  "body1": "Labdien!\n\nRakstu jums, jo pamanīju, ka \"{name}\" savas mājaslapas nav. Tāpēc sagatavoju jums mājaslapas paraugu{pakalpojumu_saraksts}:\n\n{link}\n\n{nozare} Mājaslapa kopā ar Google uzņēmuma profilu (kartīti ar adresi, darba laiku un tālruni Google Maps) palīdz cilvēkiem, kas meklē “{term}”, atrast tieši jūs, nevis konkurentu. Digitālā mārketinga kursā apguvu, kā panākt, lai Google uzņēmumu rāda pēc iespējas augstāk, un to izmantoju katrā lapā.\n\n{apjoms}\n\nLīdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Paraugu apskatīt var bez jebkādām saistībām, un tajā var mainīt visu: dizainu, krāsas un tekstus. {piemeri}\n\nVai šāda lapa jums būtu noderīga? Ja ir jautājumi par to, kā notiek sadarbība, labprāt atbildēšu, arī pa tālruni.\n\nAr cieņu,\nRaivo Harkovs\nTīmekļa izstrādātājs\nCiti paraugi: {portfolio}\nKursa apliecība: {portfolio}assets/aplieciba-digitalais-marketings.pdf\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
@@ -13,6 +13,7 @@
   "zobi": "Jaunu zobārstu cilvēki izvēlas rūpīgi: viņi grib redzēt pakalpojumus, cenas un to, cik viegli pieteikties vizītei.",
   "beres": "Grūtā brīdī tuviniekiem ir svarīgi ātri atrast tālruni un saprast, ko birojs palīdz nokārtot.",
   "friz": "Jaunu frizētavu cilvēki bieži izvēlas telefonā: pēc cenām, darbu foto un tā, cik viegli pierakstīties.",
+  "meistars": "Kad tek caurule, nestrādā apkure vai pazūd strāva, cilvēks meklē meistaru telefonā un zvana pirmajam, kuram uzreiz redz tālruni un saprot, ka viņš strādā tuvumā.",
   "vet": "Kad dzīvnieks saslimst, saimnieks meklē tuvāko klīniku un uzreiz grib redzēt tālruni un darba laiku.",
   "": "Pirms izvēlēties uzņēmumu, cilvēki tos salīdzina internetā un izvēlas tos, kuru informāciju atrod."
  },

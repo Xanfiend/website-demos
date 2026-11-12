@@ -314,6 +314,14 @@ PROFILES = {
         [("Flīzēšana", "Par kvadrātmetru", "no 35 €"), ("Sienu špaktelēšana un krāsošana", "Par kvadrātmetru", "no 12 €"),
          ("Lamināta ieklāšana", "Par kvadrātmetru", "no 8 €"), ("Mūrēšanas darbi", "", "pēc tāmes"),
          ("Jumta seguma maiņa", "", "pēc tāmes")]),
+    "meistars": ("Santehnika, apkure un elektrība", "Meistars, kas ierodas norunātajā laikā",
+        "Pirms darba nosaucam cenu. Ja darba laikā atklājas kas papildu, vispirms vienojamies un tikai tad darām.",
+        [("Ūdens sildītāja nomaiņa", "90,00"), ("Pievienojumi un materiāli", "45,00"), ("Izbraukums pilsētā", "0,00"), ("Kopā ar PVN", "135,00")],
+        ("Apkures sezona", "Katla un radiatoru apkopi labāk veikt laikus, pirms sals."),
+        "Cenu piemēri. Precīzu cenu nosaucam pēc apskates.",
+        [("Izsaukums un apskate", "", "no 25 €"), ("Santehnikas remonts", "Par stundu", "no 30 €"),
+         ("Kontaktligzdas vai slēdža maiņa", "", "no 15 €"), ("Elektroinstalācija dzīvoklī", "", "pēc tāmes"),
+         ("Apkures katla apkope", "", "no 60 €"), ("Kanalizācijas tīrīšana", "", "no 40 €")]),
 }
 
 # first matching keyword picks the card icon and the one-line description
@@ -486,6 +494,20 @@ KINDS_BY = {
             ("frizēt|kopšan|nag", "scissors", "Kopšana bez steigas un stresa."),
             ("", "clock", "Izmeklējam, izskaidrojam un nosaucam izmaksas pirms ārstēšanas.")],
 }
+
+# plumbers, electricians, heating: the construction page with its own wording, colours and card texts
+EXTRA["meistars"] = dict(EXTRA["buve"], ld="HomeAndConstructionBusiness",
+    generic="Paraugs santehniķa, elektriķa vai apkures meistara mājaslapai.",
+    faq=[("Vai braucat arī ārpus pilsētas?", "Jā, novada robežās. Izbraukuma cenu nosaucam, vienojoties par laiku."),
+         ("Cik ātri varat ierasties?", "Steidzamos gadījumos cenšamies tajā pašā dienā. Citos gadījumos vienojamies par jums ērtu laiku."),
+         ("Vai materiālus atvedat paši?", "Varam atvest mēs vai izmantot jūsu materiālus. To cenu nosaucam atsevišķi."),
+         ("Kā ar garantiju?", "Par garantiju vienojamies pirms darba un norādām to rēķinā.")])
+LAYOUT["meistars"] = ':root{--band:#13283a;--band-2:#1f3d57;--signal:#4cc2ff;--on-signal:#04202f;--r:6px}.cards li{border-top:2px solid var(--signal)}'
+KINDS_BY["meistars"] = [("elektr|kabel|apgaism|kontakt|automāt", "bolt", "Ierīkojam, pārbaudām un nododam drošu instalāciju."),
+                        ("ūden|kanaliz|santeh|caurul|aku", "drop", "Ierīkojam un pārbaudām, pirms nododam."),
+                        ("apkur|katl|radiator|siltum|ventil|kondic|sūkn", "clock", "Apkope un remonts, lai sistēma strādā visu sezonu."),
+                        ("", "wrench", "Cenu nosaucam pirms darba.")]
+
 
 def card(s, prof="auto", seen=None):
     icon, text = next(((i, t) for k, i, t in KINDS_BY.get(prof, []) + KINDS if re.search(k, s.lower())),
