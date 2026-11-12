@@ -38,6 +38,8 @@ if _PRIVATE.exists():
 # public address, phone, hours and map position from zl.lv (privats/fetch_info.py)
 _INFO = PRIV / "info.json"
 INFO = json.loads(_INFO.read_text(encoding="utf-8")) if _INFO.exists() else {}
+_FLAGS = PRIV / "contacts.json"  # only the "card" tick is read here
+HAS_CARD = {k for k, v in json.loads(_FLAGS.read_text(encoding="utf-8")).items() if v.get("card")} if _FLAGS.exists() else set()
 DAYNAMES = {1: "Pirmdiena", 2: "Otrdiena", 3: "Trešdiena", 4: "Ceturtdiena", 5: "Piektdiena", 6: "Sestdiena", 0: "Svētdiena"}
 
 
@@ -761,13 +763,16 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     note = (extra.get("generic", "Paraugs autoservisa mājaslapai.") + " Nosaukumu, cenas, foto un kontaktus nomainu pret jūsu."
             if generic else
             f"Šis paraugs ir sagatavots tieši uzņēmumam «{e(name)}». Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.")
+    CARD_LI = ("<li><b>Kartīte un mājaslapa kopā</b><span>Jūsu uzņēmuma kartīte Google meklētājā jau ir. Mājaslapas saiti var ielikt kartītē, lai cilvēks uzreiz redz jūsu pakalpojumus un cenas.</span></li>"
+               if slug in HAS_CARD else
+               "<li><b>Redzami arī kartē</b><span>Palīdzu izveidot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>")
     owner = "" if generic else f"""<section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
   <h2>Šo lapu sagatavoju tieši jums</h2>
   <p>Labdien! Mani sauc Raivo Harkovs, veidoju mājaslapas maziem uzņēmumiem. Šis ir paraugs, kā varētu izskatīties «{e(name)}» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
   <ul>
     <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “{e(term)}”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod. Lapā jūsu nosaukums, pilsēta un pakalpojumi ir norādīti arī meklētājam saprotamā veidā.</span></li>
-    <li><b>Redzami arī kartē</b><span>Palīdzu izveidot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>
+    {CARD_LI}
     <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>
     <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
     <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>

@@ -1,10 +1,15 @@
 {
- "version": 10,
+ "version": 11,
  "date": "12.11.2026",
  "subject1": "Sagatavoju mājaslapas paraugu uzņēmumam \"{name}\"",
- "body1": "Labdien!\n\n{sakums}\n\n{link}\n\nParaugs ir veidots tieši jums: {saturs} {piemeri}\n\n{nozare} Mājaslapa kopā ar uzņēmuma kartīti internetā (adrese, darba laiks un tālrunis Google meklētājā un kartē) palīdz tiem, kas meklē “{term}”, atrast tieši jūs. Kā to panākt, esmu apguvis digitālā mārketinga kursā.\n\nPēc jūsu norādēm paraugu pielāgošu jūsu uzņēmumam (jūsu teksti, cenas un foto) un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi.{apjoms} Cik ātri lapa būs gatava, atkarīgs no tā, ko vēlaties tajā redzēt. Piedāvājums ir spēkā līdz gada beigām.\n\n{jautajums}\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
+ "body1": "Labdien!\n\n{sakums}\n\n{link}\n\nParaugs ir veidots tieši jums: {saturs} {piemeri}\n\n{nozare} {vertiba}\n\nPēc jūsu norādēm paraugu pielāgošu jūsu uzņēmumam (jūsu teksti, cenas un foto) un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi.{apjoms} Cik ātri lapa būs gatava, atkarīgs no tā, ko vēlaties tajā redzēt. Piedāvājums ir spēkā līdz gada beigām.\n\n{jautajums}\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs\n\nP.S. Ja mājaslapa jums nav vajadzīga, vienkārši pasakiet, un vairs netraucēšu.",
  "subject2": "Par mājaslapas paraugu uzņēmumam \"{name}\"",
  "body2": "Labdien!\n\nPirms dažām dienām nosūtīju jums uzņēmuma \"{name}\" mājaslapas paraugu:\n\n{link}\n\nRakstu vēlreiz tikai šo vienu reizi, jo e-pasts varēja palikt nepamanīts. Paraugs ir veidots tieši jums. Pēc jūsu norādēm to pielāgošu un publicēšu internetā kā gatavu mājaslapu. Šobrīd to daru bez maksas, lūdzot pretī tikai godīgu atsauksmi.\n\nJa tas jūs interesē, atbildiet uz šo e-pastu, un es jums piezvanīšu. Ja ne, dodiet ziņu, un vairs netraucēšu.\n\nAr cieņu,\nRaivo\nTīmekļa izstrādātājs",
+ "sakums_karte": "Meklējot Google uzņēmumu \"{name}\", redzēju jūsu kartīti ar adresi un darba laiku, bet savas mājaslapas uzņēmumam neatradu. Tāpēc sagatavoju tās paraugu:",
+ "vertiba": {
+  "nav": "Mājaslapa kopā ar uzņēmuma kartīti internetā (adrese, darba laiks un tālrunis Google meklētājā un kartē) palīdz tiem, kas meklē “{term}”, atrast tieši jūs. Kā to panākt, esmu apguvis digitālā mārketinga kursā.",
+  "ir": "Kartīte parāda, kur jūs atrodaties, bet mājaslapā cilvēks redz, ko tieši darāt, cik tas maksā un kā pieteikties. Tas vairo uzticību, un mājaslapas saiti var ielikt arī kartītē."
+ },
  "sakums": [
   "Rakstu jums, jo pamanīju, ka uzņēmumam \"{name}\" nav savas mājaslapas. Tāpēc sagatavoju tās paraugu:",
   "Pamanīju, ka uzņēmumam \"{name}\" internetā nav savas mājaslapas, tāpēc sagatavoju tās paraugu:",
