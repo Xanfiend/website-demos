@@ -818,6 +818,8 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     page = re.sub(r'(<section class="why">.*?<h2[^>]*>)[^<]*(</h2>)', r"\1Kā strādājam\2", page, count=1, flags=re.S)
     page = page.replace('<input id="f-car"', '<input id="f-car" name="Papildu informācija"')
     page = apply_look(page, L, drawing, "../../../assets/foto/" if PREVIEW else "../assets/foto/")
+    if not generic:  # a business demo does not link to the other samples
+        page = page.replace(' <a href="../">Kas to veidoja un citi paraugi</a>', "").replace(' <a href="../">Par autoru un citi paraugi</a>', "")
     if slug in INFO:
         page = real_info(page, INFO[slug], ldd)
     hrs = INFO.get(slug, {}).get("hours")
