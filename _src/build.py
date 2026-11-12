@@ -3,7 +3,7 @@
   python3 _src/build.py          rebuild the generic demos and every business demo already published
   python3 _src/build.py <slug>   create or update one business demo (used by the publish button)
 
-Business data lives outside the public repo, in ../privats/shops.py."""
+Business data lives in the private privats/shops.py (never committed)."""
 import html, json, pathlib, re, runpy, sys, urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -29,11 +29,13 @@ SHOPS = [
      ["Remontdarbi", "Jumtu darbi", "Flīzēšana un apdare", "Ūdensapgāde un kanalizācija"], "", "buve"),
 ]
 GENERIC = {s[0] for s in SHOPS}
-_PRIVATE = ROOT.parent / "privats" / "shops.py"
+# private folder: inside the repo folder (git-excluded) or next to it
+PRIV = ROOT / "privats" if (ROOT / "privats").is_dir() else ROOT.parent / "privats"
+_PRIVATE = PRIV / "shops.py"
 if _PRIVATE.exists():
     SHOPS += runpy.run_path(str(_PRIVATE))["SHOPS"]
 # public address, phone, hours and map position from zl.lv (privats/fetch_info.py)
-_INFO = ROOT.parent / "privats" / "info.json"
+_INFO = PRIV / "info.json"
 INFO = json.loads(_INFO.read_text(encoding="utf-8")) if _INFO.exists() else {}
 DAYNAMES = {1: "Pirmdiena", 2: "Otrdiena", 3: "Trešdiena", 4: "Ceturtdiena", 5: "Piektdiena", 6: "Sestdiena", 0: "Svētdiena"}
 
@@ -93,7 +95,7 @@ def real_info(page, info, ld):
 def self_host_fonts(page, out):
     """Download the Google Fonts the page uses into fonts/ so visitors' browsers never contact Google (GDPR)."""
     import urllib.request
-    cache = ROOT.parent / "privats" / "fonts-cache"
+    cache = PRIV / "fonts-cache"
     cache.mkdir(exist_ok=True)
     (out / "fonts").mkdir(exist_ok=True)
     ua = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
@@ -177,7 +179,7 @@ def make_live(page, name, cfg, out):
     return page, files
 WANT = {a for a in sys.argv[1:] if not a.startswith("--")}
 LIVE = "--live" in sys.argv  # build the client's real site into ../klienti/<slug>/ (see privats/go-live.html)
-_LIVECFG = ROOT.parent / "privats" / "live.json"
+_LIVECFG = PRIV / "live.json"
 LIVECFG = json.loads(_LIVECFG.read_text(encoding="utf-8-sig")) if _LIVECFG.exists() else {}
 assert not LIVE or WANT, "--live needs a business slug"
 _unknown = WANT - {s[0] for s in SHOPS}
