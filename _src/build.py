@@ -90,7 +90,7 @@ def real_info(page, info, ld):
             attr = (f' data-auto data-src="https://www.openstreetmap.org/export/embed.html?bbox={lo - .011:.5f}%2C{la - .0055:.5f}%2C{lo + .011:.5f}%2C{la + .0055:.5f}'
                     f'&amp;layer=mapnik&amp;marker={la:.5f}%2C{lo:.5f}"')
             btn = '<button type="button" class="btn ghost">Rādīt karti</button>'
-        page = re.sub(r'<div class="map">.*?</div>', lambda m: f'<div class="map"{attr}>{btn}<a href="{url}" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>Atvērt Google Maps</a></div>', page, count=1, flags=re.S)
+        page = re.sub(r'<div class="map">.*?</div>', lambda m: f'<div class="map"{attr}>{btn}<a href="{url}" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>Atvērt Google kartē</a></div>', page, count=1, flags=re.S)
         if info.get("geo"):
             ld["geo"] = {"@type": "GeoCoordinates", "latitude": info["geo"][0], "longitude": info["geo"][1]}
     page = page.replace("Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.",
@@ -767,12 +767,12 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
   <p>Labdien! Mani sauc Raivo Harkovs, veidoju mājaslapas maziem uzņēmumiem. Šis ir paraugs, kā varētu izskatīties «{e(name)}» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
   <ul>
     <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “{e(term)}”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod. Lapā jūsu nosaukums, pilsēta un pakalpojumi ir norādīti arī meklētājam saprotamā veidā.</span></li>
-    <li><b>Redzami arī Google Maps</b><span>Palīdzu izveidot Google uzņēmuma profilu: kartīti ar jūsu adresi, darba laiku, tālruni un atsauksmēm, ko cilvēki redz Google Maps kartē un meklēšanā.</span></li>
+    <li><b>Redzami arī kartē</b><span>Palīdzu izveidot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>
     <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>
     <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
     <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>
   </ul>
-  <p class="next">Ja paraugs jums šķiet noderīgs, lūdzu, atbildiet uz manu e-pastu un norādiet, ko vēlaties mainīt. Līdz 2026. gada 31. decembrim mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Ja jums ir jautājumi par to, kā notiek sadarbība, labprāt uz tiem atbildēšu.</p>
+  <p class="next">Ja paraugs jums šķiet noderīgs, lūdzu, atbildiet uz manu e-pastu un norādiet, ko vēlaties mainīt. Šobrīd pilnu mājaslapu izveidoju bez maksas, lūdzot pretī tikai godīgu atsauksmi. Piedāvājums ir spēkā līdz 2026. gada beigām. Ja jums ir jautājumi par to, kā notiek sadarbība, labprāt jums piezvanīšu.</p>
   <p class="below">Jūsu lapas paraugs sākas šeit</p>
 </div></div></section>
 """
