@@ -156,7 +156,28 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 14px 32
 footer p { opacity: .7; max-width: 46em; }
 .bar { display: none; }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* motion: only where it shows a state or draws the eye to something real */
+:root { interpolate-size: allow-keywords; }
+.top { transition: box-shadow .25s; }
+.top.scrolled { box-shadow: 0 6px 20px rgb(0 0 0 / .22); }
+.open-now { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: .95rem; margin-top: 20px; }
+.open-now i { width: 9px; height: 9px; border-radius: 50%; background: #3ddc84; animation: pulse 2.2s ease-out infinite; }
+.open-now.closed i { background: #8a9a9e; animation: none; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgb(61 220 132 / .55); } 70%, 100% { box-shadow: 0 0 0 9px rgb(61 220 132 / 0); } }
+.estimate tr { animation: rowin .4s ease-out both; }
+.estimate tr:nth-child(2) { animation-delay: .1s; } .estimate tr:nth-child(3) { animation-delay: .2s; }
+.estimate tr:nth-child(4), .estimate tr:nth-child(5) { animation-delay: .32s; }
+@keyframes rowin { from { opacity: 0; transform: translateX(8px); } }
+.prices tr { transition: background .15s; }
+.prices tr:hover { background: rgb(127 127 127 / .07); }
+.faq details::details-content { height: 0; overflow: clip; transition: height .25s ease, content-visibility .25s allow-discrete; }
+.faq details[open]::details-content { height: auto; }
+#sent { animation: rise .3s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 
 @media (max-width: 900px) {
   .top nav { display: none; }
@@ -171,7 +192,8 @@ footer p { opacity: .7; max-width: 46em; }
   .brand { font-size: 1.2rem; }
   form { padding: 22px; }
   body { padding-bottom: 68px; }
-  .bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; inset: auto 0 0; z-index: 30; padding: 10px 14px max(10px, env(safe-area-inset-bottom)); background: var(--band); border-top: 1px solid rgb(255 255 255 / .12); }
+  .bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; inset: auto 0 0; z-index: 30; padding: 10px 14px max(10px, env(safe-area-inset-bottom)); background: var(--band); border-top: 1px solid rgb(255 255 255 / .12); transform: translateY(110%); transition: transform .3s ease-out; }
+  .bar.show { transform: none; }
   .bar .btn { padding: 11px 10px; }
 }
 </style>
@@ -227,6 +249,7 @@ footer p { opacity: .7; max-width: 46em; }
         <a class="btn primary" href="#pieteikums">Pieteikt vizīti</a>
         <a class="btn ghost" href="#cenas">Skatīt cenas</a>
       </div>
+      <p class="open-now" id="open-now" hidden><i></i><span></span></p>
     </div>
     <aside class="estimate" aria-label="Tāmes paraugs">
       <div class="cap"><span>Tāmes paraugs</span></div>
@@ -360,7 +383,21 @@ document.getElementById('req').addEventListener('submit', function (e) {
   document.getElementById('sent').hidden = false;
 });
 var d = String(new Date().getDay());
-document.querySelectorAll('#hours div').forEach(function (r) { if (r.dataset.d.includes(d)) r.classList.add('now'); });
+var today = null;
+document.querySelectorAll('#hours div').forEach(function (r) { if (r.dataset.d.includes(d)) { r.classList.add('now'); today = r; } });
+// "open now" badge from the opening hours on the page
+var badge = document.getElementById('open-now');
+if (today && badge) {
+  var t = today.lastElementChild.textContent.match(/(\d+)\.(\d+)\D+(\d+)\.(\d+)/), n = new Date(), m = n.getHours() * 60 + n.getMinutes();
+  var open = !!t && m >= t[1] * 60 + +t[2] && m < t[3] * 60 + +t[4];
+  badge.classList.toggle('closed', !open);
+  badge.lastElementChild.textContent = open ? 'Šobrīd atvērts' : 'Šobrīd slēgts';
+  badge.hidden = false;
+}
+// header shadow and the phone call bar appear once the visitor scrolls
+var top_ = document.querySelector('.top'), bar = document.querySelector('.bar');
+function onScroll() { top_.classList.toggle('scrolled', scrollY > 8); bar.classList.toggle('show', scrollY > 320); }
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
 </script>
 </body>
 </html>
