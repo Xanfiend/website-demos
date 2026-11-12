@@ -765,7 +765,7 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
             f"Šis paraugs ir sagatavots tieši uzņēmumam «{e(name)}». Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.")
     CARD_LI = ("<li><b>Kartīte un mājaslapa kopā</b><span>Jūsu uzņēmuma kartīte Google meklētājā jau ir. Mājaslapas saiti var ielikt kartītē, lai cilvēks uzreiz redz jūsu pakalpojumus un cenas.</span></li>"
                if slug in HAS_CARD else
-               "<li><b>Redzami arī kartē</b><span>Palīdzu izveidot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>")
+               "<li><b>Redzami arī kartē</b><span>Palīdzu izveidot vai sakārtot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>")
     owner = "" if generic else f"""<section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
   <h2>Šo lapu sagatavoju tieši jums</h2>
