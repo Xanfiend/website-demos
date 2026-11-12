@@ -14,7 +14,8 @@ DEMOS = {"auto": "autoserviss", "buve": "buvfirma", "ziedi": "ziedu-salons", "ka
 def shot(slug, w, h, scale=1):
     out = pathlib.Path(tempfile.gettempdir()) / f"shot-{slug}-{w}.png"
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", f"--force-device-scale-factor={scale}",
-                    f"--window-size={w},{h + BANNER}", f"--screenshot={out}", (ROOT / slug / "index.html").as_uri()],
+                    f"--window-size={w},{h + BANNER}", "--virtual-time-budget=9000", f"--screenshot={out}",
+                    (ROOT / slug / "index.html").as_uri() + "?still"],  # ?still shows the page with its animations finished
                    check=True, capture_output=True)
     im = Image.open(out).convert("RGB")
     return im.crop((0, BANNER * scale, w * scale, (h + BANNER) * scale))
