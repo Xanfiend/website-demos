@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <meta name="description" content="Mājaslapas paraugs uzņēmumam Bergs Serviss. Cenas un kontakti ir piemēri.">
 <meta name="theme-color" content="#14262b">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoRepair", "name": "Bergs Serviss", "address": {"@type": "PostalAddress", "addressLocality": "Valmiera", "addressCountry": "LV"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diagnostika"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Apkope"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Remonts"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AutoRepair", "name": "Bergs Serviss", "address": {"@type": "PostalAddress", "addressLocality": "Valmiera", "addressCountry": "LV", "streetAddress": "Vaidavas 13, Valmiera, Valmieras nov., LV-4201"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diagnostika"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Apkope"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Remonts"}}], "telephone": "+37126490199", "geo": {"@type": "GeoCoordinates", "latitude": 57.5279608391, "longitude": 25.3916584389}, "openingHours": ["Mo 09:00–18:00", "Tu 09:00–18:00", "We 09:00–18:00", "Th 09:00–18:00", "Fr 09:00–18:00", "Sa 09:00–15:00"]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314262b'/%3E%3Cpath d='M9 22 22 9M9 9h13v13' fill='none' stroke='%23f2b705' stroke-width='3.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,7 +224,7 @@ footer p { opacity: .7; max-width: 46em; }
   <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
 </svg>
 
-<div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Bergs Serviss». Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.</span> <a href="../">Kas to veidoja un citi paraugi</a></div></div>
+<div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Bergs Serviss». Adrese, tālrunis un darba laiks ir no publiskā uzņēmumu kataloga. Teksti un cenas ir piemēri, ieliksim jūsu.</span> <a href="../">Kas to veidoja un citi paraugi</a></div></div>
 
 <section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
@@ -249,7 +249,7 @@ footer p { opacity: .7; max-width: 46em; }
       <a href="#process">Kā tas notiek</a>
       <a href="#pieteikums">Kontakti</a>
     </nav>
-    <span class="phone"><svg class="i"><use href="#phone"/></svg><span>Jūsu tālrunis</span></span>
+    <a class="phone" href="tel:+37126490199"><svg class="i"><use href="#phone"/></svg><span>+371 26 490 199</span></a>
   </div>
 </header>
 
@@ -359,22 +359,22 @@ footer p { opacity: .7; max-width: 46em; }
     <div class="rv">
       <h2>Pieteikt vizīti</h2>
       <ul class="info">
-        <li><svg class="i"><use href="#phone"/></svg><div><small>Tālrunis</small>Jūsu tālrunis</div></li>
-        <li><svg class="i"><use href="#pin"/></svg><div><small>Adrese</small>Jūsu adrese, Valmiera</div></li>
+        <li><svg class="i"><use href="#phone"/></svg><div><small>Tālrunis</small><a href="tel:+37126490199">+371 26 490 199</a></div></li>
+        <li><svg class="i"><use href="#pin"/></svg><div><small>Adrese</small>Vaidavas 13, Valmiera, Valmieras nov., LV-4201</div></li>
       </ul>
       <div class="hours" id="hours">
-        <div data-d="12345"><span>Pirmdiena–piektdiena</span><span>8.00–18.00</span></div>
-        <div data-d="6"><span>Sestdiena</span><span>9.00–14.00</span></div>
+        <div data-d="12345"><span>Pirmdiena–piektdiena</span><span>9.00–18.00</span></div>
+        <div data-d="6"><span>Sestdiena</span><span>9.00–15.00</span></div>
         <div data-d="0"><span>Svētdiena</span><span>Slēgts</span></div>
       </div>
-      <div class="map"><svg class="i"><use href="#pin"/></svg>Šeit būs karte ar jūsu servisa atrašanās vietu</div>
+      <a class="map" href="https://www.google.com/maps/search/?api=1&query=57.5279608391%2C25.3916584389" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>Atvērt kartē</a>
     </div>
     <form id="req" class="rv">
       <h3>Uzrakstiet mums</h3>
-      <label for="f-name">Vārds<input id="f-name" required autocomplete="name"></label>
-      <label for="f-phone">Tālrunis<input id="f-phone" required inputmode="tel" autocomplete="tel"></label>
-      <label for="f-car">Auto marka, modelis un gads<input id="f-car" placeholder="Piemēram, VW Golf, 2014"></label>
-      <label for="f-msg">Kas jāizdara?<textarea id="f-msg"></textarea></label>
+      <label for="f-name">Vārds<input id="f-name" name="Vārds" required autocomplete="name"></label>
+      <label for="f-phone">Tālrunis<input id="f-phone" name="Tālrunis" required inputmode="tel" autocomplete="tel"></label>
+      <label for="f-car">Auto marka, modelis un gads<input id="f-car" name="Papildu informācija" placeholder="Piemēram, VW Golf, 2014"></label>
+      <label for="f-msg">Kas jāizdara?<textarea id="f-msg" name="Ziņa"></textarea></label>
       <button class="btn primary" type="submit">Nosūtīt pieteikumu</button>
       <p class="fine">Atbildēsim tajā pašā darba dienā.</p>
       <p id="sent" hidden>Demo: īstajā lapā šis pieteikums uzreiz nonāk jūsu e-pastā.</p>
@@ -384,11 +384,11 @@ footer p { opacity: .7; max-width: 46em; }
 
 <footer><div class="wrap">
   <span class="brand">Bergs Serviss</span>
-  <p>Šī lapa ir paraugs, ko sagatavoja Raivo Harkovs. Tā nav uzņēmuma oficiālā mājaslapa, un teksti, cenas un kontakti ir piemēri. <a href="../">Par autoru un citi paraugi</a></p>
+  <p>Šī lapa ir paraugs, ko sagatavoja Raivo Harkovs. Tā nav uzņēmuma oficiālā mājaslapa. Kontakti ir no publiskā uzņēmumu kataloga, teksti un cenas ir piemēri. <a href="../">Par autoru un citi paraugi</a></p>
 </div></footer>
 
 <div class="bar">
-  <a class="btn ghost" href="#pieteikums"><svg class="i"><use href="#phone"/></svg>Zvanīt</a>
+  <a class="btn ghost" href="tel:+37126490199"><svg class="i"><use href="#phone"/></svg>Zvanīt</a>
   <a class="btn primary" href="#pieteikums">Pieteikt vizīti</a>
 </div>
 

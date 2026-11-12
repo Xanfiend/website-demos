@@ -4,7 +4,7 @@
   python3 _src/build.py <slug>   create or update one business demo (used by the publish button)
 
 Business data lives outside the public repo, in ../privats/shops.py."""
-import html, json, pathlib, re, runpy, sys
+import html, json, pathlib, re, runpy, sys, urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TPL = (ROOT / "_src" / "autoserviss.html").read_text(encoding="utf-8")
@@ -32,7 +32,154 @@ GENERIC = {s[0] for s in SHOPS}
 _PRIVATE = ROOT.parent / "privats" / "shops.py"
 if _PRIVATE.exists():
     SHOPS += runpy.run_path(str(_PRIVATE))["SHOPS"]
-WANT = set(sys.argv[1:])
+# public address, phone, hours and map position from zl.lv (privats/fetch_info.py)
+_INFO = ROOT.parent / "privats" / "info.json"
+INFO = json.loads(_INFO.read_text(encoding="utf-8")) if _INFO.exists() else {}
+DAYNAMES = {1: "Pirmdiena", 2: "Otrdiena", 3: "Trešdiena", 4: "Ceturtdiena", 5: "Piektdiena", 6: "Sestdiena", 0: "Svētdiena"}
+
+
+def nice_tel(t):
+    d = re.sub(r"\D", "", t)
+    d = d[3:] if d.startswith("371") and len(d) == 11 else d
+    return f"+371 {d[:2]} {d[2:5]} {d[5:]}" if len(d) == 8 else t
+
+
+def hours_html(h):
+    """Group consecutive days with the same hours: Pirmdiena–piektdiena 8.00–17.00."""
+    rows, order = [], [1, 2, 3, 4, 5, 6, 0]
+    val = {d: re.sub(r"(^|–)0(\d)", r"\1\2", h[str(d)]) if str(d) in h else "Slēgts" for d in order}
+    for d in order:
+        if rows and rows[-1][2] == val[d]:
+            rows[-1][1] = d
+        else:
+            rows.append([d, d, val[d]])
+    out = []
+    for a, b, v in rows:
+        days = "".join(str(x) for x in order[order.index(a):order.index(b) + 1])
+        label = DAYNAMES[a] if a == b else f"{DAYNAMES[a]}–{DAYNAMES[b].lower()}"
+        out.append(f'        <div data-d="{days}"><span>{label}</span><span>{v}</span></div>')
+    return "\n".join(out)
+
+
+def real_info(page, info, ld):
+    """Put the business's public details into the page instead of placeholders."""
+    tel = info.get("tel")
+    if tel:
+        nt, href = nice_tel(tel), "tel:" + re.sub(r"[^\d+]", "", tel)
+        page = page.replace('<span class="phone"><svg class="i"><use href="#phone"/></svg><span>Jūsu tālrunis</span></span>',
+                            f'<a class="phone" href="{href}"><svg class="i"><use href="#phone"/></svg><span>{nt}</span></a>')
+        page = page.replace("<small>Tālrunis</small>Jūsu tālrunis", f'<small>Tālrunis</small><a href="{href}">{nt}</a>')
+        page = page.replace('<a class="btn ghost" href="#pieteikums"><svg class="i"><use href="#phone"/></svg>Zvanīt</a>',
+                            f'<a class="btn ghost" href="{href}"><svg class="i"><use href="#phone"/></svg>Zvanīt</a>')
+        ld["telephone"] = "+" + re.sub(r"\D", "", tel).lstrip("+") if not tel.startswith("+") else tel
+    if info.get("addr"):
+        page = re.sub(r"<small>Adrese</small>Jūsu adrese, [^<]*", "<small>Adrese</small>" + html.escape(info["addr"]), page)
+        ld["address"]["streetAddress"] = info["addr"]
+    if info.get("hours"):
+        page = re.sub(r'(<div class="hours" id="hours">\n).*?(\n      </div>)', lambda m: m.group(1) + hours_html(info["hours"]) + m.group(2), page, count=1, flags=re.S)
+    q = ",".join(map(str, info["geo"])) if info.get("geo") else info.get("addr", "")
+    if q:
+        url = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(q)
+        page = re.sub(r'<div class="map">.*?</div>', f'<a class="map" href="{url}" target="_blank" rel="noopener"><svg class="i"><use href="#pin"/></svg>Atvērt kartē</a>', page, count=1, flags=re.S)
+        if info.get("geo"):
+            ld["geo"] = {"@type": "GeoCoordinates", "latitude": info["geo"][0], "longitude": info["geo"][1]}
+    page = page.replace("Teksti, cenas, tālrunis un adrese ir piemēri, ieliksim jūsu.",
+                        "Adrese, tālrunis un darba laiks ir no publiskā uzņēmumu kataloga. Teksti un cenas ir piemēri, ieliksim jūsu.")
+    page = page.replace("Tā nav uzņēmuma oficiālā mājaslapa, un teksti, cenas un kontakti ir piemēri.",
+                        "Tā nav uzņēmuma oficiālā mājaslapa. Kontakti ir no publiskā uzņēmumu kataloga, teksti un cenas ir piemēri.")
+    return page
+
+
+def self_host_fonts(page, out):
+    """Download the Google Fonts the page uses into fonts/ so visitors' browsers never contact Google (GDPR)."""
+    import urllib.request
+    cache = ROOT.parent / "privats" / "fonts-cache"
+    cache.mkdir(exist_ok=True)
+    (out / "fonts").mkdir(exist_ok=True)
+    ua = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
+    css_all = []
+    for href in re.findall(r'<link rel="stylesheet" href="(https://fonts\.googleapis\.com/[^"]+)">', page):
+        css = urllib.request.urlopen(urllib.request.Request(html.unescape(href), headers=ua), timeout=30).read().decode()
+        for u in re.findall(r"url\((https://fonts\.gstatic\.com/[^)]+)\)", css):
+            fn = re.sub(r"[^\w.]+", "_", u.split("/s/", 1)[-1])
+            f = cache / fn
+            if not f.exists():
+                f.write_bytes(urllib.request.urlopen(urllib.request.Request(u, headers=ua), timeout=30).read())
+            (out / "fonts" / fn).write_bytes(f.read_bytes())
+            css = css.replace(u, "fonts/" + fn)
+        css_all.append(css)
+    page = re.sub(r'<link rel="preconnect" href="https://fonts\.g[^"]+"( crossorigin)?>\n', "", page)
+    page = re.sub(r'<link rel="stylesheet" href="https://fonts\.googleapis\.com/[^"]+">\n?', "", page)
+    return page.replace("<style>", "<style>\n" + "\n".join(css_all), 1)
+
+
+PRIVACY = """<!doctype html>
+<html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privātuma politika · {name}</title><meta name="robots" content="noindex">
+<style>body{{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:0 auto;padding:32px 20px;color:#14262b;background:#fff}}h1{{font-size:1.8rem}}h2{{font-size:1.15rem;margin-top:28px}}a{{color:inherit}}
+@media (prefers-color-scheme:dark){{body{{background:#0f1a1d;color:#e9efee}}}}</style></head><body>
+<p><a href="./">← {name}</a></p>
+<h1>Privātuma politika</h1>
+<p>Spēkā no {date}.</p>
+<h2>Kas apstrādā datus</h2>
+<p>{company}{regnr}. Saziņai par datiem: {email}.</p>
+<h2>Kādus datus vācam un kāpēc</h2>
+<p>Ja aizpildāt pieteikuma formu, saņemam jūsu vārdu, tālruni un ziņu. Tos izmantojam tikai, lai atbildētu uz jūsu pieteikumu un vienotos par pakalpojumu. Juridiskais pamats: pasākumi pēc jūsu pieprasījuma pirms līguma noslēgšanas (VDAR 6. panta 1. punkta b) apakšpunkts).</p>
+<h2>Kas vēl redz datus</h2>
+<p>Pieteikumu mums piegādā e-pasta piegādes pakalpojums Web3Forms, kas datus apstrādā tikai piegādes nolūkā. Datus nepārdodam un nenododam citiem.</p>
+<h2>Cik ilgi glabājam</h2>
+<p>Tik ilgi, cik vajadzīgs, lai atbildētu uz pieteikumu un sniegtu pakalpojumu, bet ne ilgāk par vienu gadu, ja vien likums neprasa ilgāk (piemēram, grāmatvedības dokumentiem).</p>
+<h2>Sīkdatnes</h2>
+<p>Šī lapa neizmanto sīkdatnes un neseko apmeklētājiem. Fonti tiek ielādēti no šīs pašas lapas.</p>
+<h2>Jūsu tiesības</h2>
+<p>Jūs varat lūgt piekļuvi saviem datiem, to labošanu vai dzēšanu, kā arī iebilst pret apstrādi, rakstot uz {email}. Ja uzskatāt, ka dati apstrādāti nepareizi, varat vērsties Datu valsts inspekcijā (www.dvi.gov.lv).</p>
+</body></html>
+"""
+
+LIVE_JS = """document.getElementById('req').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var f = e.target, b = f.querySelector('button[type=submit]'), s = document.getElementById('sent');
+  b.disabled = true;
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(f) })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { if (!d.success) throw 0; f.reset(); s.textContent = 'Paldies! Pieteikums ir nosūtīts, drīz sazināsimies.'; })
+    .catch(function () { s.textContent = 'Neizdevās nosūtīt. Lūdzu, piezvaniet mums.'; })
+    .finally(function () { s.hidden = false; b.disabled = false; });
+});"""
+
+
+def make_live(page, name, cfg, out):
+    """Turn a demo into the client's real site: no sample markings, working form, privacy page, own domain."""
+    import datetime
+    assert cfg.get("form_key") and cfg.get("email"), f"add form_key and email for this business to privats/live.json"
+    e = html.escape
+    page = re.sub(r'<div class="demo-note">.*?</div></div>\n', "", page, count=1, flags=re.S)
+    page = re.sub(r'<section class="owner">.*?</section>\n', "", page, count=1, flags=re.S)
+    page = page.replace(" · mājaslapas paraugs</title>", "</title>").replace('<meta name="robots" content="noindex">\n', "")
+    page = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{e(name)}: pakalpojumi, cenas, darba laiks un kontakti.">', page)
+    if cfg.get("domain"):
+        page = page.replace("</title>", f'</title>\n<link rel="canonical" href="https://{cfg["domain"]}/">', 1)
+    page = re.sub(r"(<footer>.*?<p>).*?(</p>)", lambda m: m.group(1) + f'© {datetime.date.today().year} {e(name)} · <a href="privatums.html">Privātuma politika</a>' + m.group(2), page, count=1, flags=re.S)
+    page = page.replace('<form id="req" class="rv">', '<form id="req" class="rv">\n      <input type="hidden" name="access_key" value="%s">\n'
+                        '      <input type="hidden" name="subject" value="Jauns pieteikums no mājaslapas">\n'
+                        '      <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">' % e(cfg["form_key"]))
+    page = page.replace('<p id="sent" hidden>', '<p class="fine">Datus izmantojam tikai, lai atbildētu uz pieteikumu. <a href="privatums.html">Privātuma politika</a></p>\n      <p id="sent" hidden>')
+    page = re.sub(r"document\.getElementById\('req'\)\.addEventListener\('submit'.*?\n\}\);", lambda m: LIVE_JS, page, count=1, flags=re.S)
+    page = self_host_fonts(page, out)
+    files = {"privatums.html": PRIVACY.format(name=e(name), date=datetime.date.today().strftime("%d.%m.%Y"),
+                                              company=e(cfg.get("company", name)), regnr=f", reģ. nr. {e(cfg['regnr'])}" if cfg.get("regnr") else "",
+                                              email=e(cfg["email"]))}
+    if cfg.get("domain"):
+        files["CNAME"] = cfg["domain"] + "\n"
+        files["robots.txt"] = f"User-agent: *\nAllow: /\nSitemap: https://{cfg['domain']}/sitemap.xml\n"
+        files["sitemap.xml"] = (f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                f'  <url><loc>https://{cfg["domain"]}/</loc></url>\n</urlset>\n')
+    return page, files
+WANT = {a for a in sys.argv[1:] if not a.startswith("--")}
+LIVE = "--live" in sys.argv  # build the client's real site into ../klienti/<slug>/ (see privats/go-live.html)
+_LIVECFG = ROOT.parent / "privats" / "live.json"
+LIVECFG = json.loads(_LIVECFG.read_text(encoding="utf-8-sig")) if _LIVECFG.exists() else {}
+assert not LIVE or WANT, "--live needs a business slug"
 _unknown = WANT - {s[0] for s in SHOPS}
 assert not _unknown, f"unknown slug: {_unknown}"
 
@@ -379,13 +526,13 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
 </div></div></section>
 """
     # structured data for search engines: business type, town and services
-    ld = "" if generic else '<script type="application/ld+json">' + json.dumps({
+    ldd = {
         "@context": "https://schema.org", "@type": extra.get("ld", "AutoRepair"), "name": name,
         "address": {"@type": "PostalAddress", "addressLocality": town, "addressCountry": "LV"},
         "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": x}} for x in services],
-    }, ensure_ascii=False).replace("</", "<\\/") + "</script>\n"
+    }
     page = (TPL
-            .replace("{{JSONLD}}", ld).replace("{{THEME}}", theme)
+            .replace("{{THEME}}", theme)
             .replace("{{OWNER}}", owner)
             .replace("{{NAME}}", e(name))
             .replace("{{NOTE}}", note)
@@ -414,7 +561,22 @@ for slug, name, loc, town, services, term, *rest in SHOPS:
     page = re.sub(r'\n *<p class="kicker">[^<]*</p>', "", page)
     page = re.sub(r'\n *<ul class="ticks">.*?</ul>', "", page, flags=re.S)
     page = re.sub(r'(<section class="why">.*?<h2>)[^<]*(</h2>)', r"\1Kā strādājam\2", page, count=1, flags=re.S)
-    out = ROOT / slug
-    out.mkdir(exist_ok=True)
+    page = page.replace('<input id="f-car"', '<input id="f-car" name="Papildu informācija"')
+    if slug in INFO:
+        page = real_info(page, INFO[slug], ldd)
+    hrs = INFO.get(slug, {}).get("hours")
+    if hrs:
+        ldd["openingHours"] = [f'{["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][int(d)]} {v.replace(".", ":")}' for d, v in hrs.items()]
+    page = page.replace("{{JSONLD}}", "" if generic else
+                        '<script type="application/ld+json">' + json.dumps(ldd, ensure_ascii=False).replace("</", "<\\/") + "</script>\n")
+    if LIVE:
+        out = ROOT.parent / "klienti" / slug
+        out.mkdir(parents=True, exist_ok=True)
+        page, files = make_live(page, name, LIVECFG.get(slug, {}), out)
+        for fn, body in files.items():
+            (out / fn).write_text(body, encoding="utf-8")
+    else:
+        out = ROOT / slug
+        out.mkdir(exist_ok=True)
     (out / "index.html").write_text(page, encoding="utf-8")
-    print("built", slug)
+    print("built", slug, "(live version in ../klienti)" if LIVE else "")

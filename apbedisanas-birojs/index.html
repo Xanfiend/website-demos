@@ -357,10 +357,10 @@ h1 { font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.08; } h2 { line-height:
     </div>
     <form id="req" class="rv">
       <h3>Uzrakstiet mums</h3>
-      <label for="f-name">Vārds<input id="f-name" required autocomplete="name"></label>
-      <label for="f-phone">Tālrunis<input id="f-phone" required inputmode="tel" autocomplete="tel"></label>
-      <label for="f-car">Kad jums piezvanīt?<input id="f-car" placeholder="Piemēram, šodien pēc 15.00"></label>
-      <label for="f-msg">Kā varam palīdzēt?<textarea id="f-msg"></textarea></label>
+      <label for="f-name">Vārds<input id="f-name" name="Vārds" required autocomplete="name"></label>
+      <label for="f-phone">Tālrunis<input id="f-phone" name="Tālrunis" required inputmode="tel" autocomplete="tel"></label>
+      <label for="f-car">Kad jums piezvanīt?<input id="f-car" name="Papildu informācija" placeholder="Piemēram, šodien pēc 15.00"></label>
+      <label for="f-msg">Kā varam palīdzēt?<textarea id="f-msg" name="Ziņa"></textarea></label>
       <button class="btn primary" type="submit">Nosūtīt pieteikumu</button>
       <p class="fine">Atbildēsim, cik ātri vien iespējams.</p>
       <p id="sent" hidden>Demo: īstajā lapā šis pieteikums uzreiz nonāk jūsu e-pastā.</p>
