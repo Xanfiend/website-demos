@@ -18,7 +18,7 @@
   --band: #14262b; --band-2: #1c343a; --on-band: #eef3f2; --signal: #f2b705; --on-signal: #1b1602;
   --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   --body: "Barlow", "Segoe UI", Arial, sans-serif;
-  --r: 10px; --shadow: 0 1px 2px rgb(20 38 43 / .06), 0 10px 30px rgb(20 38 43 / .09);
+  --r: 4px; --shadow: 0 1px 2px rgb(20 38 43 / .06), 0 10px 30px rgb(20 38 43 / .09);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 @media (prefers-color-scheme: dark) {
@@ -44,9 +44,8 @@ section > .wrap { padding-block: clamp(56px, 8vw, 96px); }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 1.02rem var(--body); padding: 13px 22px; border-radius: 6px; text-decoration: none; border: 2px solid var(--signal); cursor: pointer; transition: background .2s, color .2s, border-color .2s, box-shadow .2s, translate .2s var(--ease); }
 .btn.primary { background: var(--signal); color: var(--on-signal); }
 .btn.primary::after { content: "→"; transition: translate .2s var(--ease); }
-.btn.primary:hover { translate: 0 -2px; box-shadow: 0 8px 20px rgb(0 0 0 / .18); }
-.btn.primary:hover::after { translate: 4px 0; }
-.btn.primary:active { translate: 0 0; box-shadow: none; }
+.btn.primary:hover { translate: 0 -1px; }
+.btn:active { scale: .97; translate: 0 0; }
 .btn.ghost { background: transparent; color: inherit; border-color: color-mix(in srgb, currentColor 35%, transparent); }
 .btn.ghost:hover { border-color: var(--signal); }
 
@@ -66,7 +65,7 @@ section > .wrap { padding-block: clamp(56px, 8vw, 96px); }
 
 .top { background: var(--band); color: var(--on-band); position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgb(255 255 255 / .08); transition: box-shadow .25s; }
 .top .wrap { display: flex; gap: 24px; align-items: center; justify-content: space-between; min-height: 68px; transition: min-height .25s var(--ease); }
-.top.scrolled { box-shadow: 0 6px 24px rgb(0 0 0 / .25); }
+.top.scrolled { border-bottom-color: rgb(255 255 255 / .16); }
 .top.scrolled .wrap { min-height: 56px; }
 .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 1.45rem; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; }
 .top nav { display: flex; gap: 28px; margin-left: auto; }
@@ -86,16 +85,16 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 .hero .wrap > div > :nth-child(2) { animation-delay: .07s; } .hero .wrap > div > :nth-child(3) { animation-delay: .14s; }
 .hero .wrap > div > :nth-child(4) { animation-delay: .21s; } .hero .wrap > div > :nth-child(n+5) { animation-delay: .28s; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
-.notice { display: inline-block; margin-bottom: 22px; padding: 8px 16px; border-radius: 16px; font-size: .92rem; line-height: 1.45; text-decoration: none; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); background: color-mix(in srgb, currentColor 7%, transparent); transition: border-color .2s; }
+.notice { display: inline-block; margin-bottom: 22px; padding: 8px 16px; border-radius: var(--r); font-size: .92rem; line-height: 1.45; text-decoration: none; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); background: color-mix(in srgb, currentColor 7%, transparent); transition: border-color .2s; }
 .notice b { font-weight: 600; margin-right: 8px; } .notice span { opacity: .8; }
 .notice i { display: inline-block; margin-left: 8px; font-style: normal; color: var(--signal); transition: translate .2s var(--ease); }
-.notice:hover { border-color: var(--signal); } .notice:hover i { translate: 4px 0; }
+.notice:hover { border-color: var(--signal); }
 .place { font-size: 1rem; opacity: .75; margin-bottom: 10px; letter-spacing: .02em; }
 .tagline { font: 500 clamp(1.25rem, 2.6vw, 1.6rem)/1.35 var(--body); margin-top: 16px; max-width: 24em; }
 .hero .lead { font-size: 1.08rem; max-width: 34em; opacity: .8; margin-top: 12px; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
-.estimate { background: var(--surface); color: var(--ink); border-radius: 6px; padding: 22px 24px; min-width: 0; border-top: 4px solid var(--signal); box-shadow: 0 24px 60px rgb(0 0 0 / .28); animation: card .9s .3s var(--ease) both; }
+.estimate { background: var(--surface); color: var(--ink); border-radius: var(--r); padding: 22px 24px; min-width: 0; border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); animation: card .9s .3s var(--ease) both; }
 @keyframes card { from { opacity: 0; transform: translateY(26px) scale(.97); } }
 .estimate .cap { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .estimate table, .prices table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
@@ -110,7 +109,7 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 @keyframes rowin { from { opacity: 0; transform: translateX(10px); } }
 
 .facts { position: relative; z-index: 3; margin-top: -46px; }
-.facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1.35fr 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); animation: rise .8s .45s var(--ease) both; }
+.facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1.35fr 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); animation: rise .8s .45s var(--ease) both; }
 .facts li { display: flex; gap: 14px; align-items: center; padding: 18px 22px; min-width: 0; font-weight: 600; line-height: 1.35; }
 .facts li + li { border-left: 1px solid var(--line); }
 .facts svg { width: 26px; height: 26px; color: var(--muted); }
@@ -124,9 +123,7 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 
 .cards { list-style: none; padding: 0; margin: 34px 0 0; display: flex; flex-wrap: wrap; gap: 16px; }
 .cards li { flex: 1 1 300px; position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 24px 24px 26px; }
-.cards li::after { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
-.cards li:hover { translate: 0 -4px; box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--ink) 30%, var(--line)); }
-.cards li:hover::after { transform: scaleX(1); }
+.cards li:hover { border-color: color-mix(in srgb, var(--ink) 30%, var(--line)); }
 .cards .ico { display: block; margin-bottom: 14px; }
 .cards .ico svg { width: 30px; height: 30px; stroke-width: 1.6; }
 .cards p { color: var(--muted); margin-top: 6px; font-size: .98rem; }
@@ -134,7 +131,7 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 .cards .more p { color: inherit; opacity: .78; }
 .cards .more a { margin-top: 14px; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--signal); padding-bottom: 2px; }
 .cards .more a span { display: inline-block; transition: translate .2s var(--ease); }
-.cards .more a:hover span { translate: 4px 0; }
+.cards .more a:hover { border-bottom-color: currentColor; }
 
 .why { background: var(--band); color: var(--on-band); }
 .why .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px 48px; align-items: start; }
@@ -151,7 +148,7 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
 .split > div:first-child { position: sticky; top: 96px; }
 .split .btn { margin-top: 24px; }
-.prices { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 6px 24px; box-shadow: var(--shadow); }
+.prices { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 6px 24px; }
 .prices td { padding: 15px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 .prices tr:last-child td { border-bottom: 0; }
 .prices td:last-child { font-weight: 600; font-size: 1.05rem; }
@@ -176,9 +173,8 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 .shots svg { width: 28px; height: 28px; opacity: .7; }
 .shots figure { margin: 0; min-height: 190px; border-radius: var(--r); overflow: hidden; }
 .shots img { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale .7s var(--ease); }
-.shots figure:hover img { scale: 1.06; }
 .shots-note { margin-top: 12px; font-size: .88rem; color: var(--muted); }
-.split .estimate { margin-top: 30px; box-shadow: var(--shadow); outline: 1px solid var(--line); animation: none; }
+.split .estimate { margin-top: 30px; animation: none; }
 .split .estimate tr { animation: none; }
 
 .faq { max-width: 820px; }
@@ -208,10 +204,10 @@ a.phone svg { animation: ring 6s 3s infinite; transform-origin: 50% 60%; }
 .map.on { display: block; padding: 0; background: none; text-align: left; }
 .map iframe { display: block; width: 100%; height: 270px; border: 0; border-radius: var(--r); background: #dfe5e3; animation: rise .6s var(--ease) both; }
 .map.on a { margin-top: 10px; font-size: .92rem; }
-form { display: grid; gap: 14px; min-width: 0; background: var(--surface); color: var(--ink); border-radius: var(--r); padding: 28px; align-self: start; box-shadow: 0 24px 60px rgb(0 0 0 / .25); }
+form { display: grid; gap: 14px; min-width: 0; background: var(--surface); color: var(--ink); border-radius: var(--r); padding: 28px; align-self: start; box-shadow: 0 18px 40px rgb(0 0 0 / .22); }
 form h3 { font: 700 1.6rem/1 var(--display); text-transform: uppercase; }
 label { font-size: .92rem; font-weight: 500; display: grid; gap: 6px; }
-input, textarea { font: inherit; padding: 12px 13px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; transition: border-color .15s, box-shadow .15s; }
+input, textarea { font: inherit; padding: 12px 13px; border-radius: var(--r); border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; transition: border-color .15s, box-shadow .15s; }
 input:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 45%, transparent); }
 textarea { min-height: 96px; resize: vertical; }
 form .fine { font-size: .86rem; color: var(--muted); }
@@ -301,7 +297,7 @@ footer p { opacity: .7; max-width: 46em; }
   <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
 </svg>
 
-<div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Bergs Serviss». Adrese, tālrunis un darba laiks ir no publiskā uzņēmumu kataloga. Teksti un cenas ir piemēri, ieliksim jūsu.</span></div></div>
+<div class="demo-note"><div class="wrap"><span>Šis paraugs ir sagatavots tieši uzņēmumam «Bergs Serviss». Adrese, tālrunis un darba laiks ir no publiskā uzņēmumu kataloga. Teksti un cenas ir piemēri, tos nomainīšu pret jūsējiem.</span></div></div>
 
 <section class="owner"><div class="wrap"><div class="card">
   <p class="tag">Tikai jums. Klienti šo daļu neredzēs.</p>
@@ -309,7 +305,7 @@ footer p { opacity: .7; max-width: 46em; }
   <p>Labdien! Mani sauc Raivo Harkovs, veidoju mājaslapas maziem uzņēmumiem. Šis ir paraugs, kā varētu izskatīties «Bergs Serviss» mājaslapa. Zemāk tā ir tāda, kādu to redzētu jūsu klients, jau ar jūsu nosaukumu un pakalpojumiem.</p>
   <ul>
     <li><b>Jūs atrod Google</b><span>Kad salūst auto, cilvēki meklē “autoserviss Valmiera”. Bez mājaslapas šie klienti aizbrauc pie tiem, kurus atrod. Lapā jūsu nosaukums, pilsēta un pakalpojumi ir norādīti arī meklētājam saprotamā veidā.</span></li>
-    <li><b>Redzami arī kartē</b><span>Palīdzu izveidot uzņēmuma kartīti internetā: jūsu adresi, darba laiku, tālruni un atsauksmes, ko cilvēki redz Google meklētājā un kartē.</span></li>
+    <li><b>Kartīte un mājaslapa kopā</b><span>Jūsu uzņēmuma kartīte Google meklētājā jau ir. Mājaslapas saiti var ielikt kartītē, lai cilvēks uzreiz redzētu jūsu pakalpojumus un cenas.</span></li>
     <li><b>Mazāk zvanu “cik maksā?”</b><span>Cenas un darba laiks ir redzami, tāpēc zvana tie, kas grib pieteikties.</span></li>
     <li><b>Pieteikumi arī vakaros</b><span>Forma strādā brīvdienās un pēc darba laika, kad telefonu neceļat.</span></li>
     <li><b>Jauni klienti uzticas ātrāk</b><span>Pirms brauciena cilvēks grib redzēt, ka serviss ir īsts un ko tas dara.</span></li>
@@ -337,7 +333,7 @@ footer p { opacity: .7; max-width: 46em; }
       <p class="place">Autoserviss Valmierā</p>
       <h1>Bergs Serviss</h1>
       <p class="tagline">Remonts bez pārsteigumiem rēķinā</p>
-      <p class="lead">Pirms sākam darbu, jūs saņemat tāmi ar cenu. Ja remonta laikā atklājas kas papildu, vispirms piezvanām un tikai tad darām.</p>
+      <p class="lead">Pirms sākam darbu, jūs saņemat tāmi ar cenu. Ja remonta laikā atklājas vēl kas, vispirms piezvanām un tikai tad darām.</p>
       <div class="cta-row">
         <a class="btn primary" href="#pieteikums">Pieteikt vizīti</a>
         <a class="btn ghost" href="#cenas">Skatīt cenas</a>
@@ -409,9 +405,9 @@ footer p { opacity: .7; max-width: 46em; }
   <div class="wrap">
     <h2 class="rv">Kā tas notiek</h2>
     <ol class="steps">
-      <li><h3>Piesakāties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p></li>
-      <li><h3>Saņemat tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p></li>
-      <li><h3>Saņemat auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p></li>
+      <li><h3>Piesakieties</h3><p>Zvaniet vai aizpildiet pieteikumu. Atbildam tajā pašā darba dienā un vienojamies par laiku.</p></li>
+      <li><h3>Saņemiet tāmi</h3><p>Apskatām auto, izskaidrojam, kas jādara, un nosaucam cenu. Lēmums paliek jūsu ziņā.</p></li>
+      <li><h3>Saņemiet auto</h3><p>Paziņojam, kad auto gatavs. Rēķinā ir tas pats, kas tāmē.</p></li>
     </ol>
     <div class="shots" data-stagger aria-label="Vieta fotogrāfijām">
       <div><svg class="i"><use href="#cam"/></svg>Šeit būs jūsu servisa foto</div>
