@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
 <style>
-:root { --bg:#f3f4f2; --surface:#fff; --ink:#14262b; --muted:#55676b; --line:#d6dcda; --band:#14262b; --on-band:#eef3f2; --signal:#f2b705; --on-signal:#1b1602; --ok:#3ddc84;
+:root { --bg:#f3f4f2; --surface:#fbfbf9; --ink:#14262b; --muted:#55676b; --line:#d6dcda; --band:#14262b; --on-band:#eef3f2; --signal:#f2b705; --on-signal:#1b1602; --ok:#3ddc84;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:"Barlow","Segoe UI",Arial,sans-serif; interpolate-size:allow-keywords; }
 @media (prefers-color-scheme: dark) { :root { --bg:#0f1a1d; --surface:#17272c; --ink:#e9efee; --muted:#9fb0b3; --line:#2b3f45; --band:#0a1215; color-scheme:dark; } }
 * { box-sizing:border-box; }
@@ -37,13 +37,14 @@ p { margin:0; } a { color:inherit; }
 :focus-visible { outline:3px solid var(--signal); outline-offset:2px; }
 section > .wrap { padding-block:clamp(48px,7vw,80px); }
 .sub { color:var(--muted); margin-top:10px; max-width:42em; }
+.btn:active { scale:.97; }
 .btn { display:inline-flex; align-items:center; gap:8px; font:600 1.02rem var(--body); padding:12px 20px; border-radius:6px; text-decoration:none; border:2px solid var(--signal); background:var(--signal); color:var(--on-signal); transition:filter .15s; }
 .btn:hover { filter:brightness(1.06); }
 .more { font-weight:600; text-decoration:none; border-bottom:2px solid currentColor; padding-bottom:1px; }
-.more::after { content:" →"; display:inline-block; transition:transform .2s; } .more:hover::after { transform:translateX(3px); }
+.more::after { content:" →"; } .more:hover { border-bottom-color:var(--signal); }
 
-.top { background:var(--band); color:var(--on-band); position:sticky; top:0; z-index:20; transition:box-shadow .25s; }
-.top.scrolled { box-shadow:0 6px 20px rgb(0 0 0/.25); }
+.top { background:var(--band); color:var(--on-band); position:sticky; top:0; z-index:20; border-bottom:1px solid transparent; transition:border-color .25s; }
+.top.scrolled { border-bottom:1px solid rgb(255 255 255/.14); }
 .top .wrap { display:flex; gap:24px; align-items:center; min-height:62px; }
 .brand { display:flex; align-items:center; gap:12px; text-decoration:none; line-height:1.2; }
 .brand img { width:36px; height:36px; border-radius:50%; }
@@ -54,7 +55,7 @@ section > .wrap { padding-block:clamp(48px,7vw,80px); }
 .hero .wrap { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; padding-block:clamp(40px,6vw,72px) clamp(52px,7vw,80px); }
 .place { opacity:.7; margin-bottom:12px; }
 .lead { font-size:1.12rem; max-width:31em; opacity:.85; margin-top:18px; }
-.free { margin-top:22px; padding-left:14px; border-left:3px solid var(--signal); max-width:31em; }
+.free { margin-top:22px; padding-top:14px; border-top:1px solid rgb(255 255 255/.18); max-width:31em; }
 .cta-row { display:flex; flex-wrap:wrap; gap:18px 26px; align-items:center; margin-top:28px; }
 
 /* screenshot that scrolls through the whole demo page on hover, so visitors see more than the top */
@@ -64,7 +65,7 @@ section > .wrap { padding-block:clamp(48px,7vw,80px); }
 .hero .shot img { animation:tour 13s cubic-bezier(.45,0,.4,1) 1.5s 1 both; }
 .hero .shot:hover img { animation:none; }
 @keyframes tour { 0%,8% { transform:none; } 46%,58% { transform:translateY(-68.75%); } 100% { transform:none; } }
-.shot .hint { position:absolute; right:10px; bottom:10px; font-size:.8rem; font-weight:600; background:rgb(10 18 21/.82); color:#eef3f2; padding:4px 10px; border-radius:99px; }
+.shot .hint { position:absolute; right:10px; bottom:10px; font-size:.8rem; font-weight:600; background:rgb(10 18 21/.82); color:#eef3f2; padding:4px 10px; border-radius:4px; }
 
 .note { background:var(--surface); border-bottom:1px solid var(--line); } .note .wrap { padding-block:18px; }
 
@@ -178,7 +179,7 @@ footer { background:var(--band); color:var(--on-band); border-top:1px solid rgb(
         <li>Pieteikuma forma, kas nonāk jūsu e-pastā</li>
         <li>Palīdzība ar uzņēmuma kartīti internetā: jūsu adrese, darba laiks, tālrunis, foto un atsauksmes, ko cilvēki redz Google meklētājā un kartē</li>
         <li>Palīdzība ar adresi (domēnu), piemēram, jusuuznemums.lv</li>
-        <li>Viena labojumu kārta pēc nodošanas bez maksas</li>
+        <li>Trīs mēnešus pēc publicēšanas mazas izmaiņas (teksti, cenas, darba laiks, foto) bez maksas</li>
       </ul>
     </div>
     <img class="phone-shot" src="assets/paraugs-telefona.jpg" alt="Parauga lapa telefonā" width="390" height="844" loading="lazy">

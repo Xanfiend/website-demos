@@ -420,10 +420,9 @@ FONTS = {
               ("Sora:wght@600;700", '"Sora",Arial,sans-serif', _T % ("-.03em", "700", "2rem,4.8vw,3.3rem", "1.1", "1.2rem")),
               ("Plus+Jakarta+Sans:wght@700;800", '"Plus Jakarta Sans",Arial,sans-serif', _T % ("-.03em", "800", "2.1rem,5.2vw,3.5rem", "1.08", "1.25rem"))],
 }
-_PILL = ".btn,.phone{border-radius:99px}"
-SHAPES = {"tech": [":root{--r:2px}", ":root{--r:6px}", ":root{--r:10px}"],
-          "soft": [":root{--r:14px}" + _PILL, ":root{--r:6px}", ":root{--r:20px}" + _PILL],
-          "clean": [":root{--r:14px}" + _PILL, ":root{--r:10px}", ":root{--r:4px}"]}
+SHAPES = {"tech": [":root{--r:0}", ":root{--r:2px}", ":root{--r:4px}"],  # small corners only: big rounding and pill buttons read as AI-made
+          "soft": [":root{--r:6px}", ":root{--r:4px}", ":root{--r:6px}"],
+          "clean": [":root{--r:2px}", ":root{--r:4px}", ":root{--r:6px}"]}
 _BG = ('.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;animation:zoom 16s ease-out both}'
        '@keyframes zoom{from{scale:1.1}}')
 # hero layouts. "klasika" is the template as it is (sample estimate in the hero).
@@ -468,7 +467,7 @@ MIRROR = {"klasika": ('@media(min-width:901px){.hero .wrap{grid-template-columns
 # services as a list with dividers instead of cards
 ROWS = ('.cards{display:block;border-top:1px solid var(--line)}'
         '.cards li{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1.3fr);gap:6px 22px;align-items:center;padding:20px 4px;background:none;border:0;'
-        'border-bottom:1px solid var(--line);border-radius:0}.cards li:hover{translate:8px 0;box-shadow:none}.cards .ico,.cards p{margin:0}'
+        'border-bottom:1px solid var(--line);border-radius:0}.cards .ico,.cards p{margin:0}'
         '.cards .more{display:flex;margin-top:22px;padding:24px;border-radius:var(--r);background:var(--band)}.cards .more:hover{translate:none}'
         '@media(max-width:640px){.cards li{grid-template-columns:34px 1fr}.cards li p{grid-column:2}}')
 DESIGNS_FOR = {"tech": ["klasika", "foto", "ramis", "zimejums", "gaiss"], "soft": ["centrs", "gaiss", "foto", "ramis", "zimejums"],
